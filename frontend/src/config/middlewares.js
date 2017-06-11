@@ -13,7 +13,6 @@ export default function middlewares ($httpProvider,$windowProvider,$qProvider,$s
         return {
             'request': (config) => {
 
-               /*
 
                 //Making a request to the API Server
                 if(config.url.indexOf(API_URL) === 0) {
@@ -24,14 +23,13 @@ export default function middlewares ($httpProvider,$windowProvider,$qProvider,$s
                         config.headers.Authorization = 'JWT ' + token;
                     }
 
-                }*/
+                }
 
 
                 return config;
             },
             'response': function(response) {
 
-                /*
 
                 //Receiving response from  the API Server
                 if(response && response.config.url.indexOf(API_URL) === 0 ) {
@@ -41,7 +39,7 @@ export default function middlewares ($httpProvider,$windowProvider,$qProvider,$s
                         $window.localStorage['jwtToken'] = response.data.token;
                     }
 
-                }*/
+                }
 
                 return response;
             }
