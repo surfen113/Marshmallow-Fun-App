@@ -1,3 +1,4 @@
+
 'use strict';
 
 import angular from 'angular';
@@ -22,6 +23,7 @@ import ViewMovieCreate from './components/view-movie-create/view-movie-create';
 import ViewLogin from './components/view-login/view-login';
 import ActivityMap from './components/activity-map/activity-map';
 import ViewRegister from './components/view-register/view-register';
+import ViewMap from './components/view-map/view-map';
 
 let app = angular.module('app', [
     uiRouter,
@@ -36,7 +38,8 @@ let app = angular.module('app', [
     ViewMovieCreate.name,
     ViewLogin.name,
     ActivityMap.name,
-    ViewRegister.name
+    ViewRegister.name,
+    ViewMap.name
 ]);
 
 app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
@@ -49,5 +52,6 @@ angular.element(document).ready(function() {
         strictDi: true
     });
 });
+
 
 export default app;

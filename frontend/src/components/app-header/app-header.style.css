@@ -20,3 +20,7 @@ md-nav-bar.md-default-theme md-nav-ink-bar, md-nav-bar md-nav-ink-bar {
     color: #ffffff;
     background: #ffffff;
 }
+
+#mainToolbar {
+    background-color: lightgrey;
+}

@@ -7,6 +7,7 @@ import MovieCreateComponent from './../components/view-movie-create/view-movie-c
 import LoginComponent from './../components/view-login/view-login.component';
 import ActivityMapComponent from './../components/activity-map/activity-map.component';
 import RegisterComponent from './../components/view-register/view-register.component';
+import MapComponent from './../components/view-map/view-map.component';
 
 
 import MoviesService from './../services/movies/movies.service';
@@ -68,6 +69,11 @@ export default function config ($stateProvider, $urlRouterProvider){
             url: '/register',
             component: RegisterComponent.name
         })
+        .state('map', {
+            url: '/map',
+            component: MapComponent.name,
+        })
+
 
 
 }
