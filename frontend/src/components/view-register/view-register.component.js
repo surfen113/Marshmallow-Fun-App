@@ -32,16 +32,18 @@ class ViewRegisterComponentController{
         let email = this.register.email;
         let password = this.register.password;
         let birthday = this.register.birthday;
-        let licenseagreement = this.register.licenseagreement;
-
-
         let address = this.register.address;
         let aboutme = this.register.aboutme;
+        let mobile = this.register.mobile;
 
 
-        this.UserService.login(user,password).then(()=> {
+        this.UserService.register(firstname, lastname, email, password, birthday, address, mobile, aboutme).then(()=> {
             this.$state.go('activityMap',{});
-    });
+        });
+
+//        this.UserService.login(user,password).then(()=> {
+//            this.$state.go('activityMap',{});
+//    });
     }
     cancel(){
         this.$state.go('login', {});

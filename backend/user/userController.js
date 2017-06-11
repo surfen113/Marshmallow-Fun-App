@@ -48,6 +48,14 @@ module.exports.signup = function(req, res){
 
     user.username = req.body.username;
     user.password = req.body.password;
+    user.firstname = req.body.firstname;
+    user.lastname = req.body.lastname;
+    user.email = req.body.email;
+    user.birthday = req.body.birthday;
+    user.address = req.body.address;
+    user.mobile = req.body.mobile;
+    user.aboutme = req.body.aboutme;
+    //user.image = req.body.image;
 
     user.save(function(err) {
         if (err) {
