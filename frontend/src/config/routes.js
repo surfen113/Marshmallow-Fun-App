@@ -5,6 +5,9 @@ import MovieComponent from './../components/view-movie/view-movie.component';
 import MovieEditComponent from './../components/view-movie-edit/view-movie-edit.component';
 import MovieCreateComponent from './../components/view-movie-create/view-movie-create.component';
 import LoginComponent from './../components/view-login/view-login.component';
+import ActivityMapComponent from './../components/activity-map/activity-map.component';
+import RegisterComponent from './../components/view-register/view-register.component';
+
 
 import MoviesService from './../services/movies/movies.service';
 
@@ -24,7 +27,7 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider){
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/movies");
+    $urlRouterProvider.otherwise("/login");
 
     $stateProvider
         .state('movies', {
@@ -55,7 +58,15 @@ export default function config ($stateProvider, $urlRouterProvider){
         })
         .state('login', {
             url: '/login',
-            component: LoginComponent.name,
+            component: LoginComponent.name
+        })
+        .state('activityMap', {
+            url: '/activityMap',
+           component: ActivityMapComponent.name
+        })
+        .state('register', {
+            url: '/register',
+            component: RegisterComponent.name
         })
 
 

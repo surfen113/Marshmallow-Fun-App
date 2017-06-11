@@ -20,6 +20,8 @@ import ViewMovie from './components/view-movie/view-movie';
 import ViewMovieEdit from './components/view-movie-edit/view-movie-edit';
 import ViewMovieCreate from './components/view-movie-create/view-movie-create';
 import ViewLogin from './components/view-login/view-login';
+import ActivityMap from './components/activity-map/activity-map';
+import ViewRegister from './components/view-register/view-register';
 
 let app = angular.module('app', [
     uiRouter,
@@ -32,7 +34,9 @@ let app = angular.module('app', [
     ViewMovie.name,
     ViewMovieEdit.name,
     ViewMovieCreate.name,
-    ViewLogin.name
+    ViewLogin.name,
+    ActivityMap.name,
+    ViewRegister.name
 ]);
 
 app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
