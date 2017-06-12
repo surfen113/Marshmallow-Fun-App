@@ -24,10 +24,11 @@ export default class UserService {
             firstname: firstname,
             lastname: lastname,
             email: email,
+            passowrd: password,
             birthday: birthday,
             address: address,
             mobile: mobile,
-            aboutme: aboutme,
+            aboutme: aboutme
             //image: image
         });
     }
