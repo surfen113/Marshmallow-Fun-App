@@ -1,0 +1,6 @@
+.user-settings-form md-card {
+    padding: 0 !important;
+}
+.user-settings-form md-card md-card-title {
+    background-color: blue;
+}
