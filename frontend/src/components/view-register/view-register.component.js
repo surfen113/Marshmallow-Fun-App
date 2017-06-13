@@ -55,7 +55,7 @@ class ViewRegisterComponentController{
 
 }
 
-angular.module('myApp.directives', [])
+/*angular.module('myApp.directives', [])
     .directive('pwCheck', [function () {
         return {
             require: 'ngModel',
@@ -70,6 +70,6 @@ angular.module('myApp.directives', [])
             }
         }
     }]);
-
+*/
 
 export default  ViewRegisterComponent;

@@ -6,15 +6,15 @@
             <md-card-content>
                 <form name="RegisterForm">
 
-                                <md-input-container class="md-block">
-                                    <label>First name</label>
-                                    <input type="text" name="firstname" ng-model="$ctrl.register.firstname" placeholder="test"  required=""/>
-                                    <!--
-                                    <div ng-messages="RegisterForm.firstname.$error" role="alert" multiple="">
-                                        <div ng-message="required">Please enter your first name.</div>
-                                    </div>
-                                    -->
-                                </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>First name</label>
+                        <input type="text" name="firstname" ng-model="$ctrl.register.firstname" placeholder="test"  required=""/>
+                        <!--
+                               <div ng-messages="RegisterForm.firstname.$error" role="alert" multiple="">
+                                     <div ng-message="required">Please enter your first name.</div>
+                                </div>
+                        -->
+                    </md-input-container>
                     <md-input-container class="md-block">
                         <label>Last name</label>
                         <input type="text" name="lastname" ng-model="$ctrl.register.lastname" placeholder="test2" required=""/>
@@ -28,14 +28,14 @@
                         <label>e-mail</label>
                         <input type="email" name="email" ng-model="$ctrl.register.email" placeholder="test3" required=""/>
                     </md-input-container>
-                                <md-input-container class="md-block">
-                                    <label>Address</label>
-                                    <input type="text" name="address" ng-model="$ctrl.register.address" placeholder="test"  required=""/>
-                                    <!--
-                                    <div ng-messages="RegisterForm.firstname.$error" role="alert" multiple="">
-                                        <div ng-message="required">Please enter your first name.</div>
-                                    </div>
-                                    -->
+                    <md-input-container class="md-block">
+                        <label>Address</label>
+                        <input type="text" name="address" ng-model="$ctrl.register.address" placeholder="test"  required=""/>
+                        <!--
+                                <div ng-messages="RegisterForm.firstname.$error" role="alert" multiple="">
+                                    <div ng-message="required">Please enter your first name.</div>
+                                </div>
+                        -->
                                 </md-input-container>
                     <md-input-container class="md-block">
                         <label>Password</label>
@@ -45,9 +45,11 @@
                         <label>Password repeat</label>
                         <input type="password" name="pw2" ng-model="$ctrl.register.passwordrepeat" placeholder="test4" required="" pw-check="pw1"/>
                     </md-input-container>
+                    <!--
                     <div class='msg-block' ng-show='myForm.$error'>
                         <span class='msg-error' ng-show='myForm.pw2.$error.'>Passwords don't match.</span>
                     </div>
+                    -->
                     <md-input-container class="md-block">
                         <label>Birthday</label>
                         <input type="date" name="birthday" ng-model="$ctrl.register.birthday" placeholder="" required=""/>

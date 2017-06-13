@@ -24,7 +24,7 @@ export default class UserService {
             firstname: firstname,
             lastname: lastname,
             email: email,
-            passowrd: password,
+            password: password,
             birthday: birthday,
             address: address,
             mobile: mobile,
