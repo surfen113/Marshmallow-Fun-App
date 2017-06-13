@@ -18,7 +18,7 @@ export default class UserService {
         return 'UserService';
     }
 
-    register(firstname, lastname, email, password, birthday, address, mobile, aboutme) {
+    register(firstname, lastname, email, password, birthday, address, mobile, aboutme, sports,social, musik, culture, party) {
         return this.$http.post(`${ this.API_URL }/user/signup`, {
             username: email,
             firstname: firstname,
@@ -28,7 +28,12 @@ export default class UserService {
             birthday: birthday,
             address: address,
             mobile: mobile,
-            aboutme: aboutme
+            aboutme: aboutme,
+            sports: sports,
+            social: social,
+            musik: musik,
+            cutlure: culture,
+            party: party
             //image: image
         });
     }

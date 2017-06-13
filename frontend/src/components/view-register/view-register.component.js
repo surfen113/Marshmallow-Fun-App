@@ -35,9 +35,13 @@ class ViewRegisterComponentController{
         let address = this.register.address;
         let aboutme = this.register.aboutme;
         let mobile = this.register.mobile;
+        let sports = this.register.sports;
+        let social = this.register.social;
+        let musik = this.register.musik;
+        let culture = this.register.culture;
+        let party = this.register.party;
 
-
-        this.UserService.register(firstname, lastname, email, password, birthday, address, mobile, aboutme).then(()=> {
+        this.UserService.register(firstname, lastname, email, password, birthday, address, mobile, aboutme, sports,social, musik, culture, party).then(()=> {
             this.$state.go('activityMap',{});
         });
 
@@ -54,8 +58,8 @@ class ViewRegisterComponentController{
     }
 
 }
-
-/*angular.module('myApp.directives', [])
+/*
+angular.module('myApp.directives', [])
     .directive('pwCheck', [function () {
         return {
             require: 'ngModel',

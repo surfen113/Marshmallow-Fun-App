@@ -35,7 +35,26 @@ var userSchema = mongoose.Schema({
     },
     aboutme: {
         type: String
-    }//,
+    },
+    sports: {
+        type: Boolean
+    },
+    social: {
+        type: Boolean
+    },
+    musik: {
+        type: Boolean
+    },
+    culture: {
+        type: Boolean
+    },
+    party: {
+        type: Boolean
+    }
+
+
+
+    //,
 //    imageId: {
 //        type: String
 //    }

@@ -55,6 +55,11 @@ module.exports.signup = function(req, res){
     user.address = req.body.address;
     user.mobile = req.body.mobile;
     user.aboutme = req.body.aboutme;
+    user.sports = req.body.sports;
+    user.social = req.body.social;
+    user.musik = req.body.musik;
+    user.culture = req.body.culture;
+    user.party = req.body.party;
     //user.image = req.body.image;
 
     user.save(function(err) {
