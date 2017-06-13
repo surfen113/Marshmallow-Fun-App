@@ -8,6 +8,7 @@ import LoginComponent from './../components/view-login/view-login.component';
 import ActivityMapComponent from './../components/activity-map/activity-map.component';
 import RegisterComponent from './../components/view-register/view-register.component';
 import MapComponent from './../components/view-map/view-map.component';
+import UserSettingsComponent from './../components/view-user-settings/view-user-settings.component';
 
 
 import MoviesService from './../services/movies/movies.service';
@@ -28,7 +29,7 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider){
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/login");
+    $urlRouterProvider.otherwise("/userSettings");
 
     $stateProvider
         .state('movies', {
@@ -72,6 +73,10 @@ export default function config ($stateProvider, $urlRouterProvider){
         .state('map', {
             url: '/map',
             component: MapComponent.name,
+        })
+        .state('userSettings', {
+            url: '/userSettings',
+            component: UserSettingsComponent.name
         })
 
 

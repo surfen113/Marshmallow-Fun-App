@@ -38,6 +38,23 @@ export default class UserService {
         });
     }
 
+    //made by fuad
+    updateUserSettings(username, firstname, lastname, email, password, birthday, address, mobile, aboutme) {
+        return this.$http.post(`${ this.API_URL }/user/settings`, {
+            username: username,
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password,
+            birthday: birthday,
+            address: address,
+            mobile: mobile,
+            aboutme: aboutme
+            //image: image
+        });
+    }
+
+
     login(user, pass) {
         return this.$http.post(`${ this.API_URL }/user/login`, {
             username: user,

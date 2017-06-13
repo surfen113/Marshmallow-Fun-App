@@ -14,7 +14,7 @@ class ViewUserSettingsComponent {
     }
 
     static get name() {
-        return 'updateUserSettings';
+        return 'userSettings';
     }
 
 

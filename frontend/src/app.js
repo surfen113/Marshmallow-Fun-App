@@ -24,6 +24,7 @@ import ViewLogin from './components/view-login/view-login';
 import ActivityMap from './components/activity-map/activity-map';
 import ViewRegister from './components/view-register/view-register';
 import ViewMap from './components/view-map/view-map';
+import ViewUserSettings from './components/view-user-settings/view-user-settings';
 
 let app = angular.module('app', [
     uiRouter,
@@ -39,7 +40,8 @@ let app = angular.module('app', [
     ViewLogin.name,
     ActivityMap.name,
     ViewRegister.name,
-    ViewMap.name
+    ViewMap.name,
+    ViewUserSettings.name
 ]);
 
 // app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');

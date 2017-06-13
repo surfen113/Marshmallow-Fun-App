@@ -5,7 +5,8 @@
 
 import angular from 'angular';
 
-import ViewMoviesComponent from './view-user-settings.component';
+import ViewUserSettingsComponent from './view-user-settings.component';
+
 
 
 export default angular.module('ViewUserSettings', [])
