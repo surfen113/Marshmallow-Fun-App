@@ -72,13 +72,24 @@ export default class UserService {
 
         let base64Url = token.split('.')[1];
         let base64 = base64Url.replace('-', '+').replace('_', '/');
+
         return JSON.parse(this.$window.atob(base64)).user;
+    }
+
+    getCurrentUserInformation(){
+        let token = this.$window.localStorage['jwtToken'];
+        if (!token) return {};
+
+        let base64Url = token.split('.')[1];
+        let base64 = base64Url.replace('-', '+').replace('_', '/');
+
+
+        return JSON.parse(this.$window.atob(base64)).firstname;
     }
 
     isAuthenticated() {
         return !!this.$window.localStorage['jwtToken'];
         // return true;
     }
-
 
 }
