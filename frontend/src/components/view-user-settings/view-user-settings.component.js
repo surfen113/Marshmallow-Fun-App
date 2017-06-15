@@ -13,6 +13,9 @@ class ViewUserSettingsComponent {
 
     }
 
+
+
+
     static get name() {
         return 'userSettings';
     }
@@ -24,6 +27,29 @@ class ViewUserSettingsComponentController{
     constructor($state,UserService){
         this.$state = $state;
         this.UserService = UserService;
+
+        let user = this.UserService.getCurrentUser();
+
+
+
+        $ctrl.settings.firstname = UserService.getCurrentUserInformation();
+        /*
+         $ctrl.settings.firstname = this.UserService.getUserInformation().firstname;
+         $ctrl.settings.lastname = this.UserService.getUserInformation().lastname;
+         $ctrl.settings.email = this.UserService.getUserInformation().email;
+         $ctrl.settings.password = this.UserService.getUserInformation().password;
+         $ctrl.settings.password = this.UserService.getUserInformation().password;
+         $ctrl.settings.birthday = this.UserService.getUserInformation().birthday;
+         $ctrl.settings.address = this.UserService.getUserInformation().address;
+         $ctrl.settings.mobile = this.UserService.getUserInformation().mobile;
+         $ctrl.settings.aboutme = this.UserService.getUserInformation().aboutme;
+         $ctrl.settings.sports = this.UserService.getUserInformation().sports;
+         $ctrl.settings.social = this.UserService.getUserInformation().social;
+         $ctrl.settings.musik = this.UserService.getUserInformation().musik;
+         $ctrl.settings.culture = this.UserService.getUserInformation().culture;
+         $ctrl.settings.party = this.UserService.getUserInformation().party;
+
+*/
     }
 
     submit(){
