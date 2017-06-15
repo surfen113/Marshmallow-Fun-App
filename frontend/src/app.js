@@ -16,32 +16,26 @@ import Routes from './config/routes';
 import Middlewares from './config/middlewares';
 
 import AppContent from './components/app-content/app-content';
-import ViewMovies from './components/view-movies/view-movies';
-import ViewMovie from './components/view-movie/view-movie';
-import ViewMovieEdit from './components/view-movie-edit/view-movie-edit';
-import ViewMovieCreate from './components/view-movie-create/view-movie-create';
 import ViewLogin from './components/view-login/view-login';
 import ActivityMap from './components/activity-map/activity-map';
 import ViewRegister from './components/view-register/view-register';
 import ViewMap from './components/view-map/view-map';
 import ViewUserSettings from './components/view-user-settings/view-user-settings';
+import AppSmallHeader from './components/app-small-header/app-small-header';
+
 
 let app = angular.module('app', [
     uiRouter,
     angularMaterial,
     ngMdIcons,
     UserService.name,
-    MoviesService.name,
     AppContent.name,
-    ViewMovies.name,
-    ViewMovie.name,
-    ViewMovieEdit.name,
-    ViewMovieCreate.name,
     ViewLogin.name,
     ActivityMap.name,
     ViewRegister.name,
     ViewMap.name,
-    ViewUserSettings.name
+    ViewUserSettings.name,
+    AppSmallHeader.name
 ]);
 
 // app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
