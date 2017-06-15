@@ -95,6 +95,7 @@ exports.getProfile = function(req, res) {
 /* Update profile */
 exports.updateProfile = function(req,  res) {
 
+    req.body.username = req.body.email;
     // Use the User model to find a specific user and update it
     User.findByIdAndUpdate(
         req.params.user_id,
