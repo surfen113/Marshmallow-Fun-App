@@ -8,46 +8,40 @@
 
                     <md-input-container class="md-block">
                         <label>First name</label>
-                        <input type="text" name="firstname" ng-model="$ctrl.settings.firstname" placeholder="test"  required=""/>
-                        <!--
-                               <div ng-messages="RegisterForm.firstname.$error" role="alert" multiple="">
-                                     <div ng-message="required">Please enter your first name.</div>
-                                </div>
-                        -->
+                        <input type="text" name="firstname" ng-model="$ctrl.settings.firstname" placeholder=""  required=""/>
+                        <div ng-messages="RegisterForm.firstname.$error" role="alert" multiple="">
+                            <div ng-message="required">Please enter your first name.</div>
+                        </div>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Last name</label>
-                        <input type="text" name="lastname" ng-model="$ctrl.settings.lastname" placeholder="test2" required=""/>
-                        <!--
+                        <input type="text" name="lastname" ng-model="$ctrl.settings.lastname" placeholder="" required=""/>
                         <div ng-messages="RegisterForm.lastname.$error" role="alert" multiple="">
                             <div ng-message="required">Please enter your last name.</div>
                         </div>
-                        -->
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>e-mail</label>
-                        <input type="email" name="email" ng-model="$ctrl.settings.email" placeholder="test3" required=""/>
+                        <input type="email" name="email" ng-model="$ctrl.settings.email" placeholder="" required=""/>
+                        <div ng-message="RegisterForm.email.$error" role="alert" multiple="">
+                            <div ng-message="required">Please enter your e-mail adress.</div>
+                        </div>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Address</label>
-                        <input type="text" name="address" ng-model="$ctrl.settings.address" placeholder="test"  required=""/>
-                        <!--
-                                <div ng-messages="RegisterForm.firstname.$error" role="alert" multiple="">
-                                    <div ng-message="required">Please enter your first name.</div>
-                                </div>
-                        -->
+                        <input type="text" name="address" ng-model="$ctrl.settings.address" placeholder="" />
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Password</label>
-                        <input type="password" name="pw1" ng-model="$ctrl.settings.password" placeholder="test4" required=""/>
+                        <input type="password" name="pw1" ng-model="$ctrl.settings.password" placeholder="" required=""/>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Password repeat</label>
-                        <input type="password" name="pw2" ng-model="$ctrl.settings.passwordrepeat" placeholder="test4" required="" pw-check="pw1"/>
+                        <input type="password" name="pw2" ng-model="$ctrl.settings.passwordrepeat" placeholder="" required="" pw-check="pw1"/>
                     </md-input-container>
                     <!--
-                    <div class='msg-block' ng-show='myForm.$error'>
-                        <span class='msg-error' ng-show='myForm.pw2.$error.'>Passwords don't match.</span>
+                    <div class="msg-block" ng-show="RegisterForm.pw2.$error">
+                        <span class="msg-error" ng-show="myForm.pw2.$error">Passwords don't match.</span>
                     </div>
                     -->
                     <md-input-container class="md-block">
@@ -56,7 +50,7 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Mobile</label>
-                        <input type="text" name="mobile" ng-model="$ctrl.settings.mobile" placeholder="test2"/>
+                        <input type="text" name="mobile" ng-model="$ctrl.settings.mobile" placeholder=""/>
                         <!--
                         <div ng-messages="RegisterForm.lastname.$error" role="alert" multiple="">
                             <div ng-message="required">Please enter your last name.</div>
@@ -67,9 +61,36 @@
                         <label>About me</label>
                         <input type="text" name="aboutme" ng-model="$ctrl.settings.aboutme" placeholder=""/>
                     </md-input-container>
-                    <md-input-container class="md-block">
-                        <input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> </br> Select a file to upload</label>
-                    </md-input-container>
+
+
+
+                    <dl class="dropdown">
+                        <dd>
+                            <div class="mutliSelect">
+                                <label>Interests</label>
+                                <input type="checkbox" name="sports" ng-model="$ctrl.settings.sports"/>Sports
+                                <input type="checkbox" name="social" ng-model="$ctrl.settings.social"/>Social
+                                <input type="checkbox" name="musik" ng-model="$ctrl.settings.musik"/>Musik
+                                <input type="checkbox" name="culture" ng-model="$ctrl.settings.culture"/>Culture
+                                <input type="checkbox" name="party" ng-model="$ctrl.settings.party"/>Party
+                            </div>
+                        </dd>
+                    </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <md-input-container class="md-block">
                         <input type="checkbox" name="licenseagreement" ng-model="$ctrl.settings.licenseagreement" required=""/>
                         <label>I accept the license agreement of the Marshmallow Cooperation</label>
