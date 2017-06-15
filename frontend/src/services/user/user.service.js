@@ -20,6 +20,8 @@ export default class UserService {
 
     register(firstname, lastname, email, password, birthday, address, mobile, aboutme, sports,social, music, culture, party) {
         return this.$http.post(`${ this.API_URL }/user/signup`, {
+
+
             username: email,
             firstname: firstname,
             lastname: lastname,
@@ -40,35 +42,23 @@ export default class UserService {
 
     //made by fuad
     updateUserSettings(settings) {
-        return this.$http.put(`${ this.API_URL }/user/test`, settings);
+
+        let url = `${ this.API_URL+"/user/" }${ settings._id }`;
+        return this.$http.put(url, settings).then(responce => {
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+
+        })
     }
 
-    getUserSettings() {
-        // mock data
-        // console.log("getUserSettings!!!");
-        // let user = {
-        //     username : "xxFranzxx",
-        //     password : "password",
-        //     firstname : "Franz",
-        //     lastname : "Josef",
-        //     email : "franz.josef@gmx.de",
-        //     birthday : "24.2.1992",
-        //     address : "Franz-Josef Straße 34",
-        //     mobile : "01234 987654",
-        //     aboutme : "I bin da Franz",
-        //     sports : true,
-        //     social : true,
-        //     music : false,
-        //     culture : false,
-        //     party : false
-        // };
-        //
-        // return user;
+    getUserSettings(_id) {
 
-        return this.$http.get(`${ this.API_URL }/user/test`, {
+        let url = `${ this.API_URL+"/user/" }${ _id }`;
+        console.log("url: " + url);
+        return this.$http.get(url, {
             username : "abc"
         }).then(responce => {
-            console.log("data: " + responce.data);
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
             });

@@ -27,11 +27,11 @@ class ViewUserSettingsComponentController{
         this.$state = $state;
         this.UserService = UserService;
         let user = this.UserService.getCurrentUser();
-
         // populate form with user's data
-        this.UserService.getUserSettings().then(data => {
+        this.UserService.getUserSettings(user._id).then(data => {
             console.log(data);
             console.log(JSON.stringify(data));
+            data.birthday = new Date(data.birthday);
             this.settings = data;
         });
 
@@ -56,24 +56,15 @@ class ViewUserSettingsComponentController{
     }
 
     submit(){
-        // let username = this.updateUserSettings.username;
-        // let firstname = this.updateUserSettings.firstname;
-        // let lastname = this.updateUserSettings.lastname;
-        // let email = this.updateUserSettings.email;
-        // let password = this.updateUserSettings.password;
-        // let birthday = this.updateUserSettings.birthday;
-        // let address = this.updateUserSettings.address;
-        // let aboutme = this.updateUserSettings.aboutme;
-        // let mobile = this.updateUserSettings.mobile;
 
-        this.UserService.updateUserSettings(this.settings).then(()=> {
-            this.$state.go('activityMap',{});
+        let user = this.UserService.getCurrentUser();
+        this.settings._id = user._id;
+
+        this.UserService.updateUserSettings(this.settings).then((data)=> {
+            this.$state.go('userSettings',{});
         });
-
-//        this.UserService.login(user,password).then(()=> {
-//            this.$state.go('activityMap',{});
-//    });
     }
+
     cancel(){
         this.$state.go('activityMap', {});
     }

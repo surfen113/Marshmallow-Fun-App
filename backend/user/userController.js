@@ -82,26 +82,14 @@ module.exports.unregister = function(req, res) {
 
 // Create endpoint /api/user/:user_id for GET
 exports.getProfile = function(req, res) {
-   // if authenticated give full user profile
-    // else only give public info
-    var user = new User();
 
-    user.username = "xxFranzxx";
-    user.password = "password";
-    user.firstname = "Franz";
-    user.lastname = "Josef";
-    user.email = "franz.josef@gmx.de";
-    user.birthday = "24.2.1992";
-    user.address = "Franz-Josef Straße 34";
-    user.mobile = "01234 987654";
-    user.aboutme = "I bin da Franz";
-    user.sports = true;
-    user.social = true;
-    user.music = false;
-    user.culture = false;
-    user.party = false;
-    console.log("getProfile");
-    return res.json(user)
+    User.findById(req.params.user_id, function(err, user) {
+        if (err) {
+            res.status(400).send(err)
+            return;
+        };
+        res.json(user);
+    });
 };
 
 /* Update profile */
@@ -109,23 +97,20 @@ exports.updateProfile = function(req,  res) {
 
     // Use the User model to find a specific user and update it
     User.findByIdAndUpdate(
-        req.params.movie_id,
+        req.params.user_id,
         req.body,
         {
             //pass the new object to cb function
             new: true,
             //run validations
             runValidators: true
-        }, function (err, movie) {
+        }, function (err, user) {
             if (err) {
                 res.status(400).send(err);
                 return;
             }
-            res.json(movie);
+            res.json(user);
         });
-
-    res.status(200);
-    console.log("update profile");
 
 };
 

@@ -37,9 +37,13 @@ class ViewRegisterComponentController{
         let mobile = this.register.mobile;
         let sports = this.register.sports;
         let social = this.register.social;
-        let musik = this.register.musik;
+        let music = this.register.music;
         let culture = this.register.culture;
         let party = this.register.party;
+
+        // let user = this.UserService.getCurrentUser();
+        // let _id = user['_id'];
+        // console.log("submit: id: " + _id);
 
         this.UserService.register(firstname, lastname, email, password, birthday, address, mobile, aboutme, sports,social, musik, culture, party).then(()=> {
             this.$state.go('activityMap',{});
