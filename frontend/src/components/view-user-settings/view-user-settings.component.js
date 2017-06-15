@@ -32,7 +32,7 @@ class ViewUserSettingsComponentController{
 
 
 
-        $ctrl.settings.firstname = UserService.getCurrentUserInformation();
+        //$ctrl.settings.firstname = UserService.getCurrentUserInformation();
         /*
          $ctrl.settings.firstname = this.UserService.getUserInformation().firstname;
          $ctrl.settings.lastname = this.UserService.getUserInformation().lastname;
