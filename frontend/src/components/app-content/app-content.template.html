@@ -1,11 +1,22 @@
 <div layout="row" layout-fill ng-cloak>
-    <div layout="column" flex>
-        <app-header></app-header>
+    <div  layout="column" flex ui-view="lala">
+        <!-- <app-header ></app-header> -->
+
+        <div ui-view="headerArea"></div>
         <md-content flex layout-gt-sm="row">
-            <span flex="20"></span>
+            <span flex="20                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              "></span>
             <ui-view flex></ui-view>
             <span flex="20"></span>
         </md-content>
+
+        <div ui-view="container"></div>
+
         <app-footer></app-footer>
     </div>
+
+
+
+
 </div>
+
+

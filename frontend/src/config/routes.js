@@ -1,18 +1,13 @@
 'use strict';
 
-import MoviesComponent from './../components/view-movies/view-movies.component';
-import MovieComponent from './../components/view-movie/view-movie.component';
-import MovieEditComponent from './../components/view-movie-edit/view-movie-edit.component';
-import MovieCreateComponent from './../components/view-movie-create/view-movie-create.component';
+
 import LoginComponent from './../components/view-login/view-login.component';
 import ActivityMapComponent from './../components/activity-map/activity-map.component';
 import RegisterComponent from './../components/view-register/view-register.component';
 import MapComponent from './../components/view-map/view-map.component';
 import UserSettingsComponent from './../components/view-user-settings/view-user-settings.component';
-
-
 import MoviesService from './../services/movies/movies.service';
-
+import SmallHeaderComponent from './../components/app-small-header/app-small-header.component';
 
 resolveMovie.$inject = ['$stateParams', MoviesService.name];
 function resolveMovie($stateParams,moviesService){
@@ -29,54 +24,75 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider){
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/userSettings");
+    $urlRouterProvider.otherwise("/login");
 
     $stateProvider
-        .state('movies', {
-            url: '/movies',
-            component: MoviesComponent.name,
-            resolve: {
-                movies : resolveMovies
-            }
-        })
-        .state('movieAdd', {
-            url: '/movies/new',
-            component: MovieCreateComponent.name
-        })
-        .state('movie', {
-            url: '/movies/:movieId',
-            component: MovieComponent.name,
-            resolve: {
-                movie : resolveMovie
-            }
 
-        })
-        .state('movieEdit', {
-            url: '/movies/:movieId/edit',
-            component: MovieEditComponent.name,
-            resolve: {
-                movie : resolveMovie
-            }
-        })
+
         .state('login', {
+            views: {
+                'headerArea': {
+                    component: SmallHeaderComponent.name,
+                },
+                'container': {
+                    component: LoginComponent.name,
+                },
+            },
             url: '/login',
-            component: LoginComponent.name
+            //component: LoginComponent.name
         })
+
         .state('activityMap', {
+            views: {
+                'headerArea': {
+                    template: '<app-header ></app-header>',
+                },
+                'container': {
+                    component: ActivityMapComponent.name,
+                },
+            },
             url: '/activityMap',
-           component: ActivityMapComponent.name
+            //component: ActivityMapComponent.name
         })
+
         .state('register', {
+            views: {
+                'headerArea': {
+                    component: SmallHeaderComponent.name,
+                },
+                'container': {
+                    component: RegisterComponent.name,
+                },
+            },
             url: '/register',
-            component: RegisterComponent.name
+            //component: RegisterComponent.name
         })
+
         .state('map', {
+            views: {
+                'headerArea': {
+                    template: '<app-header ></app-header>',
+                },
+                'container': {
+                    component: ActivityMapComponent.name,
+                },
+            },
             url: '/map',
-            component: MapComponent.name,
+            //component: MapComponent.name,
         })
+
         .state('userSettings', {
+            views: {
+                'headerArea': {
+                    template: '<app-header ></app-header>',
+                },
+                'container': {
+                    component: UserSettingsComponent.name,
+                },
+
+            },
             url: '/userSettings',
-            component: UserSettingsComponent.name
+            //component: UserSettingsComponent.name
         })
 
 
