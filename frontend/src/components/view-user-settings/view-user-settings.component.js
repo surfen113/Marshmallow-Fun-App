@@ -1,4 +1,3 @@
-
 'use strict';
 
 import UserService from './../../services/user/user.service';
@@ -27,10 +26,14 @@ class ViewUserSettingsComponentController{
     constructor($state,UserService){
         this.$state = $state;
         this.UserService = UserService;
-
         let user = this.UserService.getCurrentUser();
 
-
+        // populate form with user's data
+        this.UserService.getUserSettings().then(data => {
+            console.log(data);
+            console.log(JSON.stringify(data));
+            this.settings = data;
+        });
 
         //$ctrl.settings.firstname = UserService.getCurrentUserInformation();
         /*
@@ -53,18 +56,17 @@ class ViewUserSettingsComponentController{
     }
 
     submit(){
-        let username = this.updateUserSettings.username;
-        let firstname = this.updateUserSettings.firstname;
-        let lastname = this.updateUserSettings.lastname;
-        let email = this.updateUserSettings.email;
-        let password = this.updateUserSettings.password;
-        let birthday = this.updateUserSettings.birthday;
-        let address = this.updateUserSettings.address;
-        let aboutme = this.updateUserSettings.aboutme;
-        let mobile = this.updateUserSettings.mobile;
+        // let username = this.updateUserSettings.username;
+        // let firstname = this.updateUserSettings.firstname;
+        // let lastname = this.updateUserSettings.lastname;
+        // let email = this.updateUserSettings.email;
+        // let password = this.updateUserSettings.password;
+        // let birthday = this.updateUserSettings.birthday;
+        // let address = this.updateUserSettings.address;
+        // let aboutme = this.updateUserSettings.aboutme;
+        // let mobile = this.updateUserSettings.mobile;
 
-
-        this.UserService.updateUserSettings(username, firstname, lastname, email, password, birthday, address, mobile, aboutme).then(()=> {
+        this.UserService.updateUserSettings(this.settings).then(()=> {
             this.$state.go('activityMap',{});
         });
 

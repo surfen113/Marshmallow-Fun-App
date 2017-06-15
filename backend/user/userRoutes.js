@@ -8,8 +8,11 @@ function userRoutes(passport) {
 
     router.post('/login', userController.login);
     router.post('/signup', userController.signup);
-    router.post('/unregister', passport.authenticate('jwt', {session: false}),userController.unregister)
+    router.post('/unregister', passport.authenticate('jwt', {session: false}),userController.unregister);
+    router.route('/:user_id')
+        .get(userController.getProfile)
+        .put(passport.authenticate('jwt', {session: false}), userController.updateProfile);
 
     return router;
 
-}
+};

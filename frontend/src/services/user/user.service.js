@@ -18,7 +18,7 @@ export default class UserService {
         return 'UserService';
     }
 
-    register(firstname, lastname, email, password, birthday, address, mobile, aboutme, sports,social, musik, culture, party) {
+    register(firstname, lastname, email, password, birthday, address, mobile, aboutme, sports,social, music, culture, party) {
         return this.$http.post(`${ this.API_URL }/user/signup`, {
             username: email,
             firstname: firstname,
@@ -31,7 +31,7 @@ export default class UserService {
             aboutme: aboutme,
             sports: sports,
             social: social,
-            musik: musik,
+            music: music,
             cutlure: culture,
             party: party
             //image: image
@@ -39,19 +39,41 @@ export default class UserService {
     }
 
     //made by fuad
-    updateUserSettings(username, firstname, lastname, email, password, birthday, address, mobile, aboutme) {
-        return this.$http.post(`${ this.API_URL }/user/settings`, {
-            username: username,
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password,
-            birthday: birthday,
-            address: address,
-            mobile: mobile,
-            aboutme: aboutme
-            //image: image
-        });
+    updateUserSettings(settings) {
+        return this.$http.put(`${ this.API_URL }/user/test`, settings);
+    }
+
+    getUserSettings() {
+        // mock data
+        // console.log("getUserSettings!!!");
+        // let user = {
+        //     username : "xxFranzxx",
+        //     password : "password",
+        //     firstname : "Franz",
+        //     lastname : "Josef",
+        //     email : "franz.josef@gmx.de",
+        //     birthday : "24.2.1992",
+        //     address : "Franz-Josef Straße 34",
+        //     mobile : "01234 987654",
+        //     aboutme : "I bin da Franz",
+        //     sports : true,
+        //     social : true,
+        //     music : false,
+        //     culture : false,
+        //     party : false
+        // };
+        //
+        // return user;
+
+        return this.$http.get(`${ this.API_URL }/user/test`, {
+            username : "abc"
+        }).then(responce => {
+            console.log("data: " + responce.data);
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+
+        })
     }
 
 
