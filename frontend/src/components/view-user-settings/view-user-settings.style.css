@@ -4,3 +4,7 @@
 .user-settings-form md-card md-card-title {
     background-color: blue;
 }
+
+.user-settings-form .email {
+    background-color: #ececec;
+}
