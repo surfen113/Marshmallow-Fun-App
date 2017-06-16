@@ -32,7 +32,8 @@
     "angular-material": "^1.1.0",
     "angular-material-icons": "^0.7.1",
     "angular-messages": "^1.5.8",
-    "@uirouter/angularjs": "^1.0.0"
+    "@uirouter/angularjs": "^1.0.0",
+    "ngmap": "^1.18.4"
   },
   "engines": {
     "node": ">=4.3"
