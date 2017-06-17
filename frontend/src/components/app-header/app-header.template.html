@@ -29,14 +29,14 @@
             </md-button>
             <md-menu-content width="4">
                 <md-menu-item ng-if="$ctrl.isAuthenticated()">
-                    <md-button>
+                    <md-button ui-sref="userSettings">
                         <md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
                         {{$ctrl.getCurrentUser()}}
                     </md-button>
                 </md-menu-item>
                 <md-menu-divider ng-if="$ctrl.isAuthenticated()"></md-menu-divider>
                 <md-menu-item ng-if="$ctrl.isAuthenticated()">
-                    <md-button ng-click="$ctrl.logout($event)">
+                    <md-button ng-click="$ctrl.logout($event)" ui-sref="login">
                         <md-icon md-menu-align-target><ng-md-icon icon="logout" ></ng-md-icon></md-icon>
                         Logout
                     </md-button>
