@@ -52,7 +52,7 @@
                     -->
                     <md-input-container class="md-block">
                         <label>Birthday</label>
-                        <input type="date" name="birthday" ng-model="$ctrl.register.birthday" placeholder="" required=""/>
+                        <input type="date" name="birthday" ng-model="$ctrl.register.birthday" placeholder=""/>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Mobile</label>
@@ -65,7 +65,7 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>About me</label>
-                        <input type="text" name="aboutme" ng-model="$ctrl.register.aboutme" placeholder=""/>
+                        <textarea  cols="60" rows="5" name="aboutme" ng-model="$ctrl.register.aboutme" placeholder=""></textarea>
                     </md-input-container>
 
 
@@ -93,7 +93,7 @@
 
 
                     <md-input-container class="md-block">
-                        <input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> </br> Select a file to upload</label>
+                        <input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> <!-- </br> Select a file to upload --></label>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <input type="checkbox" name="licenseagreement" ng-model="$ctrl.register.licenseagreement" required=""/>
