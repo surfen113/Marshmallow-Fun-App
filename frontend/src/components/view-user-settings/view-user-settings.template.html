@@ -68,15 +68,15 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>About me</label>
-                        <input type="text" name="aboutme" ng-model="$ctrl.settings.aboutme" placeholder=""/>
+                        <textarea  cols="60" rows="5" name="aboutme" ng-model="$ctrl.register.aboutme" placeholder=""></textarea>
                     </md-input-container>
 
-
-
+                    <md-input-container class="md-block">
+                    <label>Interests</label>
+                    </md-input-container>
                     <dl class="dropdown">
                         <dd>
                             <div class="mutliSelect">
-                                <label>Interests</label>
                                 <input type="checkbox" name="sports" ng-model="$ctrl.settings.sports"/>Sports
                                 <input type="checkbox" name="social" ng-model="$ctrl.settings.social"/>Social
                                 <input type="checkbox" name="musik" ng-model="$ctrl.settings.music"/>Musik
@@ -106,6 +106,7 @@
                     <!--</md-input-container>-->
                     <md-button ng-disabled="!UserSettingsForm.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Update &nbsp</md-button>
                     <md-button ng-click="$ctrl.cancel()" class="md-raised md-primary" >&nbsp Cancel &nbsp</md-button>
+                    <div><label name="notifications" style="color:green">{{$ctrl.notification}}</label> </div>
                 </form>
             </md-card-content>
         </md-card>
