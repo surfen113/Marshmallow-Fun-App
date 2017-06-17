@@ -51,7 +51,7 @@ export default function config ($stateProvider, $urlRouterProvider){
                     component: ActivityMapComponent.name,
                 },
                 'activityMap': {
-                    template: '<ng-map center="[40.74, -74.18]"></ng-map>',
+                    template: '<ng-map center="[48.26, 11.67]"></ng-map>',
                 },
             },
             url: '/activityMap',
