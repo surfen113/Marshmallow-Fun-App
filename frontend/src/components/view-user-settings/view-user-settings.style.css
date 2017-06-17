@@ -8,3 +8,10 @@
 .user-settings-form .email {
     background-color: #ececec;
 }
+
+
+label {
+    font-size: 20px !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    font-color: '#8c8c8c';
+}

@@ -69,11 +69,12 @@
                     </md-input-container>
 
 
-
-                    <dl class="dropdown">
+                    <md-input-container class="md-block">
+                        <label>Interests</label>
+                    </md-input-container>
+                        <dl class="dropdown">
                         <dd>
                             <div class="mutliSelect">
-                                <label>Interests</label>
                                 <input type="checkbox" name="sports" ng-model="$ctrl.register.sports"/>Sports
                                 <input type="checkbox" name="social" ng-model="$ctrl.register.social"/>Social
                                 <input type="checkbox" name="music" ng-model="$ctrl.register.music"/>Musik
@@ -83,16 +84,8 @@
                         </dd>
                     </dl>
 
-
-
-
-
-
-
-
-
-
                     <md-input-container class="md-block">
+                        <label>Profile Picture</label> <br>
                         <input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> <!-- </br> Select a file to upload --></label>
                     </md-input-container>
                     <md-input-container class="md-block">

@@ -26,6 +26,7 @@ class ViewUserSettingsComponentController{
     constructor($state,UserService){
         this.$state = $state;
         this.UserService = UserService;
+        this.notification = null;
         let user = this.UserService.getCurrentUser();
         // populate form with user's data
         this.UserService.getUserSettings(user._id).then(data => {
@@ -61,12 +62,13 @@ class ViewUserSettingsComponentController{
         this.settings._id = user._id;
 
         this.UserService.updateUserSettings(this.settings).then((data)=> {
+            this.notification="Changes saved succesfully";
             this.$state.go('userSettings',{});
         });
     }
 
     cancel(){
-        this.$state.go('activityMap', {});
+        this.$state.go('map', {});
     }
 
     static get $inject(){
