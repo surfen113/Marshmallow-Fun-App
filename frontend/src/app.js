@@ -22,7 +22,7 @@ import ViewRegister from './components/view-register/view-register';
 import ViewMap from './components/view-map/view-map';
 import ViewUserSettings from './components/view-user-settings/view-user-settings';
 import AppSmallHeader from './components/app-small-header/app-small-header';
-
+import ngMap from 'ngmap';
 
 let app = angular.module('app', [
     uiRouter,
@@ -35,7 +35,8 @@ let app = angular.module('app', [
     ViewRegister.name,
     ViewMap.name,
     ViewUserSettings.name,
-    AppSmallHeader.name
+    AppSmallHeader.name,
+    ngMap
 ]);
 
 // app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
