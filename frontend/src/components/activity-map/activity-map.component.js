@@ -2,9 +2,8 @@
 'use strict';
 
 import UserService from './../../services/user/user.service';
-
-
 import template from './activity-map.template.html';
+
 //import './view-login.style.css';
 
 class ActivityMapComponent {

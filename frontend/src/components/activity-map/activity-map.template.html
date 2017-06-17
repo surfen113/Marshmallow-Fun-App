@@ -1,14 +1,18 @@
-<h1>This is just a dummy</h1>
-<h2>Hier kommt unsere tolle Startseite hin</h2>
-
-
-<div map-lazy-load="https://maps.google.com/maps/api/js">
-    <ng-map center="41,-87" zoom="3"></ng-map>
-</div>
-
 <div layout="column" layout-padding="">
-    <span flex="20"></span>
-    <md-content >
+    <span flex="120"></span>
+    <md-content class="view-map" layout="row" flex="120">
+        <h1>Startseite :)</h1>
+        <md-card flex="115">
+            <md-card-content style="width: 800px;">
+                <form name="UserSettingsForm" >
+                    <ng-map center="41,-87" zoom="3"></ng-map>
+
+                </form>
+            </md-card-content>
+        </md-card>
+
+
     </md-content>
     <span flex></span>
 </div>
+

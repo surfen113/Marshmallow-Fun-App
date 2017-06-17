@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Simple Map">
+    <meta name="keywords" content="ng-map,AngularJS,center">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <title>MarshmallowFun</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXmI6_0Iw8dQNdCwFmpji_DRrYR9uyNKA"></script>
 </head>
 
 <body>
 
+
 <div ui-view="standard">
 <app-content></app-content>
 </div>
-
+<div ui-view="activityMap"></div>
 
 
 </body>

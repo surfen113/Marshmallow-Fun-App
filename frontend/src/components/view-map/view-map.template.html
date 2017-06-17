@@ -1,28 +1,18 @@
-<html>
-<body>
+<div layout="column" layout-padding="">
+    <span flex="120"></span>
+    <md-content class="view-map" layout="row" flex="120">
+    <h1>Startseite :)</h1>
+        <md-card flex="115">
+            <md-card-content style="width: 800px;">
+                <form name="UserSettingsForm" >
+                    <ng-map center="41,-87" zoom="3"></ng-map>
 
-<h1>My Activities</h1>
+                </form>
+            </md-card-content>
+        </md-card>
 
-<div>Hier ist eine neue Seite mit neuem Template und Controller entstanden</div>
 
-<div id="map" style="width:400px;height:400px;background:yellow"></div>
+    </md-content>
+    <span flex></span>
+</div>
 
-<script>
-    function myMap() {
-        var mapOptions = {
-            center: new google.maps.LatLng(51.5, -0.12),
-            zoom: 10,
-            mapTypeId: google.maps.MapTypeId.HYBRID
-        }
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
-
-</body>
-</html>

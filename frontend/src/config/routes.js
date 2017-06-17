@@ -24,7 +24,7 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider){
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/login");
+    $urlRouterProvider.otherwise("/map");
 
     $stateProvider
 
@@ -50,6 +50,9 @@ export default function config ($stateProvider, $urlRouterProvider){
                 'container': {
                     component: ActivityMapComponent.name,
                 },
+                'activityMap': {
+                    template: '<ng-map center="[40.74, -74.18]"></ng-map>',
+                },
             },
             url: '/activityMap',
             //component: ActivityMapComponent.name
@@ -74,7 +77,7 @@ export default function config ($stateProvider, $urlRouterProvider){
                     template: '<app-header ></app-header>',
                 },
                 'container': {
-                    component: ActivityMapComponent.name,
+                    component: MapComponent.name,
                 },
             },
             url: '/map',
