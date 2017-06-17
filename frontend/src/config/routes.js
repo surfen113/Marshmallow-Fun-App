@@ -8,6 +8,9 @@ import MapComponent from './../components/view-map/view-map.component';
 import UserSettingsComponent from './../components/view-user-settings/view-user-settings.component';
 import MoviesService from './../services/movies/movies.service';
 import SmallHeaderComponent from './../components/app-small-header/app-small-header.component';
+import ViewChatComponent from './../components/view-chat/view-chat.component';
+import ViewMyFollowListComponent from './../components/view-my-follow-list/view-my-follow-list.component';
+import ViewMyActivitiesComponent from './../components/view-my-activities/view-my-activities.component';
 
 resolveMovie.$inject = ['$stateParams', MoviesService.name];
 function resolveMovie($stateParams,moviesService){
@@ -21,7 +24,7 @@ function resolveMovies(moviesService){
 
 
 config.$inject = ['$stateProvider', '$urlRouterProvider'];
-export default function config ($stateProvider, $urlRouterProvider){
+export default function config ($stateProvider, $urlRouterProvider) {
 
     // For any unmatched url, redirect to /home
     $urlRouterProvider.otherwise("/map");
@@ -55,7 +58,7 @@ export default function config ($stateProvider, $urlRouterProvider){
                 },
             },
             url: '/activityMap',
-            //component: ActivityMapComponent.name
+            //component: ViewMyFollowListComponent.name
         })
 
         .state('register', {
@@ -92,13 +95,45 @@ export default function config ($stateProvider, $urlRouterProvider){
                 'container': {
                     component: UserSettingsComponent.name,
                 },
-
             },
             url: '/userSettings',
             //component: UserSettingsComponent.name
         })
 
+        .state('chat', {
+            views: {
+                'headerArea': {
+                    template: '<app-header ></app-header>',
+                },
+                'container': {
+                    component: ViewChatComponent.name,
+                },
+            },
+            url: '/chat',
+        })
 
+        .state('myFollowList', {
+            views: {
+                'headerArea': {
+                    template: '<app-header ></app-header>',
+                },
+                'container': {
+                    component: ViewMyFollowListComponent.name,
+                },
+            },
+            url: '/myFollowList',
+        })
 
+        .state('myActivities', {
+            views: {
+                'headerArea': {
+                    template: '<app-header ></app-header>',
+                },
+                'container': {
+                    component: ViewMyActivitiesComponent.name,
+                },
+            },
+            url: '/myActivities',
+        })
 }
 

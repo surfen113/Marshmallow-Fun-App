@@ -23,6 +23,9 @@ import ViewMap from './components/view-map/view-map';
 import ViewUserSettings from './components/view-user-settings/view-user-settings';
 import AppSmallHeader from './components/app-small-header/app-small-header';
 import ngMap from 'ngmap';
+import ViewChat from './components/view-chat/view-chat';
+import ViewMyFollowList from './components/view-my-follow-list/view-my-follow-list';
+import ViewMyActivities from './components/view-my-activities/view-my-activities';
 
 let app = angular.module('app', [
     uiRouter,
@@ -36,7 +39,10 @@ let app = angular.module('app', [
     ViewMap.name,
     ViewUserSettings.name,
     AppSmallHeader.name,
-    ngMap
+    ngMap,
+    ViewChat.name,
+    ViewMyFollowList.name,
+    ViewMyActivities.name
 ]);
 
 // app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
