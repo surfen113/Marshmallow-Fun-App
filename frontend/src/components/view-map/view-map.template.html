@@ -1,12 +1,25 @@
 <div layout="column" layout-padding="">
     <span flex="120"></span>
     <md-content class="view-map" layout="row" flex="120">
+        <div>
     <h1>Startseite :)</h1>
+        </div>
         <br>
         <md-card flex="115">
             <md-card-content style="width: 1000px;">
                 <form name="UserSettingsForm" >
-                    <ng-map center="[48.26, 11.67]"></ng-map>
+                    <ng-map center="[48.26, 11.67]" onload="$ctrl.testFunction()">
+
+                        <div ng-repeat="p in $ctrl.markerPoints">
+                            <marker  title="{{p.name}}" position="{{p.latitude}}, {{p.longitude}}" ></marker>
+                        </div>
+
+                        <marker position="[48.26, 11.67]" title="First marker"></marker>
+                        <marker position="[48.263, 11.67]" title="Second marker" animation="Animation.DROP"></marker>
+                        <marker position="[48.26, 11.673]" title="Third marker" aimation="Animation.BOUNCE"></marker>
+                        <marker position="[48.26, 11.668]" title="First marker"       icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"></marker>
+
+                    </ng-map>
 
                 </form>
             </md-card-content>
