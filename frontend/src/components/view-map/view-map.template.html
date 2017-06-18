@@ -6,14 +6,14 @@
         <div id="hello" style="background-image: linear-gradient(
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.5)
-    ),url('pics/desert.jpg')" ng-if="!$ctrl.isAuthenticated()">
+    ),url('pics/desert.jpg')">
 
             <h1>Welcome to Marshmallow Fun!</h1>
             <!--<a style="text-decoration: none" ui-sref="register">-->
             <!--<h3>SIGN UP</h3>-->
             <!--</a>-->
 
-            <md-button ui-sref="register" class="md-raised md-primary" >SIGN UP</md-button>
+            <md-button ng-if="!$ctrl.isAuthenticated()" ui-sref="register" class="md-raised md-primary" >SIGN UP</md-button>
 
             <ul id="list">
                 <li>Connect With Friends</li>
