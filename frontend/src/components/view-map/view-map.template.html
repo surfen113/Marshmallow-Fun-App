@@ -28,9 +28,9 @@
         </p>
         <br>
         <md-card flex="115">
-            <md-card-content style="">
-                <form name="UserSettingsForm" >
-                    <ng-map center="[48.26, 11.67]" onload="$ctrl.testFunction()">
+            <md-card-content style="height:100%">
+                <form name="UserSettingsForm" style="height:400px">
+                    <ng-map center="[48.26, 11.67]" style="height:100%" onload="$ctrl.testFunction()">
 
                         <div ng-repeat="p in $ctrl.markerPoints">
                             <marker  title="{{p.name}}" position="{{p.latitude}}, {{p.longitude}}" ></marker>
