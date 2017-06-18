@@ -48,6 +48,9 @@ class ViewMapController {
 
     }
 
+    isAuthenticated(){
+        return this.UserService.isAuthenticated();
+    }
 
     static get $inject() {
         return ['$state', 'NgMap', UserService.name]

@@ -1,23 +1,23 @@
 <div layout="column" layout-padding="">
     <span flex="120"></span>
 
-    <div id="hello">
-
-        <h1>Welcome to Marshmellow Fun!</h1>
-        <!--<a style="text-decoration: none" ui-sref="register">-->
-        <!--<h3>SIGN UP</h3>-->
-        <!--</a>-->
-
-        <md-button ng-href="#!/register" class="md-raised md-primary" >SIGN UP</md-button>
-
-        <ul id="list">
-            <li>Connect With Friends</li>
-            <li>Find New Activities Near You</li>
-            <li>Never Miss Opportunities For Your Favourite Hobby</li>
-        </ul>
-    </div>
-
     <md-content class="view-map" layout="column" flex="120">
+
+        <div id="hello" ng-if="!$ctrl.isAuthenticated()">
+
+            <h1>Welcome to Marshmellow Fun!</h1>
+            <!--<a style="text-decoration: none" ui-sref="register">-->
+            <!--<h3>SIGN UP</h3>-->
+            <!--</a>-->
+
+            <md-button ui-sref="register" class="md-raised md-primary" >SIGN UP</md-button>
+
+            <ul id="list">
+                <li>Connect With Friends</li>
+                <li>Find New Activities Near You</li>
+                <li>Never Miss Opportunities For Your Favourite Hobby</li>
+            </ul>
+        </div>
         <br>
         <md-card flex="115">
             <md-card-content style="">

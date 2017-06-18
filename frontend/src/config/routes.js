@@ -35,7 +35,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('login', {
             views: {
                 'headerArea': {
-                    component: SmallHeaderComponent.name,
+                    component: '<app-header></app-header>',
                 },
                 'container': {
                     component: LoginComponent.name,
@@ -48,7 +48,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('activityMap', {
             views: {
                 'headerArea': {
-                    template: '<app-header ></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: ActivityMapComponent.name,
@@ -64,7 +64,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('register', {
             views: {
                 'headerArea': {
-                    component: SmallHeaderComponent.name,
+                    component: '<app-header></app-header>',
                 },
                 'container': {
                     component: RegisterComponent.name,
@@ -77,7 +77,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('map', {
             views: {
                 'headerArea': {
-                    template: '<app-header ></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: MapComponent.name,
@@ -90,7 +90,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('userSettings', {
             views: {
                 'headerArea': {
-                    template: '<app-header ></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: UserSettingsComponent.name,
@@ -103,7 +103,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('chat', {
             views: {
                 'headerArea': {
-                    template: '<app-header ></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: ViewChatComponent.name,
@@ -115,7 +115,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('myFollowList', {
             views: {
                 'headerArea': {
-                    template: '<app-header ></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: ViewMyFollowListComponent.name,
@@ -127,7 +127,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('myActivities', {
             views: {
                 'headerArea': {
-                    template: '<app-header ></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: ViewMyActivitiesComponent.name,

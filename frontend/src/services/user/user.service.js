@@ -100,6 +100,7 @@ export default class UserService {
     }
 
     isAuthenticated() {
+        console.log(!!this.$window.localStorage['jwtToken']);
         return !!this.$window.localStorage['jwtToken'];
         // return true;
     }
