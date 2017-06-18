@@ -3,7 +3,10 @@
 
     <md-content class="view-map" layout="column" flex="120">
 
-        <div id="hello" ng-if="!$ctrl.isAuthenticated()">
+        <div id="hello" style="background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+    ),url('pics/desert.jpg')" ng-if="!$ctrl.isAuthenticated()">
 
             <h1>Welcome to Marshmallow Fun!</h1>
             <!--<a style="text-decoration: none" ui-sref="register">-->
@@ -28,9 +31,9 @@
         </p>
         <br>
         <md-card flex="115">
-            <md-card-content style="">
-                <form name="UserSettingsForm" >
-                    <ng-map center="[48.26, 11.67]" onload="$ctrl.testFunction()">
+            <md-card-content style="height:100%">
+                <form name="UserSettingsForm" style="height:400px">
+                    <ng-map center="[48.26, 11.67]" style="height:100%" onload="$ctrl.testFunction()">
 
                         <div ng-repeat="p in $ctrl.markerPoints">
                             <marker  title="{{p.name}}" position="{{p.latitude}}, {{p.longitude}}" ></marker>
@@ -51,34 +54,5 @@
     </md-content>
     <span flex></span>
 
-    <style>
-        #hello {
-            /*background-color: #4CAF50; !* Green *!*/
-            text-align: center;
-            text-decoration: none;
-            /*display: inline-block;*/
-            /*font-size: 16px;*/
-            /*display: block;*/
-            /*margin: auto;*/
-            background-image: linear-gradient(
-                    rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)
-            ),url("pics/desert.jpg");
-            display: block;
-            height: 200px;
-            background-size: cover;
-            /*background-repeat: no-repeat;*/
-            background-position: 50% 50%;
-            color: white;
-            margin: 0;
-            padding: 20px;
-        }
-        #list {
-            list-style-type: none;
-            /*text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;*/
-            /*text-shadow: 2px 2px 3px rgba(255,255,255,0.1);*/
-            /*text-shadow: 6px 6px 0px rgba(0,0,0,0.2);*/
-        }
-    </style>
 </div>
 
