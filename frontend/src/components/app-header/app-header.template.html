@@ -9,15 +9,15 @@
         <md-button ui-sref="map"><md-icon><ng-md-icon icon="room"></ng-md-icon></md-icon> MarshmallowFun</md-button>
         <span flex="5"></span>
         <md-button ui-sref="map" ng-if="$ctrl.isAuthenticated()"><md-icon><ng-md-icon icon="map" ></ng-md-icon></md-icon> Activity Map</md-button>
-        <span flex></span>
+        <!--<span flex></span>-->
         <md-button ui-sref="myActivities" ng-if="$ctrl.isAuthenticated()"><md-icon><ng-md-icon icon="view_headline"></ng-md-icon></md-icon> My Activities</md-button>
-        <span flex></span>
+        <!--<span flex></span>-->
         <md-button ui-sref="myFollowList" ng-if="$ctrl.isAuthenticated()"><md-icon><ng-md-icon icon="person_pin"></ng-md-icon></md-icon> My Follow List</md-button>
-        <span flex></span>
+        <!--<span flex></span>-->
         <md-button ui-sref="chat" ng-if="$ctrl.isAuthenticated()"><md-icon><ng-md-icon icon="message"></ng-md-icon></md-icon> Chat</md-button>
         <span flex></span>
         <md-button ui-sref="userSettings" ng-if="$ctrl.isAuthenticated()"><md-icon><ng-md-icon icon="settings"></ng-md-icon></md-icon> Settings</md-button>
-        <span flex></span>
+        <!--<span flex></span>-->
         <md-button ui-sref="register" ng-if="!$ctrl.isAuthenticated()">Sign up</md-button>
         <md-button ui-sref="login" ng-if="!$ctrl.isAuthenticated()"><md-icon md-menu-align-target><ng-md-icon icon="login" ></ng-md-icon></md-icon> Login</md-button>
         <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)"><md-icon md-menu-align-target><ng-md-icon icon="logout" ></ng-md-icon></md-icon> Logout</md-button>
