@@ -72,17 +72,18 @@
                     <md-input-container class="md-block">
                         <label>Interests</label>
                     </md-input-container>
+                     <md-input-container class="md-block">
                         <dl class="dropdown">
                         <dd>
                             <div class="mutliSelect">
-                                <label><input type="checkbox" name="sports" ng-model="$ctrl.register.sports"/>Sports</label>
-                               <label> <input type="checkbox" name="social" ng-model="$ctrl.register.social"/>Social</label>
-                               <label> <input type="checkbox" name="music" ng-model="$ctrl.register.music"/>Musik</label>
-                               <label> <input type="checkbox" name="culture" ng-model="$ctrl.register.culture"/>Culture</label>
-                                <label><input type="checkbox" name="party" ng-model="$ctrl.register.party"/>Party</label>
+                                <md-input-container class="md-block"><input type="checkbox" name="sports" ng-model="$ctrl.register.sports"/><label>Sports</label></md-input-container>
+                               <md-input-container class="md-block"><input type="checkbox" name="social" ng-model="$ctrl.register.social"/><label>Social</label></md-input-container>
+                              <md-input-container class="md-block"><input type="checkbox" name="music" ng-model="$ctrl.register.music"/><label>Musik</label></md-input-container>
+                               <md-input-container class="md-block"><input type="checkbox" name="culture" ng-model="$ctrl.register.culture"/><label>Culture</label></md-input-container>
+                                <md-input-container class="md-block"><input type="checkbox" name="party" ng-model="$ctrl.register.party"/><label>Party</label></md-input-container>
                             </div>
                         </dd>
-                    </dl>
+                    </dl></md-input-container>
 
                     <md-input-container class="md-block">
                         <label>Profile Picture</label> <br>
