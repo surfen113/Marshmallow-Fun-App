@@ -46,7 +46,7 @@ class ViewRegisterComponentController{
         // console.log("submit: id: " + _id);
 
         this.UserService.register(firstname, lastname, email, password, birthday, address, mobile, aboutme, sports,social, music, culture, party).then(()=> {
-            this.$state.go('activityMap',{});
+            this.$state.go('map',{});
         });
 
 //        this.UserService.login(user,password).then(()=> {
