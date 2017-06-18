@@ -49,7 +49,6 @@ class ViewMapController {
     }
 
 
-
     static get $inject() {
         return ['$state', 'NgMap', UserService.name]
     }

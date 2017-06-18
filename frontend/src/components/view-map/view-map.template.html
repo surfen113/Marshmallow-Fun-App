@@ -1,15 +1,23 @@
 <div layout="column" layout-padding="">
     <span flex="120"></span>
+
+    <div id="hello">
+
+        <h1>Welcome to Marshmellow Fun!</h1>
+        <!--<a style="text-decoration: none" ui-sref="register">-->
+        <!--<h3>SIGN UP</h3>-->
+        <!--</a>-->
+
+        <md-button ng-href="#!/register" class="md-raised md-primary" >SIGN UP</md-button>
+
+        <ul id="list">
+            <li>Connect With Friends</li>
+            <li>Find New Activities Near You</li>
+            <li>Never Miss Opportunities For Your Favourite Hobby</li>
+        </ul>
+    </div>
+
     <md-content class="view-map" layout="column" flex="120">
-        <div>
-    <h1>Welcome to Marshmellow Fun!</h1>
-    <p><a href="url">SIGN UP</a> to:
-    <ul>
-  <li>Connect With Friends</li>
-  <li>Find New Activities Near You</li>
-  <li>Never Miss Opportunities For Your Favourite Hobby</li>
-</ul></p>
-        </div> 
         <br>
         <md-card flex="115">
             <md-card-content style="">
@@ -23,7 +31,7 @@
                         <marker position="[48.26, 11.67]" title="First marker"></marker>
                         <marker position="[48.263, 11.67]" title="Second marker" animation="Animation.DROP"></marker>
                         <marker position="[48.26, 11.673]" title="Third marker" aimation="Animation.BOUNCE"></marker>
-                        <marker position="[48.26, 11.668]" title="First marker"       icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"></marker>
+                        <marker position="[48.26, 11.668]" title="First marker" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"></marker>
 
                     </ng-map>
 
@@ -34,5 +42,35 @@
 
     </md-content>
     <span flex></span>
+
+    <style>
+        #hello {
+            /*background-color: #4CAF50; !* Green *!*/
+            text-align: center;
+            text-decoration: none;
+            /*display: inline-block;*/
+            /*font-size: 16px;*/
+            /*display: block;*/
+            /*margin: auto;*/
+            background-image: linear-gradient(
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)
+            ),url("pics/desert.jpg");
+            display: block;
+            height: 200px;
+            background-size: cover;
+            /*background-repeat: no-repeat;*/
+            background-position: 50% 50%;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        #list {
+            list-style-type: none;
+            /*text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;*/
+            /*text-shadow: 2px 2px 3px rgba(255,255,255,0.1);*/
+            /*text-shadow: 6px 6px 0px rgba(0,0,0,0.2);*/
+        }
+    </style>
 </div>
 
