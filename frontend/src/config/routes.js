@@ -35,7 +35,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('login', {
             views: {
                 'headerArea': {
-                    component: '<app-header></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: LoginComponent.name,
@@ -64,7 +64,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
         .state('register', {
             views: {
                 'headerArea': {
-                    component: '<app-header></app-header>',
+                    template: '<app-header></app-header>',
                 },
                 'container': {
                     component: RegisterComponent.name,

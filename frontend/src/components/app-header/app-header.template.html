@@ -20,7 +20,7 @@
         <span flex></span>
         <md-button ui-sref="register" ng-if="!$ctrl.isAuthenticated()">Sign up</md-button>
         <md-button ui-sref="login" ng-if="!$ctrl.isAuthenticated()"><md-icon md-menu-align-target><ng-md-icon icon="login" ></ng-md-icon></md-icon> Login</md-button>
-        <md-button ui-sref="register" ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)"><md-icon md-menu-align-target><ng-md-icon icon="logout" ></ng-md-icon></md-icon> Logout</md-button>
+        <md-button ng-if="$ctrl.isAuthenticated()" ng-click="$ctrl.logout($event)"><md-icon md-menu-align-target><ng-md-icon icon="logout" ></ng-md-icon></md-icon> Logout</md-button>
         <!--<span flex></span>-->
 
         <!--<a ui-sref="map" layout="row">-->

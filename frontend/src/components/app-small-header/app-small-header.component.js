@@ -9,7 +9,6 @@ import './app-small-header.style.css';
 
 class AppSmallHeaderComponent {
     constructor(){
-        console.log("blub");
         this.controller = AppSmallHeaderComponentController;
         this.template = template;
 
