@@ -26,6 +26,10 @@ class ViewChatComponentController {
         this.UserService = UserService;
     }
 
+    static get $inject(){
+        return ['$state', UserService.name];
+    }
+
 }
 
 

@@ -26,6 +26,10 @@ class ViewMyFollowListComponentController{
         this.UserService = UserService;
     }
 
+    static get $inject(){
+        return ['$state', UserService.name];
+    }
+
 }
 
 
