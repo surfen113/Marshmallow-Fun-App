@@ -18,6 +18,14 @@
                 <li>Never Miss Opportunities For Your Favourite Hobby</li>
             </ul>
         </div>
+        <p>
+            Search: <input ng-model="$ctrl.query" />
+            <input type="checkbox" name="sports" ng-model="$ctrl.filter.sports"/>Sports
+            <input type="checkbox" name="social" ng-model="$ctrl.filter.social"/>Social
+            <input type="checkbox" name="music" ng-model="$ctrl.filter.music"/>Musik
+            <input type="checkbox" name="culture" ng-model="$ctrl.filter.culture"/>Culture
+            <input type="checkbox" name="party" ng-model="$ctrl.filter.party"/>Party
+        </p>
         <br>
         <md-card flex="115">
             <md-card-content style="">
