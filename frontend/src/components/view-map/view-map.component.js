@@ -6,6 +6,7 @@
 
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
+import './view-map.style.css';
 import NgMap from 'ngmap';
 
 class ViewMapComponent {
@@ -16,9 +17,6 @@ class ViewMapComponent {
 
     }
 
-    testFunction() {
-        alert("yaaaay");
-    }
 
     static get name() {
         return 'viewMap';
