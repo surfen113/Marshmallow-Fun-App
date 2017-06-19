@@ -41,7 +41,7 @@ var userSchema = mongoose.Schema({
     social: {
         type: Boolean
     },
-    musik: {
+    music: {
         type: Boolean
     },
     culture: {
