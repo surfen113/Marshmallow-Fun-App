@@ -11,6 +11,7 @@ import ngMdIcons from 'angular-material-icons';
 
 import MoviesService from './services/movies/movies';
 import UserService from './services/user/user';
+import ActivityService from './services/activities/activities';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -42,7 +43,8 @@ let app = angular.module('app', [
     ngMap,
     ViewChat.name,
     ViewMyFollowList.name,
-    ViewMyActivities.name
+    ViewMyActivities.name,
+    ActivityService.name
 ]);
 
 // app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
