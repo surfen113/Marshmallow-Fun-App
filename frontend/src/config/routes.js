@@ -11,6 +11,7 @@ import SmallHeaderComponent from './../components/app-small-header/app-small-hea
 import ViewChatComponent from './../components/view-chat/view-chat.component';
 import ViewMyFollowListComponent from './../components/view-my-follow-list/view-my-follow-list.component';
 import ViewMyActivitiesComponent from './../components/view-my-activities/view-my-activities.component';
+import ViewActivityCreateComponent from './../components/view-activity-create/view-activity-create.component';
 
 resolveMovie.$inject = ['$stateParams', MoviesService.name];
 function resolveMovie($stateParams,moviesService){
@@ -134,6 +135,18 @@ export default function config ($stateProvider, $urlRouterProvider) {
                 },
             },
             url: '/myActivities',
+        })
+
+        .state('activityCreate', {
+            views: {
+                'headerArea': {
+                    template: '<app-header></app-header>',
+                },
+                'container': {
+                    component: ViewActivityCreateComponent.name,
+                },
+            },
+            url: '/viewActivityCreate',
         })
 }
 

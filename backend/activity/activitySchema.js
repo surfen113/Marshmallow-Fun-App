@@ -1,11 +1,23 @@
-// Load required packages
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
 
-// Define our activity schema
-var Activity   = new mongoose.Schema({
-    title: String
+var activitySchema = mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    }
 });
 
-// Export the Mongoose model
-module.exports = mongoose.model('Activity', Activity);
+activitySchema.pre('save', function(next) {
+    var activity = this;
+
+    bcrypt.genSalt(10, function(err, salt) {
+        if (err) return next(err);
+    });
+});
+
+
+var Activity = mongoose.model('Activity', activitySchema);
+
+module.exports = Activity;
 

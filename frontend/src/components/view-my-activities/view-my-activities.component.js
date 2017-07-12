@@ -33,12 +33,13 @@ class ViewMyActivitiesComponentController{
     }
 
 
-
+/*
     details (activity) {
         let _id = activity['_id'];
         this.$state.go('activity',{ activityId:_id});
     };
-
+*/
+    /*
     edit (activity) {
 
         if (this.UserService.isAuthenticated()) {
@@ -48,18 +49,18 @@ class ViewMyActivitiesComponentController{
             this.$state.go('login',{});
         }
     };
-
+*/
     newActivity(){
 
         if (this.UserService.isAuthenticated()) {
-            this.$state.go('activityAdd',{});
+            this.$state.go('activityCreate',{});
         } else {
             this.$state.go('login',{});
         }
 
     }
 
-
+/*
     delete(activity) {
         if (this.UserService.isAuthenticated()) {
             let _id = activity['_id'];
@@ -75,7 +76,7 @@ class ViewMyActivitiesComponentController{
         }
     };
 
-
+*/
 
     static get $inject(){
         return ['$state', 'scope', ActivitiesService.name, UserService.name];

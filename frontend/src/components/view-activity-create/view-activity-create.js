@@ -1,3 +1,9 @@
-/**
- * Created by armin on 7/3/2017.
- */
+'use strict';
+
+import angular from 'angular';
+
+import ViewActivityCreateComponent from './view-activity-create.component';
+
+
+export default angular.module('ViewActivityCreate', [])
+    .component(ViewActivityCreateComponent.name, new ViewActivityCreateComponent);

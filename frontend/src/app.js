@@ -27,6 +27,7 @@ import ngMap from 'ngmap';
 import ViewChat from './components/view-chat/view-chat';
 import ViewMyFollowList from './components/view-my-follow-list/view-my-follow-list';
 import ViewMyActivities from './components/view-my-activities/view-my-activities';
+import ViewActivityCreate from './components/view-activity-create/view-activity-create';
 
 let app = angular.module('app', [
     uiRouter,
@@ -44,7 +45,8 @@ let app = angular.module('app', [
     ViewChat.name,
     ViewMyFollowList.name,
     ViewMyActivities.name,
-    ActivityService.name
+    ActivityService.name,
+    ViewActivityCreate.name
 ]);
 
 // app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
