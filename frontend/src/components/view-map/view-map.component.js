@@ -49,20 +49,17 @@ class ViewMapController {
 
 
             map.addListener('click', function(e) {
-                alert("yay");
                 //map.positions.push({lat:48.2762, lng: 11.669});
                 //@TODO: Window öffnen mit Details und im Backend speichern
-                vm.map.showInfoWindow('bar', "");
+                //vm.map.showInfoWindow('bar', "");
                 var marker = new google.maps.Marker({
                     position: e.latLng,
                     map: map,
                     icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                 })
+                vm.map.showInfoWindow('newActivity', marker);
             });
 
-            //console.log(map.getCenter());
-            //console.log('markers', map.markers);
-            //console.log('shapes', map.shapes);
         });
 
 
@@ -90,10 +87,7 @@ class ViewMapController {
                 icon:iconImage,
                 title: "Drag me"
             });
-
         }
-
-
     }
 
     isAuthenticated() {
