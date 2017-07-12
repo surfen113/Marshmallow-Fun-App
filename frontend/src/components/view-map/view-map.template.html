@@ -13,7 +13,8 @@
             <!--<h3>SIGN UP</h3>-->
             <!--</a>-->
 
-            <md-button ng-if="!$ctrl.isAuthenticated()"" ui-sref="register" class="md-raised md-primary" >SIGN UP</md-button>
+            <md-button ng-if="!$ctrl.isAuthenticated()"
+            " ui-sref="register" class="md-raised md-primary" >SIGN UP</md-button>
 
             <ul id="list">
                 <li>Connect With Friends</li>
@@ -32,16 +33,18 @@
         <md-card flex="115">
             <md-card-content style="height:100%">
                 <form name="UserSettingsForm" style="height:400px">
-                    <ng-map center="[48.26, 11.67]" zoom="11" style="height:100%" onload="$ctrl.testFunction()">
+                    <ng-map center="[48.26, 11.67]" zoom="11" style="height:100%">
 
-                        <marker position="current"  title="You are here" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"></marker>
+                        <marker position="current" title="You are here"
+                                icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></marker>
 
 
                         <div ng-repeat="p in $ctrl.markerPoints">
 
                         </div>
 
-                        <marker  title="{{p.name}}" position="{{p.latitude}}, {{p.longitude}}" id="{{p.id}}"  ng-repeat="p in $ctrl.markerPoints" on-click="$ctrl.showStore(p)"></marker>
+                        <marker title="{{p.name}}" position="{{p.latitude}}, {{p.longitude}}" id="{{p.id}}"
+                                ng-repeat="p in $ctrl.markerPoints" on-click="$ctrl.showStore(p)"></marker>
 
                         <!--
                                                 <marker ng-repeat="(id, store) in $ctrl.markerPoints" id="{{id}}"
@@ -49,23 +52,31 @@
                                                         on-click="vm.showStore(event, id)"></marker>
                         -->
 
+                        <!--
                         <marker position="[48.26, 11.67]" title="First marker"  on-click="map.showInfoWindow('bar')"></marker>
                         <marker position="[48.263, 11.67]" title="Second marker" animation="Animation.DROP"></marker>
                         <marker position="[48.26, 11.673]" title="Third marker" animation="Animation.BOUNCE"></marker>
                         <marker position="[48.26, 11.668]" title="First marker" ></marker>
+                        -->
 
 
-                        <info-window id="bar" >
+                        <info-window id="bar">
                             <div ng-non-bindable="">
-                                <p>Name: {{$ctrl.marker.name}}</p>
+                                <p>{{$ctrl.marker.name}}</p>
+                                <div>Tags: </div>
+                                <div>Description: </div>
                                 <div>Lat: {{anchor.getPosition().lat()}}</div>
                                 <div>Long: {{anchor.getPosition().lng()}}</div>
-                                <div>{{$ctrl.markerPoints.name}}</div>
-                                <div>{{anchor.getName}}</div>
+                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
+                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
+                                <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
                             </div>
                         </info-window>
 
                     </ng-map>
+
+                    <md-button class="md-raised md-primary" ng-click="$ctrl.addNewActivity()" ui-sref="map">Add new activity</md-button>
+
 
                 </form>
             </md-card-content>
