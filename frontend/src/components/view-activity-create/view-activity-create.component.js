@@ -18,31 +18,44 @@ class ViewActivityCreateComponent {
 }
 
 class ViewActivityCreateComponentController{
-    constructor($state, MoviesService,UserService){
-        this.movie = {};
+    constructor($state, ActivitiesService,UserService){
+        this.activity = {};
         this.$state = $state;
-        this.MoviesService = MoviesService;
+        this.ActivitiesService = ActivitiesService;
         this.UserService = UserService;
     }
 
     cancel() {
-        this.$state.go('movies',{});
+        this.$state.go('myActivities',{});
     };
 
     save() {
-        let user = this.UserService.getCurrentUser();
+        let title = this.activity.title;
 
-        this.movie['user'] = user['_id'];
-        this.MoviesService.create(this.movie).then(data => {
-            let _id = data['_id'];
-        this.$state.go('movie',{ movieId:_id});
+        // let user = this.UserService.getCurrentUser();
+        // let _id = user['_id'];
+        // console.log("submit: id: " + _id);
+
+        this.ActivitiesService.create(title).then(()=> {
+            this.$state.go('myActivities',{});
     });
 
+
+        /*
+        let user = this.UserService.getCurrentUser();
+
+        this.activity['user'] = user['_id'];
+        this.ActivitiesService.create(this.activity).then(data => {
+            this.$state.go('myActivities',{});
+
+            //this.$state.go('movie',{ movieId:_id});
+    });
+    */
     };
 
 
     static get $inject(){
-        return ['$state', MoviesService.name, UserService.name];
+        return ['$state', ActivitiesService.name, UserService.name];
     }
 
 }

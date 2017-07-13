@@ -11,7 +11,7 @@ import ngMdIcons from 'angular-material-icons';
 
 import MoviesService from './services/movies/movies';
 import UserService from './services/user/user';
-import ActivityService from './services/activities/activities';
+import ActivitieService from './services/activities/activities';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -45,7 +45,7 @@ let app = angular.module('app', [
     ViewChat.name,
     ViewMyFollowList.name,
     ViewMyActivities.name,
-    ActivityService.name,
+    ActivitieService.name,
     ViewActivityCreate.name
 ]);
 

@@ -1,16 +1,16 @@
 <div layout="column" layout-padding>
     <md-content class="md-no-momentum">
-        <h1> {{$ctrl.movie.title}} </h1>
+        <h1> {{$ctrl.activity.title}} </h1>
         <br/>
-        <form name="movieForm">
+        <form name="activityForm">
             <md-input-container class="md-icon-float md-block">
                 <label>Title</label>
-                <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
-                <input ng-model="$ctrl.activity.title" type="text">
+                <!--<md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon> -->
+                <input type="text" ng-model="$ctrl.activity.title" placeholder="" required="" />
             </md-input-container>
             <div layout="row">
                 <span flex></span>
-                <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
+                <md-button class="md-raised md-primary" ng-click="$ctrl.save()">Save</md-button>
                 <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancel</md-button>
             </div>
 

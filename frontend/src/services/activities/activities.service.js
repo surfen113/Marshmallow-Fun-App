@@ -4,12 +4,13 @@
 export default class ActivitiesService {
 
     static get $inject(){
-        return ['$http', 'API_URL'];
+        return ['$http', '$window', 'API_URL'];
     }
 
-    constructor($http,API_URL) {
+    constructor($http, $window, API_URL) {
         this.$http = $http;
-        this.resourceUrl = `${ API_URL }/activities/`;
+        this.$window = $window;
+        this.resourceUrl = API_URL;//`${ API_URL }/activities/`;
 
     }
 
@@ -17,6 +18,7 @@ export default class ActivitiesService {
         return 'activitiesService';
     }
 
+    /*
     list() {
 
         let url = this.resourceUrl;
@@ -30,7 +32,10 @@ export default class ActivitiesService {
     });
 
     }
+    */
 
+
+    /*
     get(id) {
         let url = `${ this.resourceUrl }${ id }`;
         return this.$http.get(url).then(responce => {
@@ -42,8 +47,18 @@ export default class ActivitiesService {
     })
     }
 
+    */
 
-    create(activity) {
+    create(title) {
+        return this.$http.post(`${ this.API_URL }/activity/activityAdd`, {
+
+
+            title: title
+        });
+
+
+
+        /*
         let url = this.resourceUrl;
         return this.$http.post(url,activity).then(responce => {
 
@@ -52,6 +67,7 @@ export default class ActivitiesService {
     });
 
     })
+    */
     }
 
     delete(id) {

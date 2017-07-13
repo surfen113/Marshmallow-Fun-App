@@ -1,5 +1,5 @@
 var Config = require('../config/config.js');
-var User = require('./activitySchema');
+var Activity = require('./activitySchema');
 var jwt = require('jwt-simple');
 
 
@@ -9,34 +9,15 @@ module.exports.postActivity = function(req, res){
 
     var activity = new Activity();
     activity.title = req.body.title;
-    /*
-    var user = new User();
 
-    user.username = req.body.username;
-    user.password = req.body.password;
-    user.firstname = req.body.firstname;
-    user.lastname = req.body.lastname;
-    user.email = req.body.email;
-    user.birthday = req.body.birthday;
-    user.address = req.body.address;
-    user.mobile = req.body.mobile;
-    user.aboutme = req.body.aboutme;
-    user.sports = req.body.sports;
-    user.social = req.body.social;
-    user.music = req.body.music;
-    user.culture = req.body.culture;
-    user.party = req.body.party;
-    //user.image = req.body.image;
 
-    */
-
-    activity.save(function(err, m) {
+    activity.save(function(err) {
         if (err) {
             res.status(500).send(err);
             return;
         }
 
-        res.status(201).json(m);
+        res.status(201).json();
     });
 
 };

@@ -11,9 +11,11 @@ var activitySchema = mongoose.Schema({
 activitySchema.pre('save', function(next) {
     var activity = this;
 
+    /*
     bcrypt.genSalt(10, function(err, salt) {
         if (err) return next(err);
     });
+    */
 });
 
 
