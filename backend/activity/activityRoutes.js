@@ -14,7 +14,7 @@ function activityRoutes(passport) {
     router.use(mw.unless({method: ['GET', 'OPTIONS']}));
 
     router.post('/activityAdd', activityController.postActivity);
-    //router.get('/activityGetAll', activityController.getActivities);
+    router.get('/activityGetAll', activityController.getActivities);
     //router.rout('/:activity_id').get(passport.authenicate('jwt'))
 
     //router.route('/')

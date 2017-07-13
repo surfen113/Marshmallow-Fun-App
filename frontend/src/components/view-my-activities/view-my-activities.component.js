@@ -29,15 +29,17 @@ class ViewMyActivitiesComponentController{
         this.$state = $state;
         this.ActivitiesService = ActivitiesService;
         this.UserService = UserService;
+
+        //this.activities = this.ActivitiesService.getActivities();
     }
 
 
-/*
+    /*
     details (activity) {
         let _id = activity['_id'];
         this.$state.go('activity',{ activityId:_id});
     };
-*/
+    */
     /*
     edit (activity) {
 

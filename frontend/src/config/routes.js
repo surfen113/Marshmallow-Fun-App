@@ -12,6 +12,7 @@ import ViewChatComponent from './../components/view-chat/view-chat.component';
 import ViewMyFollowListComponent from './../components/view-my-follow-list/view-my-follow-list.component';
 import ViewMyActivitiesComponent from './../components/view-my-activities/view-my-activities.component';
 import ViewActivityCreateComponent from './../components/view-activity-create/view-activity-create.component';
+import ActivitiesService from './../services/activities/activities.service';
 
 resolveMovie.$inject = ['$stateParams', MoviesService.name];
 function resolveMovie($stateParams,moviesService){
@@ -23,6 +24,10 @@ function resolveMovies(moviesService){
     return moviesService.list();
 }
 
+resolveActivities.$inject = [ActivitiesService.name];
+function resolveActivities(activitiesService){
+    return activitiesService.list();
+}
 
 config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider) {
@@ -135,6 +140,9 @@ export default function config ($stateProvider, $urlRouterProvider) {
                 },
             },
             url: '/myActivities',
+            resolve: {
+                activities: resolveActivities
+            }
         })
 
         .state('activityCreate', {

@@ -18,12 +18,12 @@ export default class ActivitiesService {
         return 'activitiesService';
     }
 
-    /*
+
     list() {
-
-        let url = this.resourceUrl;
+        console.log("list");
+        let url = let url = this.API_URL + '/activity/activityGetAll';
         return this.$http.get(url).then(responce => {
-
+                console.log(JSON.stringify(responce.data));
                 return new Promise((resolve, reject) => {
                     resolve(responce.data);
 
@@ -32,7 +32,7 @@ export default class ActivitiesService {
     });
 
     }
-    */
+
 
 
     /*
@@ -61,18 +61,10 @@ export default class ActivitiesService {
 
 
 
-        /*
-        let url = this.resourceUrl;
-        return this.$http.post(url,activity).then(responce => {
 
-                return new Promise((resolve, reject) => {
-                    resolve(responce.data);
-    });
-
-    })
-    */
     }
 
+    /*
     delete(id) {
         let url = `${ this.resourceUrl }${ id }`;
         return this.$http.delete(url).then(responce => {
@@ -83,7 +75,8 @@ export default class ActivitiesService {
 
     })
     }
-
+    */
+    /*
     update(activity) {
 
         let url = `${ this.resourceUrl }${ activity['_id'] }`;
@@ -95,6 +88,6 @@ export default class ActivitiesService {
 
     })
     }
-
+    */
 
 }
