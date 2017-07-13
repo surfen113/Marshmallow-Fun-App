@@ -10,10 +10,13 @@ var activitySchema = mongoose.Schema({
         type:String,
         required: true
     },
-    title: {
-        type: String,
-        required: true
-    },
+    sports: boolean,
+    social: boolean,
+    music: boolean,
+    culture: boolean,
+    party:boolean,
+    date:String,
+    details:String,
     user :{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
