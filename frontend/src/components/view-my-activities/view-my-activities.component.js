@@ -25,9 +25,8 @@ class ViewMyActivitiesComponent {
 }
 
 class ViewMyActivitiesComponentController{
-    constructor($state, $scope, ActivitiesService, UserService){
+    constructor($state, ActivitiesService, UserService){
         this.$state = $state;
-        this.$scope = $scope;
         this.ActivitiesService = ActivitiesService;
         this.UserService = UserService;
     }
@@ -51,7 +50,7 @@ class ViewMyActivitiesComponentController{
     };
 */
     newActivity(){
-
+        console.log("yippie");
         if (this.UserService.isAuthenticated()) {
             this.$state.go('activityCreate',{});
         } else {
@@ -79,7 +78,7 @@ class ViewMyActivitiesComponentController{
 */
 
     static get $inject(){
-        return ['$state', 'scope', ActivitiesService.name, UserService.name];
+        return ['$state', ActivitiesService.name, UserService.name];
     }
 
 }
