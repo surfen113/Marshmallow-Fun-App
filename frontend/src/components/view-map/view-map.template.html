@@ -80,7 +80,7 @@
 
                                 <md-input-container class="md-block">
                                     <label>Activity name</label>
-                                    <input type="text" name="firstname" ng-model="$ctrl.settings.firstname" placeholder=""  required=""/>
+                                    <input type="text" name="firstname" ng-model="$ctrl.map.activityName" placeholder=""  required=""/>
 
                                 </md-input-container>
 
@@ -91,11 +91,11 @@
                                 <dl class="dropdown">
                                     <dd>
                                         <div class="mutliSelect">
-                                            <input type="checkbox" name="sports" ng-model="$ctrl.settings.sports"/>Sports
-                                            <input type="checkbox" name="social" ng-model="$ctrl.settings.social"/>Social
-                                            <input type="checkbox" name="music" ng-model="$ctrl.settings.music"/>Music
-                                            <input type="checkbox" name="culture" ng-model="$ctrl.settings.culture"/>Culture
-                                            <input type="checkbox" name="party" ng-model="$ctrl.settings.party"/>Party
+                                            <input type="checkbox" name="sports" ng-model="$ctrl.map.sports"/>Sports
+                                            <input type="checkbox" name="social" ng-model="$ctrl.map.social"/>Social
+                                            <input type="checkbox" name="music" ng-model="$ctrl.map.music"/>Music
+                                            <input type="checkbox" name="culture" ng-model="$ctrl.map.culture"/>Culture
+                                            <input type="checkbox" name="party" ng-model="$ctrl.map.party"/>Party
                                         </div>
                                     </dd>
                                 </dl>
@@ -103,18 +103,17 @@
 
                                 <md-input-container class="md-block">
                                     <label>Date and time</label>
-                                    <input type="datetime-local" name="birthday" ng-model="$ctrl.settings.birthday" placeholder="" />
+                                    <input type="datetime-local" name="birthday" ng-model="$ctrl.map.datetime" placeholder="" />
                                 </md-input-container>
 
                                 <md-input-container class="md-block">
-                                    <label>Details</label>
-                                    <textarea  cols="60" rows="2" name="aboutme" ng-model="$ctrl.settings.aboutme" placeholder=""></textarea>
+                                    <label>Details:</label>
+                                    <textarea  cols="60" rows="2" name="aboutme" ng-model="$ctrl.map.details" placeholder=""></textarea>
                                 </md-input-container>
 
 
-
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Post</md-button>
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Cancel</md-button>
+                                <md-button ui-sref="map" class="md-raised md-primary" ng-click="$ctrl.save()">Save Activity</md-button>
+                                <md-button ng-click="$ctrl.cancel()" class="md-raised md-primary">Cancel</md-button>
                             </div>
                         </info-window>
 

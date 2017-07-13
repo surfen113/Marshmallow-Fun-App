@@ -10,11 +10,9 @@ import NgMap from 'ngmap';
 
 class ViewMapComponent {
     constructor() {
-
         this.template = template;
         this.controller = ViewMapController;
     }
-
 
     static get name() {
         return 'viewMap';
@@ -24,10 +22,12 @@ class ViewMapComponent {
 class ViewMapController {
     constructor($state, NgMap, UserService) {
         var vm = this;
-        vm.positions = [{lat:37.7699298,lng:-122.4469157}];
         this.$state = $state;
         this.NgMap = NgMap;
         this.UserService = UserService;
+        var newLatitude = null;
+        var newLongitude = null;
+        var test = "cool";
 
         this.markerPoints = [
             {id: "4", "name": "Another Activity", "latitude": 47.263, "longitude": 10.669},
@@ -41,17 +41,16 @@ class ViewMapController {
             {id: "12", "name": "Soccer", "latitude": 51.263, "longitude": 12.669},
             {id: "13", "name": "Start Wars", "latitude": 53.263, "longitude": -57.669}
         ];
-        vm.marker = this.markerPoints[3];
+        vm.marker = this.markerPoints[0];
 
         NgMap.getMap().then(function (map) {
             vm.map = map;
-            console.log(map);
-
 
             map.addListener('click', function(e) {
-                //map.positions.push({lat:48.2762, lng: 11.669});
                 //@TODO: Window öffnen mit Details und im Backend speichern
-                //vm.map.showInfoWindow('bar', "");
+                newLatitude = e.latLng.lat();
+                newLongitude = e.latLng.lng();
+                console.log("new Latitude onClick: " + newLatitude);
                 var marker = new google.maps.Marker({
                     position: e.latLng,
                     map: map,
@@ -71,23 +70,9 @@ class ViewMapController {
 
         this.goToDetails = function () {
             alert("go to Details");
-        }
+        };
 
-        this.addNewActivity = function () {
-            console.log(this.markerPoints.length);
-            alert ("addNewActivity");
-            this.markerPoints.push({ id: "14", "name": "Rowing 2", "latitude": 48.2762, "longitude": 11.669});
-            console.log(this.markerPoints.length);
 
-            let marker = new vm.maps.Marker({
-                map: this.map,
-                animation: google.maps.Animation.DROP,
-                position: this.map.getCenter(),
-                draggable: true,
-                icon:iconImage,
-                title: "Drag me"
-            });
-        }
     }
 
     isAuthenticated() {
@@ -95,8 +80,38 @@ class ViewMapController {
     }
 
     static get $inject() {
-        return ['$state', 'NgMap', UserService.name]
+        return ['$state', 'NgMap', UserService.name];
     }
+
+    setVariables() {
+        console.log("setVariables()");
+    }
+
+    save() {
+        //@TODO: ins Backend schreiben
+        let activityName = this.map.activityName;
+        let datetime = this.map.datetime;
+        let latitude = this.map.latitude;
+        let longitude = this.map.longitude;
+        let details = this.map.details;
+        let username = this.map.username;
+        let sports = this.map.sports;
+        let social = this.map.social;
+        let music = this.map.music;
+        let culture = this.map.culture;
+        let party = this.map.party;
+        console.log("Latitude: " + latitude + " Longitude: " + "" + " Name: " + activityName + " Details: " + details + " User: " + " " + " Sports: " + sports);
+
+        //@TODO: Hier Service aufrufen @Armin
+
+
+        //this.$state.go('myActivities',{});
+    }
+
+    cancel(){
+        this.$state.reload();
+    }
+
 }
 
 export default ViewMapComponent;
