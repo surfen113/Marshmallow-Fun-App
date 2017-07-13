@@ -10,7 +10,7 @@ export default class ActivitiesService {
     constructor($http, $window, API_URL) {
         this.$http = $http;
         this.$window = $window;
-        this.resourceUrl = API_URL;//`${ API_URL }/activities/`;
+        this.API_URL = API_URL;//`${ API_URL }/activities/`;
 
     }
 

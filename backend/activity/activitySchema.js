@@ -6,6 +6,9 @@ var activitySchema = mongoose.Schema({
         type: String,
         required: true
     }
+
+
+
 });
 
 activitySchema.pre('save', function(next) {
