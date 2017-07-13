@@ -30,14 +30,13 @@ class ViewActivityCreateComponentController{
     };
 
     save() {
-        let title = this.activity.title;
+        //let title = this.activity.title;
+        let user = this.UserService.getCurrentUser();
 
-        // let user = this.UserService.getCurrentUser();
-        // let _id = user['_id'];
-        // console.log("submit: id: " + _id);
-
-        this.ActivitiesService.create(title).then(()=> {
-            this.$state.go('myActivities',{});
+        this.activity['user'] = user['_id'];
+        this.ActivitiesService.create(this.activity).then(data => {
+            let _id = data[_id];
+            this.$state.go('myActivities',{activityId:_id});
     });
 
 

@@ -6,18 +6,20 @@ var jwt = require('jwt-simple');
 
 module.exports.postActivity = function(req, res){
     console.log("post Activity");
+    console.log(req.body);
 
-    var activity = new Activity();
-    activity.title = req.body.title;
+    var activity = new Activity(req.body);
+    if (!req.user.equals(activity.user)) {
+        res.sendStatus(401);
+    }
 
-
-    activity.save(function(err) {
+    activity.save(function(err, m) {
         if (err) {
             res.status(500).send(err);
             return;
         }
 
-        res.status(201).json();
+        res.status(201).json(m);
     });
 
 };

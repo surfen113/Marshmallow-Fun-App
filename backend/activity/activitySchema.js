@@ -2,9 +2,21 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 var activitySchema = mongoose.Schema({
+    latitude: {
+        type:String,
+        required: true
+    },
+    longitude: {
+        type:String,
+        required: true
+    },
     title: {
         type: String,
         required: true
+    },
+    user :{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 
 

@@ -49,11 +49,14 @@ export default class ActivitiesService {
 
     */
 
-    create(title) {
-        return this.$http.post(`${ this.API_URL }/activity/activityAdd`, {
+    create(activity) {
+        console.log("post Activity activity service");
 
-
-            title: title
+        let url = this.API_URL + '/activity/activityAdd';
+        return this.$http.post(url, activity).then(response => {
+                return new Promise((resolve, reject) => {
+                    resolve(responce.data);
+            });
         });
 
 
