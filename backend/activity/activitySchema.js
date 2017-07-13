@@ -10,11 +10,11 @@ var activitySchema = mongoose.Schema({
         type:String,
         required: true
     },
-    sports: boolean,
-    social: boolean,
-    music: boolean,
-    culture: boolean,
-    party:boolean,
+    sports: Boolean,
+    social: Boolean,
+    music: Boolean,
+    culture: Boolean,
+    party:Boolean,
     date:String,
     details:String,
     user :{
