@@ -50,13 +50,15 @@ class ViewMapController {
                 //@TODO: Window öffnen mit Details und im Backend speichern
                 newLatitude = e.latLng.lat();
                 newLongitude = e.latLng.lng();
-                console.log("new Latitude onClick: " + newLatitude);
-                var marker = new google.maps.Marker({
-                    position: e.latLng,
-                    map: map,
-                    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-                })
-                vm.map.showInfoWindow('newActivity', marker);
+                if(UserService.isAuthenticated()) {
+                    console.log("new Latitude onClick: " + newLatitude);
+                    var marker = new google.maps.Marker({
+                        position: e.latLng,
+                        map: map,
+                        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                    })
+                    vm.map.showInfoWindow('newActivity', marker);
+                }
             });
 
         });
@@ -65,7 +67,9 @@ class ViewMapController {
 
         this.showStore = function (e, marker2) {
             vm.marker = marker2;
-            vm.map.showInfoWindow('bar', vm.marker.id);
+            if(UserService.isAuthenticated()) {
+                vm.map.showInfoWindow('bar', vm.marker.id);
+            }
         }
 
         this.goToDetails = function () {
@@ -73,10 +77,6 @@ class ViewMapController {
         };
 
 
-    }
-
-    isAuthenticated() {
-        return this.UserService.isAuthenticated();
     }
 
     static get $inject() {
@@ -110,6 +110,10 @@ class ViewMapController {
 
     cancel(){
         this.$state.reload();
+    }
+
+    isAuthenticated(){
+        return this.UserService.isAuthenticated();
     }
 
 }
