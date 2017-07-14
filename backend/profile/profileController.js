@@ -1,6 +1,7 @@
-// importing Movie model
-var Movie = require('./movieSchema');
-exports.postMovie = function(req, res) {
+// importing Profile model
+var Movie = require('./profileSchema');
+
+exports.postProfile = function(req, res) {
     var movie = new Movie(req.body);
     //do not allow user to fake identity. The user who postet the movie must be the same user that is logged in
     if (!req.user.equals(movie.user)) {
@@ -15,17 +16,17 @@ exports.postMovie = function(req, res) {
     });
 };
 // Create endpoint /api/movies for GET
-exports.getMovies = function(req, res) {
-    Movie.find(function(err, movies) {
-        if (err) {
-            res.status(400).send(err);
-            return;
-        }
-        res.json(movies);
-    });
-};
+// exports.getMovies = function(req, res) {
+//     Movie.find(function(err, movies) {
+//         if (err) {
+//             res.status(400).send(err);
+//             return;
+//         }
+//         res.json(movies);
+//     });
+// };
 // Create endpoint /api/movies/:movie_id for GET
-exports.getMovie = function(req, res) {
+exports.getProfile = function(req, res) {
     // Use the Movie model to find a specific movie
     Movie.findById(req.params.movie_id, function(err, movie) {
         if (err) {
@@ -36,22 +37,8 @@ exports.getMovie = function(req, res) {
         res.json(movie);
     });
 };
-
-// Create endpoint /api/movies/:movie_id for GET
-exports.getMovie = function(req, res) {
-    // Use the Movie model to find a specific movie
-    Movie.findById(req.params.movie_id, function(err, movie) {
-        if (err) {
-            res.status(400).send(err)
-            return;
-        };
-
-        res.json(movie);
-    });
-};
-
 // Create endpoint /api/movies/:movie_id for PUT
-exports.putMovie = function(req, res) {
+exports.putProfile = function(req, res) {
     // Use the Movie model to find a specific movie and update it
     Movie.findByIdAndUpdate(
         req.params.movie_id,
@@ -62,15 +49,15 @@ exports.putMovie = function(req, res) {
             //run validations
             runValidators: true
         }, function (err, movie) {
-        if (err) {
-            res.status(400).send(err);
-            return;
-        }
-        res.json(movie);
-    });
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+            res.json(movie);
+        });
 };
 // Create endpoint /api/movies/:movie_id for DELETE
-exports.deleteMovie = function(req, res) {
+exports.deleteProfile = function(req, res) {
     // Use the Beer model to find a specific beer and remove it
     Movie.findById(req.params.movie_id, function(err, m) {
         if (err) {

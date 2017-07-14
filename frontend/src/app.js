@@ -29,6 +29,11 @@ import ViewMyFollowList from './components/view-my-follow-list/view-my-follow-li
 import ViewMyActivities from './components/view-my-activities/view-my-activities';
 import ViewActivityCreate from './components/view-activity-create/view-activity-create';
 
+import ViewMovies from './components/view-movies/view-movies';
+import ViewMovie from './components/view-movie/view-movie';
+
+import ViewProfile from './components/view-profile/view-profile';
+
 let app = angular.module('app', [
     uiRouter,
     angularMaterial,
@@ -46,7 +51,14 @@ let app = angular.module('app', [
     ViewMyFollowList.name,
     ViewMyActivities.name,
     ActivitiesService.name,
-    ViewActivityCreate.name
+    ViewActivityCreate.name,
+
+    ViewMovies.name,
+    ViewMovie.name,
+    MoviesService.name,
+
+    ViewProfile.name
+
 ]);
 
 // app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');

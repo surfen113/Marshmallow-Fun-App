@@ -82,12 +82,13 @@ module.exports.unregister = function(req, res) {
 
 // Create endpoint /api/user/:user_id for GET
 exports.getProfile = function(req, res) {
-
     User.findById(req.params.user_id, function(err, user) {
         if (err) {
             res.status(400).send(err)
             return;
         };
+        user.password = undefined;
+        console.log(JSON.stringify(user));
         res.json(user);
     });
 };

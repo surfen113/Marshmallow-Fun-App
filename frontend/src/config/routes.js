@@ -7,6 +7,7 @@ import RegisterComponent from './../components/view-register/view-register.compo
 import MapComponent from './../components/view-map/view-map.component';
 import UserSettingsComponent from './../components/view-user-settings/view-user-settings.component';
 import MoviesService from './../services/movies/movies.service';
+import UserService from './../services/user/user.service';
 import SmallHeaderComponent from './../components/app-small-header/app-small-header.component';
 import ViewChatComponent from './../components/view-chat/view-chat.component';
 import ViewMyFollowListComponent from './../components/view-my-follow-list/view-my-follow-list.component';
@@ -14,8 +15,14 @@ import ViewMyActivitiesComponent from './../components/view-my-activities/view-m
 import ViewActivityCreateComponent from './../components/view-activity-create/view-activity-create.component';
 import ActivitiesService from './../services/activities/activities.service';
 
+import MoviesComponent from './../components/view-movies/view-movies.component';
+import MovieComponent from './../components/view-movie/view-movie.component';
+
+import ProfileComponent from './../components/view-profile/view-profile.component';
+
 resolveMovie.$inject = ['$stateParams', MoviesService.name];
 function resolveMovie($stateParams,moviesService){
+    console.log($stateParams);
     return moviesService.get($stateParams.movieId);
 }
 
@@ -27,6 +34,13 @@ function resolveMovies(moviesService){
 resolveActivities.$inject = [ActivitiesService.name];
 function resolveActivities(activitiesService){
     return activitiesService.list();
+}
+
+resolveProfile.$inject = ['$stateParams', UserService.name];
+function resolveProfile($stateParams,userService){
+    console.log("resolveProfile")
+    console.log($stateParams);
+    return userService.getProfile($stateParams.profileId);
 }
 
 config.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -156,5 +170,32 @@ export default function config ($stateProvider, $urlRouterProvider) {
             },
             url: '/viewActivityCreate',
         })
+
+        .state('movie', {
+            url: '/movies/:movieId',
+            component: MovieComponent.name,
+            resolve: {
+                movie : resolveMovie
+            }
+        })
+
+        .state('movies', {
+            url: '/movies',
+            component: MoviesComponent.name,
+            resolve: {
+                movies : resolveMovies
+            }
+        })
+
+        .state('profile', {
+            url: '/profile/:profileId',
+            component: ProfileComponent.name,
+            resolve: {
+                profile : resolveProfile
+            }
+        })
+
+
+
 }
 

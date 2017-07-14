@@ -105,4 +105,16 @@ export default class UserService {
         // return true;
     }
 
+    getProfile(id) {
+        console.log("getProfile " + id);
+        let url = `${ this.API_URL+"/user/" }${ id }`;
+        return this.$http.get(url).then(responce => {
+            console.log("response getProfile " + JSON.stringify(responce.data));
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+
+        })
+    }
+
 }

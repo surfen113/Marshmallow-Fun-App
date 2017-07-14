@@ -23,7 +23,7 @@ export default class ActivitiesService {
         console.log("list");
         let url = this.API_URL + '/activity/activityGetAll';
         return this.$http.get(url).then(responce => {
-                console.log(JSON.stringify(responce.data));
+
                 return new Promise((resolve, reject) => {
                     resolve(responce.data);
 
@@ -55,7 +55,7 @@ export default class ActivitiesService {
         let url = this.API_URL + '/activity/activityAdd';
         return this.$http.post(url, activity).then(response => {
                 return new Promise((resolve, reject) => {
-                    resolve(responce.data);
+                    resolve(response.data);
             });
         });
 
