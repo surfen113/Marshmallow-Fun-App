@@ -6,11 +6,11 @@ function movieRoutes(passport) {
     var movieController = require('./movieController');
     var router = require('express').Router();
     // var unless = require('express-unless');
-
+    //
     // var mw = passport.authenticate('jwt', {session: false});
     // mw.unless = unless;
-
-    //middleware
+    //
+    // middleware
     // router.use(mw.unless({method: ['GET', 'OPTIONS']}));
 
     router.route('/')

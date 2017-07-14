@@ -1,2 +1,12 @@
 <h1>Chat</h1>
 <!-- <img src="./../../Image-Test/chat.jpg" alt="Aktivity List" /> -->
+
+
+<md-button ng-click="$ctrl.loadConversations()" class="md-raised md-primary" >load Conversations</md-button>
+<md-button ng-click="$ctrl.newConversation()" class="md-raised md-primary" >new Conversations</md-button>
+
+<input type="text" name="conversationID" ng-model="$ctrl.conversationId" placeholder="ConversationID" />
+<md-button ng-click="$ctrl.loadConversation()" class="md-raised md-primary" >load Conversation</md-button>
+
+<input type="text" name="send" ng-model="$ctrl.send" placeholder="Send" />
+<md-button ng-click="$ctrl.send()" class="md-raised md-primary" >Send</md-button>
