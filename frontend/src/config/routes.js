@@ -16,6 +16,7 @@ import ViewActivityCreateComponent from './../components/view-activity-create/vi
 import ActivitiesService from './../services/activities/activities.service';
 import ViewActivityComponent from './../components/view-activity/view-activity.component';
 import ViewActivityEditComponent from './../components/view-activity-edit/view-activity-edit.component';
+import FollowsService from './../services/follows/follows.service';
 
 import MoviesComponent from './../components/view-movies/view-movies.component';
 import MovieComponent from './../components/view-movie/view-movie.component';
@@ -36,6 +37,11 @@ function resolveMovies(moviesService){
 resolveActivities.$inject = [ActivitiesService.name];
 function resolveActivities(activitiesService){
     return activitiesService.list();
+}
+
+resolveFollows.$inject = [FollowsService.name];
+function resolveFollows(followsService){
+    return resolveFollows.list();
 }
 
 resolveActivity.$inject = ['$stateParams', ActivitiesService.name];
@@ -142,7 +148,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
             },
             url: '/chat',
         })
-
+/*
         .state('myFollowList', {
             views: {
                 'headerArea': {
@@ -154,7 +160,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
             },
             url: '/myFollowList',
         })
-
+*/
         .state('myActivities', {
             views: {
                 'headerArea': {
@@ -231,6 +237,20 @@ export default function config ($stateProvider, $urlRouterProvider) {
             url: '/activity/:activityId',
             resolve: {
                 activity: resolveActivity
+            }
+        })
+        .state('myFollowList', {
+            views: {
+                'headerArea': {
+                    template: '<app-header></app-header>',
+                },
+                'container': {
+                    component: ViewMyFollowListComponent.name,
+                },
+            },
+            url: '/myActivities',
+            resolve: {
+                follows: resolveFollows
             }
         })
 }

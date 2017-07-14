@@ -12,6 +12,7 @@ import ngMdIcons from 'angular-material-icons';
 import MoviesService from './services/movies/movies';
 import UserService from './services/user/user';
 import ActivitiesService from './services/activities/activities';
+import FollowsService from './services/follows/follows';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -56,6 +57,7 @@ let app = angular.module('app', [
     ViewActivityCreate.name,
     ViewActivity.name,
     ViewActivityEdit.name,
+    FollowsService.name,
 
     ViewMovies.name,
     ViewMovie.name,

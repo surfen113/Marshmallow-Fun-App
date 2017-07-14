@@ -53,7 +53,9 @@
                                 <div>Long: {{anchor.getPosition().lng()}}</div>
                                 <div>Date: {{$ctrl.marker.date}}</div>
                                 <div>Time:</div>
-                                <md-button ng-if="!ctrl.isOwnActivity()" ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
+                                <md-button ng-click="$ctrl.follow()" class="md-raised md-primary">Follow</md-button>
+                                <!-- <md-button ng-if="!ctrl.isOwnActivity()" ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
+                                -->
                                 <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
                                 <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
                             </div>
@@ -69,7 +71,8 @@
                                 <div>Long: {{anchor.getPosition().lng()}}</div>
                                 <div>Date: {{$ctrl.marker.date}}</div>
                                 <div>Time:</div>
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
+
+                                <!--<md-button ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>-->
                                 <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
                                 <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
                             </div>
@@ -120,6 +123,8 @@
                                     Activity
                                 </md-button>
                                 <md-button ng-click="$ctrl.cancel()" class="md-raised md-primary">Cancel</md-button>
+                                <!--<md-button ng-click="$ctrl.follow()" class="md-raised md-primary">Follow</md-button>
+                                -->
                             </div>
                         </info-window>
 

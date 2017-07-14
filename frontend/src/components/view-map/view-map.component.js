@@ -6,6 +6,7 @@
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
 import ActivitiesService from './../../services/activities/activities.service';
+import FollowsService from './../../services/follows/follows.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
@@ -26,7 +27,7 @@ class ViewMapComponent {
 }
 
 class ViewMapController {
-    constructor($state, $scope, NgMap, ActivitiesService, UserService) {
+    constructor($state, $scope, NgMap, ActivitiesService, UserService/*, FollowsService*/) {
         var vm = this;
         this.activity = {};
         this.$state = $state;
@@ -35,6 +36,7 @@ class ViewMapController {
         this.UserService = UserService;
         this.ActivitiesService = ActivitiesService;
         this.activities =        this.ActivitiesService.list();
+        //this.FollowsService = FollowsService;
 
         console.log(this.activities.data);
 
@@ -130,7 +132,7 @@ class ViewMapController {
     console.log("2." + newLatitude);
         //console.log(this.this.test);
     // test = "geilo";
-}
+    }
 
     $onInit() {
         //Clone the Movie Data
@@ -140,7 +142,7 @@ class ViewMapController {
 
 
     static get $inject() {
-        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name];
+        return ['$state','$scope', 'NgMap', ActivitiesService.name /*,FollowsService.name*/, UserService.name];
     }
 
 
@@ -176,6 +178,19 @@ class ViewMapController {
     isOwnActicity() {
         console.log("UserID: " + user['_id']);
     }
+
+
+    follow() {
+        console.log("hier passiert was");
+
+        //let followed = this.activity.user;
+        console.log(this.activity.user);
+        //let follower = this.UserService.getCurrentUser();
+
+
+        //this.FollowsService.create(followed, follower);
+    }
+
 
 }
 

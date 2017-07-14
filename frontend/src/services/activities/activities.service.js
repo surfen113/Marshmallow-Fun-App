@@ -20,7 +20,6 @@ export default class ActivitiesService {
 
 
     list() {
-        console.log("list");
         let url = this.API_URL + '/activity/activityGetAll';
         return this.$http.get(url).then(responce => {
 
@@ -49,7 +48,7 @@ export default class ActivitiesService {
 
 
     create(activity) {
-        console.log("post Activity activity service");
+
 
         let url = this.API_URL + '/activity/activityAdd';
         return this.$http.post(url, activity).then(response => {
