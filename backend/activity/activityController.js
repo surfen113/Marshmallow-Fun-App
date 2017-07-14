@@ -106,7 +106,7 @@ exports.putActivity = function(req, res) {
         });
 };
 
-
+*/
 exports.deleteActivity = function(req, res) {
     // Use the Beer model to find a specific beer and remove it
     Activity.findById(req.params.activity_id, function(err, m) {
@@ -119,4 +119,3 @@ exports.deleteActivity = function(req, res) {
     });
 };
 
-*/

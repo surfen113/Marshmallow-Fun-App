@@ -61,23 +61,23 @@ class ViewMyActivitiesComponentController{
 
     }
 
-/*
+
     delete(activity) {
         if (this.UserService.isAuthenticated()) {
             let _id = activity['_id'];
 
-            this.MoviesService.delete(_id).then(response => {
+            this.ActivitiesService.delete(_id).then(response => {
                 let index = this.activities.map(x => x['_id']).indexOf(_id);
-            this.activities.splice(index, 1);
-            this.$scope.$apply();
-        })
+                this.activities.splice(index, 1);
+                this.$scope.$apply();
+        });
 
         } else {
             this.$state.go('login',{});
         }
     };
 
-*/
+
 
     static get $inject(){
         return ['$state', ActivitiesService.name, UserService.name];

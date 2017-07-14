@@ -21,10 +21,10 @@ function activityRoutes(passport) {
     //    .post(activityController.postActivity)
     //    .get(activityController.getActivity);
 
-    //router.route('/:activity_id')
+    router.route('/:activity_id')
     //    .get(activityController.getActivity)
     //    .put(activityController.putActivity)
-    //    .delete(activityController.deleteActivity);
+        .delete(activityController.deleteActivity);
 
     return router;
 }

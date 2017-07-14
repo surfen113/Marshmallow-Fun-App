@@ -64,18 +64,18 @@ export default class ActivitiesService {
 
     }
 
-    /*
+
     delete(id) {
-        let url = `${ this.resourceUrl }${ id }`;
+        let url = this.API_URL + '/activity/' + id ;
         return this.$http.delete(url).then(responce => {
 
                 return new Promise((resolve, reject) => {
                     resolve(responce.status);
-    });
+                });
 
-    })
+            });
     }
-    */
+
     /*
     update(activity) {
 
