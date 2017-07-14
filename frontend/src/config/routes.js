@@ -113,7 +113,9 @@ export default function config ($stateProvider, $urlRouterProvider) {
                 },
             },
             url: '/map',
-            //component: MapComponent.name,
+            resolve: {
+                activities: resolveActivities
+            }
         })
 
         .state('userSettings', {

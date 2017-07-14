@@ -19,7 +19,7 @@ function activityRoutes(passport) {
 
     //router.route('/')
     //    .post(activityController.postActivity)
-    //    .get(activityController.getActivity);
+       // .get(activityController.getActivities);
 
     router.route('/:activity_id')
         .get(activityController.getActivity)
