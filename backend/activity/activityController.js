@@ -9,16 +9,20 @@ module.exports.postActivity = function(req, res){
     console.log(req.body);
 
     var activity = new Activity(req.body);
-    if (!req.user.equals(activity.user)) {
-        res.sendStatus(401);
-    }
 
+    /*
+     if (!req.user.equals(activity.user)) {
+
+     res.sendStatus(401);
+     }
+     */
     activity.save(function(err, m) {
         if (err) {
             res.status(500).send(err);
+            console.log(err);
             return;
         }
-
+        console.log("post Activity");
         res.status(201).json(m);
     });
 

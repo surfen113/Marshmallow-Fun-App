@@ -10,6 +10,8 @@ var activitySchema = mongoose.Schema({
         type:String,
         required: true
     },
+    title: String,
+    /*
     sports: Boolean,
     social: Boolean,
     music: Boolean,
@@ -17,6 +19,7 @@ var activitySchema = mongoose.Schema({
     party:Boolean,
     date:String,
     details:String,
+    */
     user :{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -26,15 +29,7 @@ var activitySchema = mongoose.Schema({
 
 });
 
-activitySchema.pre('save', function(next) {
-    var activity = this;
 
-    /*
-    bcrypt.genSalt(10, function(err, salt) {
-        if (err) return next(err);
-    });
-    */
-});
 
 
 var Activity = mongoose.model('Activity', activitySchema);

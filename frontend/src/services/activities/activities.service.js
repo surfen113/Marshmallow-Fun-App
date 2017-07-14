@@ -21,7 +21,7 @@ export default class ActivitiesService {
 
     list() {
         console.log("list");
-        let url = let url = this.API_URL + '/activity/activityGetAll';
+        let url = this.API_URL + '/activity/activityGetAll';
         return this.$http.get(url).then(responce => {
                 console.log(JSON.stringify(responce.data));
                 return new Promise((resolve, reject) => {

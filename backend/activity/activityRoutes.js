@@ -7,11 +7,11 @@ function activityRoutes(passport) {
     var router = require('express').Router();
     var unless = require('express-unless');
 
-    var mw = passport.authenticate('jwt', {session: false});
-    mw.unless = unless;
+    //var mw = passport.authenticate('jwt', {session: false});
+    //mw.unless = unless;
 
     //middleware
-    router.use(mw.unless({method: ['GET', 'OPTIONS']}));
+    //router.use(mw.unless({method: ['GET', 'OPTIONS']}));
 
     router.post('/activityAdd', activityController.postActivity);
     router.get('/activityGetAll', activityController.getActivities);
