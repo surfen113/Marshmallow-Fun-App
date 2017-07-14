@@ -40,6 +40,9 @@ exports.getActivities = function(req, res) {
     });
 };
 
+
+
+
 /*
 var Activity = require('./activitySchema');
 exports.postActivity = function(req, res) {

@@ -40,18 +40,18 @@
 
 
 
-                        <marker title="{{p.name}}" position="{{p.latitude}}, {{p.longitude}}" id="{{p.id}}"
-                                ng-repeat="p in $ctrl.markerPoints" on-click="$ctrl.showStore(p)"></marker>
+                        <marker title="{{p.title}}" position="{{p.latitude}}, {{p.longitude}}"  id="{{p._id}}"  ´
+                                ng-repeat="p in $ctrl.activities" on-click="$ctrl.showStore(p)"></marker>
 
 
                         <info-window id="normalActivity">
                             <div ng-non-bindable="">
-                                <p>{{$ctrl.marker.name}}</p>
+                                <p>{{$ctrl.marker.title}}</p>
                                 <div>Tags:</div>
-                                <div>Description:</div>
+                                <div>Description: {{$ctrl.marker.details}}</div>
                                 <div>Lat: {{anchor.getPosition().lat()}}</div>
                                 <div>Long: {{anchor.getPosition().lng()}}</div>
-                                <div>Date:</div>
+                                <div>Date: {{$ctrl.marker.date}}</div>
                                 <div>Time:</div>
                                 <md-button ng-if="!ctrl.isOwnActivity()" ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
                                 <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
@@ -62,12 +62,12 @@
 
                         <info-window id="ownActivity">
                             <div ng-non-bindable="">
-                                <p>{{$ctrl.marker.name}}</p>
+                                <p>{{$ctrl.marker.title}}</p>
                                 <div>Tags:</div>
-                                <div>Description:</div>
+                                <div>Description: {{$ctrl.marker.details}}</div>
                                 <div>Lat: {{anchor.getPosition().lat()}}</div>
                                 <div>Long: {{anchor.getPosition().lng()}}</div>
-                                <div>Date:</div>
+                                <div>Date: {{$ctrl.marker.date}}</div>
                                 <div>Time:</div>
                                 <md-button ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
                                 <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
@@ -116,7 +116,7 @@
                                 </md-input-container>
 
 
-                                <md-button ui-sref="map" class="md-raised md-primary" ng-click="$ctrl.save()">Save
+                                <md-button ui-sref="http://google.de" class="md-raised md-primary" ng-click="$ctrl.save()">Save
                                     Activity
                                 </md-button>
                                 <md-button ng-click="$ctrl.cancel()" class="md-raised md-primary">Cancel</md-button>
