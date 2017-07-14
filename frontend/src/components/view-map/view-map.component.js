@@ -5,6 +5,7 @@
 
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
+import ActivitiesService from './../../services/activities/activities.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
@@ -12,6 +13,11 @@ class ViewMapComponent {
     constructor() {
         this.template = template;
         this.controller = ViewMapController;
+        this.bindings = {
+            activities: '<',
+        }
+        console.log(this.bindings.activities);
+
     }
 
     static get name() {
@@ -20,15 +26,32 @@ class ViewMapComponent {
 }
 
 class ViewMapController {
-    constructor($state, NgMap, UserService) {
+    constructor($state, $scope, NgMap, ActivitiesService, UserService) {
         var vm = this;
+        this.activity = {};
         this.$state = $state;
+        this.$scope = $scope;
         this.NgMap = NgMap;
         this.UserService = UserService;
-        var newLatitude = null;
-        var newLongitude = null;
-        var test = "cool";
+        this.ActivitiesService = ActivitiesService;
+        this.activities =        this.ActivitiesService.list();
 
+        console.log(this.activities.data);
+
+        this.activity.longitude  = 7;
+        let newLatitude = 35;
+        var newLongitude = null;
+        this.test = "cool";
+
+        this.ActivitiesService.list().then(data => {
+            console.log(data);
+        console.log(JSON.stringify(data));
+        this.settings = data;
+    });
+
+
+        
+/*
         this.markerPoints = [
             {id: "4", "name": "Another Activity", "latitude": 47.263, "longitude": 10.669},
             {id: "5", "name": "Rowing", "latitude": 48.2761, "longitude": 11.669},
@@ -41,7 +64,12 @@ class ViewMapController {
             {id: "12", "name": "Soccer", "latitude": 51.263, "longitude": 12.669},
             {id: "13", "name": "Start Wars", "latitude": 53.263, "longitude": -57.669}
         ];
-        vm.marker = this.markerPoints[0];
+        */
+        //vm.marker = this.markerPoints[0];
+        //vm.marker = this.activities[0];
+       // console.log(vm.marker);
+
+
 
         NgMap.getMap().then(function (map) {
             vm.map = map;
@@ -49,6 +77,9 @@ class ViewMapController {
             map.addListener('click', function(e) {
                 //@TODO: Window öffnen mit Details und im Backend speichern
                 newLatitude = e.latLng.lat();
+                testMethode(newLatitude);
+                console.log(newLatitude);
+                this.test = "geil";
                 newLongitude = e.latLng.lng();
                 if(UserService.isAuthenticated()) {
                     console.log("new Latitude onClick: " + newLatitude);
@@ -63,48 +94,74 @@ class ViewMapController {
 
         });
 
+       function testMethode(latitude) {
+           console.log($scope.blub);
+           console.log("hiiiiier: " + latitude);
+           console.log("2." + newLatitude);
+           //console.log(this.this.test);
+          // test = "geilo";
+       }
+
+       this.getLatitude = function() {
+           console.log("getLatitude");
+           return newLatitude;
+        }
+
+        this.getLongitude = function() {
+           return newLongitude;
+        }
+
 
 
         this.showStore = function (e, marker2) {
             vm.marker = marker2;
             if(UserService.isAuthenticated()) {
-                vm.map.showInfoWindow('bar', vm.marker.id);
+                vm.map.showInfoWindow('normalActivity', vm.marker._id);
             }
         }
 
-        this.goToDetails = function () {
-            alert("go to Details");
-        };
+
 
 
     }
+
+    testMethode2(latitude) {
+    console.log("hiiiiier: " + latitude);
+    console.log("2." + newLatitude);
+        //console.log(this.this.test);
+    // test = "geilo";
+}
+
+    $onInit() {
+        //Clone the Movie Data
+        this.model = JSON.parse(JSON.stringify(this.activities));
+        console.log("onInit: " + this.model);
+    }
+
 
     static get $inject() {
-        return ['$state', 'NgMap', UserService.name];
+        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name];
     }
 
-    setVariables() {
-        console.log("setVariables()");
-    }
 
     save() {
-        //@TODO: ins Backend schreiben
-        let activityName = this.map.activityName;
-        let datetime = this.map.datetime;
-        let latitude = this.map.latitude;
-        let longitude = this.map.longitude;
-        let details = this.map.details;
-        let username = this.map.username;
-        let sports = this.map.sports;
-        let social = this.map.social;
-        let music = this.map.music;
-        let culture = this.map.culture;
-        let party = this.map.party;
-        console.log("Latitude: " + latitude + " Longitude: " + "" + " Name: " + activityName + " Details: " + details + " User: " + " " + " Sports: " + sports);
+        //console.log("test: " + this.newLatitude);
+        //console.log(newLatitude);
+       var latitude = this.getLatitude();
+        var longitude = this.getLongitude();
 
-        //@TODO: Hier Service aufrufen @Armin
-
-
+        console.log(latitude);
+        let user = this.UserService.getCurrentUser();
+        console.log(this.activity);
+        this.activity['user'] = user['_id'];
+        this.activity['latitude'] = latitude;
+        this.activity['longitude'] = longitude;
+        this.ActivitiesService.create(this.activity).then(data => {
+            console.log("this.Acticity: " + data );
+            console.log(data);
+        let _id = data[_id];
+        this.$state.go('myActivities',{activityId:_id});
+    });
         //this.$state.go('myActivities',{});
     }
 
@@ -114,6 +171,10 @@ class ViewMapController {
 
     isAuthenticated(){
         return this.UserService.isAuthenticated();
+    }
+
+    isOwnActicity() {
+        console.log("UserID: " + user['_id']);
     }
 
 }

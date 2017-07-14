@@ -1,7 +1,7 @@
 
 'use strict';
 
-import template from './view-movie.template.html';
+import template from './view-activity.template.html';
 import ActivitiesService from './../../services/activities/activities.service';
 import UserService from './../../services/user/user.service';
 
@@ -16,7 +16,7 @@ class ViewActivityComponent {
     }
 
     static get name() {
-        return 'viewActivity';
+        return 'activity';
     }
 
 
@@ -27,8 +27,8 @@ class ViewActivityComponentController{
         this.$state = $state;
         this.ActivitiesService = ActivitiesService;
         this.UserService = UserService;
-
     }
+
 
     edit () {
 
@@ -42,6 +42,7 @@ class ViewActivityComponentController{
     };
 
 
+
     delete() {
         if (this.UserService.isAuthenticated()) {
             let _id = this.activity['_id'];
@@ -53,6 +54,7 @@ class ViewActivityComponentController{
             this.$state.go('login',{});
         }
     };
+
 
     /*
     getPosterURL(){
@@ -70,7 +72,6 @@ class ViewActivityComponentController{
         }
         return posterURL;
     }
-
 */
     static get $inject(){
         return ['$state', ActivitiesService.name, UserService.name];

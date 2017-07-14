@@ -35,19 +35,18 @@ export default class ActivitiesService {
 
 
 
-    /*
+
     get(id) {
-        let url = `${ this.resourceUrl }${ id }`;
+        let url = this.API_URL + '/activity/' + id ;
+        console.log("The ID is: " + id);
         return this.$http.get(url).then(responce => {
-
-                return new Promise((resolve, reject) => {
-                    resolve(responce.data);
-    });
-
-    })
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
+            });
+        });
     }
 
-    */
+
 
     create(activity) {
         console.log("post Activity activity service");
@@ -64,30 +63,30 @@ export default class ActivitiesService {
 
     }
 
-    /*
+
     delete(id) {
-        let url = `${ this.resourceUrl }${ id }`;
+        let url = this.API_URL + '/activity/' + id ;
         return this.$http.delete(url).then(responce => {
 
                 return new Promise((resolve, reject) => {
                     resolve(responce.status);
-    });
+                });
 
-    })
+            });
     }
-    */
-    /*
-    update(activity) {
 
-        let url = `${ this.resourceUrl }${ activity['_id'] }`;
-        return this.$http.put(url,movie).then(responce => {
+
+    update(activity) {
+        let id = activity['_id'];
+        let url =  this.API_URL + '/activity/' + id ;
+        return this.$http.put(url,activity).then(responce => {
 
                 return new Promise((resolve, reject) => {
                     resolve(responce.data);
     });
 
-    })
+    });
     }
-    */
+
 
 }

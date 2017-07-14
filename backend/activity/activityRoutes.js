@@ -19,12 +19,12 @@ function activityRoutes(passport) {
 
     //router.route('/')
     //    .post(activityController.postActivity)
-    //    .get(activityController.getActivity);
+       // .get(activityController.getActivities);
 
-    //router.route('/:activity_id')
-    //    .get(activityController.getActivity)
-    //    .put(activityController.putActivity)
-    //    .delete(activityController.deleteActivity);
+    router.route('/:activity_id')
+        .get(activityController.getActivity)
+        .put(activityController.putActivity)
+        .delete(activityController.deleteActivity);
 
     return router;
 }

@@ -1,25 +1,27 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-var activitySchema = mongoose.Schema({
+var activity = mongoose.Schema({
     latitude: {
-        type:String,
-        required: true
+        type:Number,
+        //required: true
+        //value: 47.263
     },
     longitude: {
-        type:String,
-        required: true
+        type:Number,
+        //value: 10.669
+        //required: true
     },
     title: String,
-    /*
+
     sports: Boolean,
     social: Boolean,
     music: Boolean,
     culture: Boolean,
     party:Boolean,
     date:String,
-    details:String,
-    */
+    details: String,
+
     user :{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -32,7 +34,7 @@ var activitySchema = mongoose.Schema({
 
 
 
-var Activity = mongoose.model('Activity', activitySchema);
+var Activity = mongoose.model('Activity', activity);
 
 module.exports = Activity;
 

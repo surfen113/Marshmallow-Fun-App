@@ -14,6 +14,8 @@ import ViewMyFollowListComponent from './../components/view-my-follow-list/view-
 import ViewMyActivitiesComponent from './../components/view-my-activities/view-my-activities.component';
 import ViewActivityCreateComponent from './../components/view-activity-create/view-activity-create.component';
 import ActivitiesService from './../services/activities/activities.service';
+import ViewActivityComponent from './../components/view-activity/view-activity.component';
+import ViewActivityEditComponent from './../components/view-activity-edit/view-activity-edit.component';
 
 import MoviesComponent from './../components/view-movies/view-movies.component';
 import MovieComponent from './../components/view-movie/view-movie.component';
@@ -35,6 +37,13 @@ resolveActivities.$inject = [ActivitiesService.name];
 function resolveActivities(activitiesService){
     return activitiesService.list();
 }
+
+resolveActivity.$inject = ['$stateParams', ActivitiesService.name];
+function  resolveActivity($stateParams,activitiesService) {
+    return activitiesService.get($stateParams.activityId);
+}
+
+
 
 resolveProfile.$inject = ['$stateParams', UserService.name];
 function resolveProfile($stateParams,userService){
@@ -104,7 +113,9 @@ export default function config ($stateProvider, $urlRouterProvider) {
                 },
             },
             url: '/map',
-            //component: MapComponent.name,
+            resolve: {
+                activities: resolveActivities
+            }
         })
 
         .state('userSettings', {
@@ -194,8 +205,33 @@ export default function config ($stateProvider, $urlRouterProvider) {
                 profile : resolveProfile
             }
         })
-
-
-
+        .state('activity', {
+        views: {
+            'headerArea': {
+                template: '<app-header></app-header>',
+            },
+            'container': {
+                component: ViewActivityComponent.name,
+            },
+        },
+        url: '/activity/:activityId',
+        resolve: {
+            activity: resolveActivity
+        }
+        })
+        .state('activityEdit', {
+            views: {
+                'headerArea': {
+                    template: '<app-header></app-header>',
+                },
+                'container': {
+                    component: ViewActivityEditComponent.name,
+                },
+            },
+            url: '/activity/:activityId',
+            resolve: {
+                activity: resolveActivity
+            }
+        })
 }
 
