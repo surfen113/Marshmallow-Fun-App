@@ -8,7 +8,7 @@
             -->
         </md-card-title-media>
         <md-card-title-text>
-            <!--
+
             <md-card-actions layout="row" layout-align="end center">
                 <md-button class="md-icon-button" aria-label="Edit Item" ng-click="$ctrl.edit()" >
                     <md-icon><ng-md-icon icon="mode_edit"></ng-md-icon></md-icon>
@@ -18,7 +18,7 @@
                     <md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
                 </md-button>
             </md-card-actions>
-            -->
+
 
             <span class="md-headline">{{$ctrl.activity.title}}</span>
 
@@ -30,11 +30,22 @@
     </md-card-title>
 
     <md-card-content>
-        <!--
-        <p>{{$ctrl.movie.mpaa_rating}}</p>
-        <p>{{$ctrl.movie.synopsis}}</p>
-        -->
+        <p>Latitude: {{$ctrl.activity.latitude}}</p>
+        <p>Longitude: {{$ctrl.activity.longitude}}</p>
+        <p>Details: {{$ctrl.activity.details}}</p>
     </md-card-content>
+
+    <dl class="dropdown">
+        <dd>
+            <div class="mutliSelect">
+                <input type="checkbox" name="sports"  disabled="disabled" ng-model="$ctrl.activity.sports"/>Sports
+                <input type="checkbox" name="social" disabled="disabled" ng-model="$ctrl.activity.social"/>Social
+                <input type="checkbox" name="music" disabled="disabled" ng-model="$ctrl.activity.music"/>Music
+                <input type="checkbox" name="culture" disabled="disabled" ng-model="$ctrl.activity.culture"/>Culture
+                <input type="checkbox" name="party"  disabled="disabled" ng-model="$ctrl.activity.party"/>Party
+            </div>
+        </dd>
+    </dl>
 
 
 </md-card>

@@ -29,7 +29,7 @@ class ViewActivityComponentController{
         this.UserService = UserService;
     }
 
-    /*
+
     edit () {
 
         if (this.UserService.isAuthenticated()) {
@@ -41,8 +41,8 @@ class ViewActivityComponentController{
 
     };
 
-    */
-    /*
+
+
     delete() {
         if (this.UserService.isAuthenticated()) {
             let _id = this.activity['_id'];
@@ -54,7 +54,7 @@ class ViewActivityComponentController{
             this.$state.go('login',{});
         }
     };
-    */
+
 
     /*
     getPosterURL(){
