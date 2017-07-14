@@ -39,48 +39,50 @@
                                 icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></marker>
 
 
-                        <div ng-repeat="p in $ctrl.markerPoints">
-
-                        </div>
 
                         <marker title="{{p.name}}" position="{{p.latitude}}, {{p.longitude}}" id="{{p.id}}"
                                 ng-repeat="p in $ctrl.markerPoints" on-click="$ctrl.showStore(p)"></marker>
 
-                        <!--
-                                                <marker ng-repeat="(id, store) in $ctrl.markerPoints" id="{{id}}"
-                                                        position="{{store.position}}"
-                                                        on-click="vm.showStore(event, id)"></marker>
-                        -->
 
-                        <!--
-                        <marker position="[48.26, 11.67]" title="First marker"  on-click="map.showInfoWindow('bar')"></marker>
-                        <marker position="[48.263, 11.67]" title="Second marker" animation="Animation.DROP"></marker>
-                        <marker position="[48.26, 11.673]" title="Third marker" animation="Animation.BOUNCE"></marker>
-                        <marker position="[48.26, 11.668]" title="First marker" ></marker>
-                        -->
-
-
-                        <info-window id="bar" >
+                        <info-window id="normalActivity">
                             <div ng-non-bindable="">
                                 <p>{{$ctrl.marker.name}}</p>
-                                <div>Tags: </div>
-                                <div>Description: </div>
+                                <div>Tags:</div>
+                                <div>Description:</div>
                                 <div>Lat: {{anchor.getPosition().lat()}}</div>
                                 <div>Long: {{anchor.getPosition().lng()}}</div>
-                                <div>Date: </div>
-                                <div>Time: </div>
+                                <div>Date:</div>
+                                <div>Time:</div>
+                                <md-button ng-if="!ctrl.isOwnActivity()" ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
+                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
+                                <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
+                            </div>
+                        </info-window>
+
+
+                        <info-window id="ownActivity">
+                            <div ng-non-bindable="">
+                                <p>{{$ctrl.marker.name}}</p>
+                                <div>Tags:</div>
+                                <div>Description:</div>
+                                <div>Lat: {{anchor.getPosition().lat()}}</div>
+                                <div>Long: {{anchor.getPosition().lng()}}</div>
+                                <div>Date:</div>
+                                <div>Time:</div>
                                 <md-button ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
                                 <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
                                 <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
                             </div>
                         </info-window>
 
+
                         <info-window id="newActivity">
                             <div ng-non-bindable="">
 
                                 <md-input-container class="md-block">
                                     <label>Activity name</label>
-                                    <input type="text" name="firstname" ng-model="$ctrl.map.activityName" placeholder=""  required=""/>
+                                    <input type="text" name="firstname" ng-model="$ctrl.activity.title" placeholder=""
+                                           required=""/>
 
                                 </md-input-container>
 
@@ -91,11 +93,11 @@
                                 <dl class="dropdown">
                                     <dd>
                                         <div class="mutliSelect">
-                                            <input type="checkbox" name="sports" ng-model="$ctrl.map.sports"/>Sports
-                                            <input type="checkbox" name="social" ng-model="$ctrl.map.social"/>Social
-                                            <input type="checkbox" name="music" ng-model="$ctrl.map.music"/>Music
-                                            <input type="checkbox" name="culture" ng-model="$ctrl.map.culture"/>Culture
-                                            <input type="checkbox" name="party" ng-model="$ctrl.map.party"/>Party
+                                            <input type="checkbox" name="sports" ng-model="$ctrl.activity.sports"/>Sports
+                                            <input type="checkbox" name="social" ng-model="$ctrl.activity.social"/>Social
+                                            <input type="checkbox" name="music" ng-model="$ctrl.activity.music"/>Music
+                                            <input type="checkbox" name="culture" ng-model="$ctrl.activity.culture"/>Culture
+                                            <input type="checkbox" name="party" ng-model="$ctrl.activity.party"/>Party
                                         </div>
                                     </dd>
                                 </dl>
@@ -103,23 +105,27 @@
 
                                 <md-input-container class="md-block">
                                     <label>Date and time</label>
-                                    <input type="datetime-local" name="birthday" ng-model="$ctrl.map.datetime" placeholder="" />
+                                    <input type="string" name="birthday" ng-model="$ctrl.activity.date"
+                                           placeholder=""/>
                                 </md-input-container>
 
                                 <md-input-container class="md-block">
                                     <label>Details:</label>
-                                    <textarea  cols="60" rows="2" name="aboutme" ng-model="$ctrl.map.details" placeholder=""></textarea>
+                                    <textarea cols="60" rows="2" name="aboutme" ng-model="$ctrl.activity.details"
+                                              placeholder=""></textarea>
                                 </md-input-container>
 
 
-                                <md-button ui-sref="map" class="md-raised md-primary" ng-click="$ctrl.save()">Save Activity</md-button>
+                                <md-button ui-sref="map" class="md-raised md-primary" ng-click="$ctrl.save()">Save
+                                    Activity
+                                </md-button>
                                 <md-button ng-click="$ctrl.cancel()" class="md-raised md-primary">Cancel</md-button>
                             </div>
                         </info-window>
 
                     </ng-map>
 
-                   <!-- <md-button class="md-raised md-primary" ng-click="$ctrl.addNewActivity()" ui-sref="map">Add new activity</md-button> -->
+                    <!-- <md-button class="md-raised md-primary" ng-click="$ctrl.addNewActivity()" ui-sref="map">Add new activity</md-button> -->
 
 
                 </form>

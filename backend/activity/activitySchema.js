@@ -4,14 +4,14 @@ var bcrypt = require('bcrypt-nodejs');
 var activitySchema = mongoose.Schema({
     latitude: {
         type:String,
-        required: true
+        //required: true
     },
     longitude: {
         type:String,
-        required: true
+        //required: true
     },
     title: String,
-    /*
+
     sports: Boolean,
     social: Boolean,
     music: Boolean,
@@ -19,7 +19,7 @@ var activitySchema = mongoose.Schema({
     party:Boolean,
     date:String,
     details:String,
-    */
+
     user :{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

@@ -5,6 +5,7 @@
 
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
+import ActivitiesService from './../../services/activities/activities.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
@@ -20,11 +21,13 @@ class ViewMapComponent {
 }
 
 class ViewMapController {
-    constructor($state, NgMap, UserService) {
+    constructor($state, NgMap, ActivitiesService, UserService) {
         var vm = this;
+        this.activity = {};
         this.$state = $state;
         this.NgMap = NgMap;
         this.UserService = UserService;
+        this.ActivitiesService = ActivitiesService;
         var newLatitude = null;
         var newLongitude = null;
         var test = "cool";
@@ -68,7 +71,7 @@ class ViewMapController {
         this.showStore = function (e, marker2) {
             vm.marker = marker2;
             if(UserService.isAuthenticated()) {
-                vm.map.showInfoWindow('bar', vm.marker.id);
+                vm.map.showInfoWindow('normalActivity', vm.marker.id);
             }
         }
 
@@ -80,7 +83,7 @@ class ViewMapController {
     }
 
     static get $inject() {
-        return ['$state', 'NgMap', UserService.name];
+        return ['$state', 'NgMap', ActivitiesService.name, UserService.name];
     }
 
     setVariables() {
@@ -103,7 +106,12 @@ class ViewMapController {
         console.log("Latitude: " + latitude + " Longitude: " + "" + " Name: " + activityName + " Details: " + details + " User: " + " " + " Sports: " + sports);
 
         //@TODO: Hier Service aufrufen @Armin
-
+        let user = this.UserService.getCurrentUser();
+        this.activity['user'] = user['_id'];
+        this.ActivitiesService.create(this.activity).then(data => {
+            let _id = data[_id];
+        this.$state.go('myActivities',{activityId:_id});
+    });
 
         //this.$state.go('myActivities',{});
     }
@@ -114,6 +122,10 @@ class ViewMapController {
 
     isAuthenticated(){
         return this.UserService.isAuthenticated();
+    }
+
+    isOwnActicity() {
+        console.log("UserID: " + user['_id']);
     }
 
 }
