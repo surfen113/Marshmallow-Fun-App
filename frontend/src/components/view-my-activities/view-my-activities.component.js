@@ -34,12 +34,14 @@ class ViewMyActivitiesComponentController{
     }
 
 
-    /*
+
     details (activity) {
+
         let _id = activity['_id'];
+        console.log(_id);
         this.$state.go('activity',{ activityId:_id});
     };
-    */
+
     /*
     edit (activity) {
 

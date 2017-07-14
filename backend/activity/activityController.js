@@ -73,7 +73,7 @@ exports.getActivity = function(req, res) {
         res.json(activities);
     });
 };
-
+*/
 
 exports.getActivity = function(req, res) {
     Activity.findById(req.params.activity_id, function(err, activity) {
@@ -86,7 +86,7 @@ exports.getActivity = function(req, res) {
     });
 };
 
-
+/*
 exports.putActivity = function(req, res) {
 
     Activity.findByIdAndUpdate(

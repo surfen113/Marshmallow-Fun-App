@@ -22,7 +22,7 @@ function activityRoutes(passport) {
     //    .get(activityController.getActivity);
 
     router.route('/:activity_id')
-    //    .get(activityController.getActivity)
+        .get(activityController.getActivity)
     //    .put(activityController.putActivity)
         .delete(activityController.deleteActivity);
 
