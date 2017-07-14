@@ -31,12 +31,12 @@ module.exports.postActivity = function(req, res){
 
 // Create endpoint /api/movies for GET
 exports.getActivities = function(req, res) {
-    Activity.find(function(err, activies) {
+    Activity.find(function(err, activties) {
         if (err) {
             res.status(400).send(err);
             return;
         }
-        res.json(activies);
+        res.json(activties);
     });
 };
 
@@ -93,6 +93,7 @@ exports.getActivity = function(req, res) {
 exports.putActivity = function(req, res) {
     console.log("your are in the backend");
     console.log(req.params.activity_id);
+    console.log(req.body);
     Activity.findByIdAndUpdate(req.params.activity_id, req.body,
         {
             //pass the new object to cb function

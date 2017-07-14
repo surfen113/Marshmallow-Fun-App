@@ -39,8 +39,7 @@ class ViewActivityEditComponentController{
 
     save() {
         let _id = this.activity['_id'];
-
-        this.ActivitiesService.update(this.model).then(data => {
+        this.ActivitiesService.update(this.activity).then(data => {
             this.activity = JSON.parse(JSON.stringify(data));
 
         this.$state.go('activity',{ activityId:_id});

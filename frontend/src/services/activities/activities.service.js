@@ -85,7 +85,7 @@ export default class ActivitiesService {
                     resolve(responce.data);
     });
 
-    })
+    });
     }
 
 
