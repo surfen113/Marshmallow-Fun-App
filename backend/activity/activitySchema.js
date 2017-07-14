@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-var activitySchema = mongoose.Schema({
+var activity = mongoose.Schema({
     latitude: {
         type:String,
         //required: true
@@ -32,7 +32,7 @@ var activitySchema = mongoose.Schema({
 
 
 
-var Activity = mongoose.model('Activity', activitySchema);
+var Activity = mongoose.model('Activity', activity);
 
 module.exports = Activity;
 

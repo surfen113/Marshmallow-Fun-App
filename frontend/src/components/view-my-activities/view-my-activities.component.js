@@ -36,13 +36,15 @@ class ViewMyActivitiesComponentController{
 
 
     details (activity) {
-
-        let _id = activity['_id'];
-        console.log(_id);
-        this.$state.go('activity',{ activityId:_id});
+        if (this.UserService.isAuthenticated()) {
+            let _id = activity['_id'];
+            this.$state.go('activity',{ activityId:_id});
+        } else {
+            this.$state.go('login',{});
+        }
     };
 
-    /*
+
     edit (activity) {
 
         if (this.UserService.isAuthenticated()) {
@@ -52,7 +54,7 @@ class ViewMyActivitiesComponentController{
             this.$state.go('login',{});
         }
     };
-*/
+
     newActivity(){
         console.log("yippie");
         if (this.UserService.isAuthenticated()) {

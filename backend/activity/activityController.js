@@ -86,27 +86,27 @@ exports.getActivity = function(req, res) {
     });
 };
 
-/*
-exports.putActivity = function(req, res) {
 
-    Activity.findByIdAndUpdate(
-        req.params.activity_id,
-        req.body,
+exports.putActivity = function(req, res) {
+    console.log("your are in the backend");
+    console.log(req.params.activity_id);
+    Activity.findByIdAndUpdate(req.params.activity_id, req.body,
         {
             //pass the new object to cb function
             new: true,
             //run validations
             runValidators: true
-        }, function (err, activity) {
+
+        }, function (err, m) {
             if (err) {
                 res.status(400).send(err);
                 return;
             }
-            res.json(activity);
+            res.status(201).json(m);
         });
 };
 
-*/
+
 exports.deleteActivity = function(req, res) {
     // Use the Beer model to find a specific beer and remove it
     Activity.findById(req.params.activity_id, function(err, m) {

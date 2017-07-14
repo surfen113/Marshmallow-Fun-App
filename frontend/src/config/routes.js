@@ -15,6 +15,7 @@ import ViewMyActivitiesComponent from './../components/view-my-activities/view-m
 import ViewActivityCreateComponent from './../components/view-activity-create/view-activity-create.component';
 import ActivitiesService from './../services/activities/activities.service';
 import ViewActivityComponent from './../components/view-activity/view-activity.component';
+import ViewActivityEditComponent from './../components/view-activity-edit/view-activity-edit.component';
 
 import MoviesComponent from './../components/view-movies/view-movies.component';
 import MovieComponent from './../components/view-movie/view-movie.component';
@@ -215,6 +216,20 @@ export default function config ($stateProvider, $urlRouterProvider) {
         resolve: {
             activity: resolveActivity
         }
+        })
+        .state('activityEdit', {
+            views: {
+                'headerArea': {
+                    template: '<app-header></app-header>',
+                },
+                'container': {
+                    component: ViewActivityEditComponent.name,
+                },
+            },
+            url: '/activity/:activityId',
+            resolve: {
+                activity: resolveActivity
+            }
         })
 }
 

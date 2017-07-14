@@ -75,11 +75,11 @@ export default class ActivitiesService {
             });
     }
 
-    /*
-    update(activity) {
 
-        let url = `${ this.resourceUrl }${ activity['_id'] }`;
-        return this.$http.put(url,movie).then(responce => {
+    update(activity) {
+        let id = activity['_id'];
+        let url =  this.API_URL + '/activity/' + id ;
+        return this.$http.put(url,activity).then(responce => {
 
                 return new Promise((resolve, reject) => {
                     resolve(responce.data);
@@ -87,6 +87,6 @@ export default class ActivitiesService {
 
     })
     }
-    */
+
 
 }

@@ -29,6 +29,7 @@ import ViewMyFollowList from './components/view-my-follow-list/view-my-follow-li
 import ViewMyActivities from './components/view-my-activities/view-my-activities';
 import ViewActivityCreate from './components/view-activity-create/view-activity-create';
 import ViewActivity from './components/view-activity/view-activity';
+import ViewActivityEdit from './components/view-activity-edit/view-activity-edit';
 
 import ViewMovies from './components/view-movies/view-movies';
 import ViewMovie from './components/view-movie/view-movie';
@@ -54,6 +55,7 @@ let app = angular.module('app', [
     ActivitiesService.name,
     ViewActivityCreate.name,
     ViewActivity.name,
+    ViewActivityEdit.name,
 
     ViewMovies.name,
     ViewMovie.name,

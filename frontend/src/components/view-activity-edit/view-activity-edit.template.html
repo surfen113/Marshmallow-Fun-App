@@ -1,0 +1,64 @@
+<div layout="column" layout-padding>
+    <md-content class="md-no-momentum">
+        <h1> {{$ctrl.activity.title}} </h1>
+        <br/>
+        <form name="activityForm">
+            <md-input-container class="md-icon-float md-block">
+                <label>Title</label>
+                <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
+                <input ng-model="$ctrl.activity.title" type="text">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+                <label>Latitude</label>
+                <md-icon><ng-md-icon icon="latitude" ></ng-md-icon></md-icon>
+                <input ng-model="$ctrl.activity.latitude" type="text">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block">
+                <label>Longitude</label>
+                <md-icon><ng-md-icon icon="longitude" ></ng-md-icon></md-icon>
+                <input ng-model="$ctrl.activity.longitude" type="text">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block">
+                <label>Details</label>
+                <md-icon><ng-md-icon icon="details" ></ng-md-icon></md-icon>
+                <input ng-model="$ctrl.activity.details" type="text">
+            </md-input-container>
+            <dl class="dropdown">
+                <dd>
+                    <div class="mutliSelect">
+                        <input type="checkbox" name="sports" ng-model="$ctrl.activity.sports"/>Sports
+                        <input type="checkbox" name="social" ng-model="$ctrl.activity.social"/>Social
+                        <input type="checkbox" name="music" ng-model="$ctrl.activity.music"/>Music
+                        <input type="checkbox" name="culture" ng-model="$ctrl.activity.culture"/>Culture
+                        <input type="checkbox" name="party" ng-model="$ctrl.activity.party"/>Party
+                    </div>
+                </dd>
+            </dl>
+            <!--
+            <md-input-container class="md-icon-float md-block">
+                <label>Year</label>
+                <md-icon><ng-md-icon icon="date_range" ></ng-md-icon></md-icon>
+                <input ng-model="$ctrl.model.year" type="text">
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+                <label>MPAA Rating</label>
+                <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
+                <input ng-model="$ctrl.model.mpaa_rating" type="text">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Synopsis</label>
+                <textarea ng-model="$ctrl.model.synopsis" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
+            </md-input-container>
+            -->
+            <div layout="row">
+                <span flex></span>
+                <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
+                <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancel</md-button>
+            </div>
+
+        </form>
+    </md-content>
+
+</div>
