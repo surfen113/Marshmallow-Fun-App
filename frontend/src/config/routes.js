@@ -41,7 +41,7 @@ function resolveActivities(activitiesService){
 
 resolveFollows.$inject = [FollowsService.name];
 function resolveFollows(followsService){
-    return resolveFollows.list();
+    return followsService.list();
 }
 
 resolveActivity.$inject = ['$stateParams', ActivitiesService.name];
@@ -53,9 +53,7 @@ function  resolveActivity($stateParams,activitiesService) {
 
 resolveProfile.$inject = ['$stateParams', UserService.name];
 function resolveProfile($stateParams,userService){
-    console.log("resolveProfile")
-    console.log($stateParams);
-    return userService.getProfile($stateParams.profileId);
+    return userService.getUserSettings($stateParams.userId);
 }
 
 config.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -148,19 +146,7 @@ export default function config ($stateProvider, $urlRouterProvider) {
             },
             url: '/chat',
         })
-/*
-        .state('myFollowList', {
-            views: {
-                'headerArea': {
-                    template: '<app-header></app-header>',
-                },
-                'container': {
-                    component: ViewMyFollowListComponent.name,
-                },
-            },
-            url: '/myFollowList',
-        })
-*/
+
         .state('myActivities', {
             views: {
                 'headerArea': {
@@ -248,9 +234,23 @@ export default function config ($stateProvider, $urlRouterProvider) {
                     component: ViewMyFollowListComponent.name,
                 },
             },
-            url: '/myActivities',
+            url: '/myFollowList',
             resolve: {
                 follows: resolveFollows
+            }
+        })
+        .state('userProfile', {
+            views: {
+                'headerArea': {
+                    template: '<app-header></app-header>',
+                },
+                'container': {
+                    component: ProfileComponent.name,
+                },
+            },
+            url: '/userProfile/:userId',
+            resolve: {
+                user: resolveProfile
             }
         })
 }

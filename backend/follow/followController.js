@@ -2,7 +2,6 @@ var Follow = require('./followSchema');
 
 exports.postFollow = function(req, res) {
     var follow = new Follow(req.body);
-
     follow.save(function(err, m) {
         if (err) {
             res.status(400).send(err);
@@ -14,6 +13,7 @@ exports.postFollow = function(req, res) {
 
 
 exports.getFollows = function(req, res) {
+
     Follow.find(function(err, follows) {
         if (err) {
             res.status(400).send(err);

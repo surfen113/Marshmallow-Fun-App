@@ -1,9 +1,62 @@
-<md-card>
-
-<md-card-content>
-<p>{{$ctrl.profile.lastname}}</p>
-<p>{{$ctrl.profile.username}}</p>
-</md-card-content>
-
-
-</md-card>
+<div layout="column" layout-padding="">
+    <span flex="120"></span>
+    <md-content class="user-settings-form" layout="row" flex="120">
+        <span flex="120"></span>
+        <span flex="35"></span>
+        <md-card flex="115">
+            <md-card-content>
+                <form name="UserProfileForm">
+                    <md-input-container class="md-block">
+                        <label>First name</label>
+                        <input type="text" name="firstname" ng-model="$ctrl.user.firstname" disabled="disabled" placeholder=""  required=""/>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Last name</label>
+                        <input type="text" name="lastname" ng-model="$ctrl.user.lastname" placeholder="" disabled="disabled" />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>e-mail</label>
+                        <input type="email" name="email" ng-model="$ctrl.user.email" placeholder="" disabled="disabled" disabled class="email"/>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Address</label>
+                        <input type="text" name="address" ng-model="$ctrl.user.address" disabled="disabled" placeholder="" />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Birthday</label>
+                        <input type="date" name="birthday" ng-model="$ctrl.user.birthday" disabled="disabled" placeholder="" />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Mobile</label>
+                        <input type="text" name="mobile" ng-model="$ctrl.user.mobile" disabled="disabled" placeholder=""/>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>About me</label>
+                        <textarea  cols="60" rows="5" name="aboutme" ng-model="$ctrl.user.aboutme" disabled="disabled" placeholder=""></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <p style="font-size:92
+                        %;color:#8c8c8c">Interests</p>
+                    </md-input-container>
+                    <dl class="dropdown">
+                        <dd>
+                            <div class="mutliSelect">
+                                <input type="checkbox" name="sports" ng-model="$ctrl.user.sports" disabled="disabled" />Sports
+                                <input type="checkbox" name="social" ng-model="$ctrl.user.social" disabled="disabled" />Social
+                                <input type="checkbox" name="music" ng-model="$ctrl.user.music" disabled="disabled" />Music
+                                <input type="checkbox" name="culture" ng-model="$ctrl.user.culture" disabled="disabled" />Culture
+                                <input type="checkbox" name="party" ng-model="$ctrl.user.party" disabled="disabled" />Party
+                            </div>
+                        </dd>
+                    </dl>
+                    <!--
+                    <md-button ng-click="$ctrl.cancel()" class="md-raised md-primary" >&nbsp Cancel &nbsp</md-button>
+                    <div><label name="notifications" style="color:green">{{$ctrl.notification}}</label> </div>
+                    -->
+                </form>
+            </md-card-content>
+        </md-card>
+        <span flex></span>
+    </md-content>
+    <span flex></span>
+</div>

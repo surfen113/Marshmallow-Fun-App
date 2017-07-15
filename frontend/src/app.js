@@ -31,11 +31,12 @@ import ViewMyActivities from './components/view-my-activities/view-my-activities
 import ViewActivityCreate from './components/view-activity-create/view-activity-create';
 import ViewActivity from './components/view-activity/view-activity';
 import ViewActivityEdit from './components/view-activity-edit/view-activity-edit';
+import ViewProfile from './components/view-profile/view-profile';
 
 import ViewMovies from './components/view-movies/view-movies';
 import ViewMovie from './components/view-movie/view-movie';
 
-import ViewProfile from './components/view-profile/view-profile';
+
 
 let app = angular.module('app', [
     uiRouter,
@@ -58,6 +59,7 @@ let app = angular.module('app', [
     ViewActivity.name,
     ViewActivityEdit.name,
     FollowsService.name,
+    ViewProfile.name,
 
     ViewMovies.name,
     ViewMovie.name,

@@ -2,7 +2,6 @@
 'use strict';
 
 import template from './view-profile.template.html';
-import MoviesService from './../../services/movies/movies.service';
 import UserService from './../../services/user/user.service';
 
 class ViewProfileComponent {
@@ -10,7 +9,7 @@ class ViewProfileComponent {
         this.controller = ViewProfileComponentController;
         this.template = template;
         this.bindings = {
-            profile: '<',
+            user: '<',
         }
 
     }
@@ -23,11 +22,14 @@ class ViewProfileComponent {
 }
 
 class ViewProfileComponentController{
-    constructor($state,MoviesService,UserService){
+    constructor($state,UserService){
+        this.model = {};
         this.$state = $state;
-        this.MoviesService = MoviesService;
         this.UserService = UserService;
+    }
 
+    $onInit() {
+        this.model = JSON.parse(JSON.stringify(this.user));
     }
 
     // edit () {
@@ -74,7 +76,7 @@ class ViewProfileComponentController{
     // }
 
     static get $inject(){
-        return ['$state', MoviesService.name, UserService.name];
+        return ['$state', UserService.name];
     }
 
 }

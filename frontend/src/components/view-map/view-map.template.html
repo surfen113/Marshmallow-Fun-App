@@ -54,7 +54,7 @@
                                 <div>Description: &nbsp;{{$ctrl.marker.details}}</div>
                                 <div>Date: &nbsp;{{$ctrl.marker.date}}</div>
                                 <div>Time: &nbsp;{{$ctrl.marker.time}}</div>
-                                <md-button  ng-if="!$ctrl.isOwnActivity($ctrl.marker.user)" ng-click="$ctrl.follow()" ui-sref="myFollowList" class="md-raised md-primary">Follow </md-button>
+                                <md-button  ng-if="!$ctrl.isOwnActivity($ctrl.marker.user)" ng-click="$ctrl.follow()" class="md-raised md-primary">Follow </md-button>
                                 <md-button ng-if="!$ctrl.isOwnActivity($ctrl.marker.user)" ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
                                 <md-button  ng-click="$ctrl.details($ctrl.marker)" class="md-raised md-primary">Details</md-button>
                             </div>
