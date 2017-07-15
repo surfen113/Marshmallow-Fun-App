@@ -6,7 +6,7 @@
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
 import ActivitiesService from './../../services/activities/activities.service';
-import FollowService from './../../services/follows/follows.service';
+import FollowsService from './../../services/follows/follows.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
@@ -17,7 +17,7 @@ class ViewMapComponent {
         this.bindings = {
             activities: '<',
         }
-        console.log(this.bindings.activities);
+
 
     }
 
@@ -27,7 +27,7 @@ class ViewMapComponent {
 }
 
 class ViewMapController {
-    constructor($state, $scope, NgMap, ActivitiesService, UserService/*, FollowsService*/) {
+    constructor($state, $scope, NgMap, ActivitiesService, UserService, FollowsService) {
         var vm = this;
         this.activity = {};
         this.$state = $state;
@@ -36,7 +36,7 @@ class ViewMapController {
         this.UserService = UserService;
         this.ActivitiesService = ActivitiesService;
         this.activities =        this.ActivitiesService.list();
-        //this.FollowsService = FollowsService;
+        this.FollowsService = FollowsService;
 
         let newLatitude = 35;
         var newLongitude = null;
@@ -91,7 +91,7 @@ class ViewMapController {
 
 
     static get $inject() {
-        return ['$state','$scope', 'NgMap', ActivitiesService.name /*,FollowsService.name*/, UserService.name];
+        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name, FollowsService.name];
     }
 
 
@@ -128,11 +128,15 @@ class ViewMapController {
     }
 
     follow() {
-        console.log("hier passiert was");
-        //let followed = this.activity.user;
-        console.log(this.activity.user);
+        if (this.UserService.isAuthenticated()) {
         //let follower = this.UserService.getCurrentUser();
-        //this.FollowsService.create(followed, follower);
+
+           this.FollowsService.create(this.marker.user, this.UserService.getCurrentUser()['_id']).then(data =>{
+                this.$state.go('userProfile', { userId:this.marker.user });
+            });
+        } else {
+            this.$state.go('login',{});
+        }
     }
 
     details(activity) {

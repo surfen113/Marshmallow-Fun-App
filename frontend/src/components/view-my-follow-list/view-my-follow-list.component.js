@@ -28,10 +28,35 @@ class ViewMyFollowListComponentController{
         this.$state = $state;
         this.UserService = UserService;
         this.FollowsService = FollowsService;
+
     }
 
     static get $inject(){
         return ['$state', UserService.name, FollowsService.name];
+    }
+
+    details(followed){
+        if (this.UserService.isAuthenticated()) {
+
+            this.$state.go('userProfile', {userId: followed });
+        } else {
+            this.$state.go('login',{});
+        }
+    }
+
+    delete(follow){
+        if (this.UserService.isAuthenticated()) {
+            let _id = follow['_id'];
+
+            this.FollowsService.delete(_id).then(response => {
+                let index = this.activities.map(x => x['_id']).indexOf(_id);
+            this.follows.splice(index, 1);
+            this.$scope.$apply();
+        });
+
+        } else {
+            this.$state.go('login',{});
+        }
     }
 
 }

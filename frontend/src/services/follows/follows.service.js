@@ -4,7 +4,7 @@
 export default class FollowsService {
 
     static get $inject(){
-        return ['$http', '$window', 'API_URL'];
+        return ['$http','$window', 'API_URL'];
     }
 
     constructor($http, $window, API_URL) {
@@ -23,7 +23,9 @@ export default class FollowsService {
 
         let url = this.API_URL + '/follow/followGetAll';
         return this.$http.get(url).then(responce => {
-            return new Promise((resolve, reject) => {resolve(responce.data);
+
+            return new Promise((resolve, reject) => {
+                resolve(responce.data);
             });
         });
     }
@@ -31,8 +33,13 @@ export default class FollowsService {
 
 
     create(followed, follower) {
+        console.log("hier passiert was");
+        console.log(followed);
+        console.log(follower);
         let url = this.API_URL + '/follow/followAdd';
-        return this.$http.post(url, {followed:followed, follower:follower}).then(response => {
+
+        console.log(url);
+        return this.$http.post(url, {follower:follower, followed:followed}).then(response => {
             return new Promise((resolve, reject) => {
                 resolve(response.data);
             });
@@ -46,6 +53,7 @@ export default class FollowsService {
             return new Promise((resolve, reject) => {
                 resolve(responce.status);
             });
+
         });
     }
 
