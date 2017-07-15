@@ -17,6 +17,7 @@ import ActivitiesService from './../services/activities/activities.service';
 import ViewActivityComponent from './../components/view-activity/view-activity.component';
 import ViewActivityEditComponent from './../components/view-activity-edit/view-activity-edit.component';
 import FollowsService from './../services/follows/follows.service';
+import JoinsService from './../services/joins/joins.service';
 
 import MoviesComponent from './../components/view-movies/view-movies.component';
 import MovieComponent from './../components/view-movie/view-movie.component';
@@ -37,6 +38,11 @@ function resolveMovies(moviesService){
 resolveActivities.$inject = [ActivitiesService.name];
 function resolveActivities(activitiesService){
     return activitiesService.list();
+}
+
+resolveJoins.$inject = [JoinsService.name];
+function resolveJoins(joinsService){
+    return joinsService.list();
 }
 
 resolveFollows.$inject = [FollowsService.name];
@@ -158,7 +164,8 @@ export default function config ($stateProvider, $urlRouterProvider) {
             },
             url: '/myActivities',
             resolve: {
-                activities: resolveActivities
+                activities: resolveActivities,
+                joins: resolveJoins
             }
         })
 

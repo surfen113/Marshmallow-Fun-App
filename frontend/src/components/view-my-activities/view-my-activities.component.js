@@ -4,6 +4,7 @@
 import UserService from './../../services/user/user.service';
 import ActivitiesService from './../../services/activities/activities.service';
 import template from './view-my-activities.template.html';
+import JoinsService from './../../services/joins/joins.service';
 
 //import './view-login.style.css';
 
@@ -13,6 +14,7 @@ class ViewMyActivitiesComponent {
         this.template = template;
         this.bindings = {
             activities: '<',
+            joins: '<',
         }
 
     }
@@ -25,10 +27,11 @@ class ViewMyActivitiesComponent {
 }
 
 class ViewMyActivitiesComponentController{
-    constructor($state, ActivitiesService, UserService){
+    constructor($state, ActivitiesService, UserService, JoinsService){
         this.$state = $state;
         this.ActivitiesService = ActivitiesService;
         this.UserService = UserService;
+        this.JoinsService = JoinsService;
 
         //this.activities = this.ActivitiesService.getActivities();
     }
@@ -74,6 +77,34 @@ class ViewMyActivitiesComponentController{
         }
     }
 
+    isJoinedActivity(userID) {
+        let user = this.UserService.getCurrentUser();
+        if(userID == user['_id']) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    unJoin(id){
+        if (this.UserService.isAuthenticated()) {
+
+            this.JoinsService.delete(id).then(response => {
+                let index = this.joins.map(x => x['_id']).indexOf(id);
+                this.joins.splice(index, 1);
+        });
+
+        } else {
+            this.$state.go('login',{});
+        }
+    }
+
+    joinedActivity(userID){
+        let user = this.UserService.getCurrentUser();
+        this.JoinsService.list()
+    }
+
 
     delete(activity) {
         if (this.UserService.isAuthenticated()) {
@@ -93,7 +124,7 @@ class ViewMyActivitiesComponentController{
 
 
     static get $inject(){
-        return ['$state', ActivitiesService.name, UserService.name];
+        return ['$state', ActivitiesService.name, UserService.name, JoinsService.name];
     }
 
 }
