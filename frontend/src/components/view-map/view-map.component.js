@@ -6,6 +6,7 @@
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
 import ActivitiesService from './../../services/activities/activities.service';
+import FollowService from './../../services/follows/follows.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
