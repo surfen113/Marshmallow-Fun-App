@@ -38,9 +38,6 @@
 
                         <marker position="current" title="You are here" icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></marker>
 
-                        <!--
-                                                <marker title="{{p.title}}" position="{{p.latitude}}, {{p.longitude}}" id="{{p._id}}" ng-repeat="p in $ctrl.activities" on-click="$ctrl.showStore(p)"></marker>
-                        -->
 
 
                         <div ng-repeat="p in $ctrl.activities">
@@ -63,27 +60,12 @@
                         </info-window>
 
 
-                        <info-window id="ownActivity">
-                            <div ng-non-bindable="">
-                                <p>{{$ctrl.marker.title}}</p>
-                                <div>Tags:</div>
-                                <div>Description: {{$ctrl.marker.details}}</div>
-                                <div>Lat: {{anchor.getPosition().lat()}}</div>
-                                <div>Long: {{anchor.getPosition().lng()}}</div>
-                                <div>Date: {{$ctrl.marker.date}}</div>
-                                <div>Time:</div>
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
-                                <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
-                            </div>
-                        </info-window>
-
-
+<!-- Popup-Window für das Formular für neue Activities -->
                         <info-window id="newActivity">
                             <div ng-non-bindable="">
                                 <md-input-container class="md-block">
                                     <label>Activity name</label>
-                                    <input type="text" name="firstname" ng-model="$ctrl.activity.title" placeholder=""
+                                    <input type="text" name="firstname" ng-model="$ctrl.activity.title"
                                            required=""/>
                                 </md-input-container>
 
