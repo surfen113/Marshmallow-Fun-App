@@ -103,6 +103,14 @@ class ViewMapController {
         this.activity['user'] = user['_id'];
         this.activity['latitude'] = latitude;
         this.activity['longitude'] = longitude;
+        var date = this.activity['datetime'];
+        date = date.toLocaleString();
+        date = date.substring(0,10);
+        this.activity['date'] = date;
+        //this.activity['date'] = new Date(date);
+        console.log(this.activity['date']);
+
+//        data.birthday = new Date(data.birthday);
         this.ActivitiesService.create(this.activity).then(data => {
             let _id = data[_id];
         this.$state.go('myActivities',{activityId:_id});

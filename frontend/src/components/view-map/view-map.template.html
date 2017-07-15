@@ -33,7 +33,7 @@
         <div>Neue Activities durch Klicken auf die Karte hinzufügen, Blau sind Deine eigenen Activities, rot die von anderen</div>
         <md-card flex="115">
             <md-card-content style="height:100%">
-                <form name="UserSettingsForm" style="height:550px">
+                <form name="UserSettingsForm" style="height:450px">
                     <ng-map center="[48.26, 11.67]" zoom="11" style="height:100%">
 
                         <marker position="current" title="You are here" icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></marker>
@@ -87,12 +87,7 @@
 
                                 <md-input-container class="md-block">
                                     <label>Date:</label>
-                                    <input type="String" name="date" ng-model="$ctrl.activity.date"/>
-                                </md-input-container>
-
-                                <md-input-container class="md-block">
-                                    <label>Time: </label>
-                                    <input type="String" name="time" ng-model="$ctrl.activity.time" />
+                                    <input type="date" name="date" min="2017-07-18" ng-model="$ctrl.activity.datetime"/>
                                 </md-input-container>
 
                                 <md-input-container class="md-block">
