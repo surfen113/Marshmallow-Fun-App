@@ -74,7 +74,7 @@ exports.putMovie = function(req, res) {
 */
 // Create endpoint /api/movies/:movie_id for DELETE
 exports.deleteFollow = function(req, res) {
-
+    console.log("delete backend");
     Follow.findById(req.params.follow_id, function(err, m) {
         if (err) {
             res.status(400).send(err);

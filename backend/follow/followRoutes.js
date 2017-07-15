@@ -15,7 +15,7 @@ function followRoutes(passport) {
 
     router.post('/followAdd', followController.postFollow);
     router.get('/followGetAll', followController.getFollows);
-    router.delete('/', followController.deleteFollow);
+    router.delete('/delete/:follow_id', followController.deleteFollow);
     //router.route('/')
     //    .post(followController.postFollow)
     //    .get(followController.getFollows);

@@ -49,9 +49,9 @@ class ViewMyFollowListComponentController{
             let _id = follow['_id'];
 
             this.FollowsService.delete(_id).then(response => {
-                let index = this.activities.map(x => x['_id']).indexOf(_id);
+                let index = this.follows.map(x => x['_id']).indexOf(_id);
             this.follows.splice(index, 1);
-            this.$scope.$apply();
+            //this.$scope.$apply();
         });
 
         } else {

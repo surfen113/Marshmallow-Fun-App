@@ -82,7 +82,7 @@ class ViewMyActivitiesComponentController{
             this.ActivitiesService.delete(_id).then(response => {
                 let index = this.activities.map(x => x['_id']).indexOf(_id);
                 this.activities.splice(index, 1);
-                this.$scope.$apply();
+                //this.$scope.$apply();
         });
 
         } else {

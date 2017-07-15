@@ -33,9 +33,6 @@ export default class FollowsService {
 
 
     create(followed, follower) {
-        console.log("hier passiert was");
-        console.log(followed);
-        console.log(follower);
         let url = this.API_URL + '/follow/followAdd';
 
         console.log(url);
@@ -48,7 +45,8 @@ export default class FollowsService {
 
 
     delete(id) {
-        let url = this.API_URL + '/follow/' + id ;
+        console.log("follows.service");
+        let url = this.API_URL + '/follow/delete/' + id ;
         return this.$http.delete(url).then(responce => {
             return new Promise((resolve, reject) => {
                 resolve(responce.status);
