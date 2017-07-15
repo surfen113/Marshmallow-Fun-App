@@ -115,7 +115,9 @@ class ViewMapController {
             let _id = data[_id];
         this.$state.go('myActivities',{activityId:_id});
     });
+        
     }
+
 
     cancel(){
         this.$state.reload();
