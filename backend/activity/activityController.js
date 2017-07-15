@@ -5,7 +5,6 @@ var jwt = require('jwt-simple');
 
 
 module.exports.postActivity = function(req, res){
-    console.log("post Activity");
     console.log(req.body);
 
     var activity = new Activity(req.body);

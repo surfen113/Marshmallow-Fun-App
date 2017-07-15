@@ -23,7 +23,6 @@ exports.getJoin = function(req, res) {
     });
 };
 exports.deleteJoin = function(req, res) {
-    console.log("delete backend");
     Join.findById(req.params.join_id, function(err, m) {
         if (err) {
             res.status(400).send(err);

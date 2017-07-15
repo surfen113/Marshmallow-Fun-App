@@ -45,21 +45,15 @@ class ViewMapController {
         var newLongitude = null;
 
         this.FollowsService.list().then(data => {
-        //    console.log(data);
-        //console.log(JSON.stringify(data));
-        this.followList = data;
+            this.followList = data;
     });
 
 
         this.ActivitiesService.list().then(data => {
-            //    console.log(data);
-            //console.log(JSON.stringify(data));
             this.settings = data;
     });
 
         this.JoinsService.list().then(data => {
-            //    console.log(data);
-            //console.log(JSON.stringify(data));
             this.joinsList = data;
     });
 
@@ -128,10 +122,7 @@ class ViewMapController {
             this.activity['date'] = date;
         }
 
-        //this.activity['date'] = new Date(date);
-        console.log(this.activity['date']);
 
-//        data.birthday = new Date(data.birthday);
         this.ActivitiesService.create(this.activity).then(data => {
             let _id = data[_id];
         this.$state.go('myActivities',{activityId:_id});
@@ -207,13 +198,9 @@ class ViewMapController {
 
         this.UserService.getUserSettings(this.marker.user).then(data => {
             let followerID = this.UserService.getCurrentUser()['_id'];
-            console.log(followerID);
             let followerUsername = this.UserService.getCurrentUser()['username'];
-            console.log(followerUsername);
             let followedID = this.marker.user;
-            console.log(followedID);
             let followedUsername = data['username'];
-            console.log(followedUsername);
 
             this.FollowsService.create(followerID, followerUsername, followedID, followedUsername).then(data =>{
                  this.$state.go('userProfile', { userId:this.marker.user });
