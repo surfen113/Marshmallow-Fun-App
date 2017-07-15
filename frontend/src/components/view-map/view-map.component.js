@@ -57,6 +57,12 @@ class ViewMapController {
             this.settings = data;
     });
 
+        this.JoinsService.list().then(data => {
+            //    console.log(data);
+            //console.log(JSON.stringify(data));
+            this.joinsList = data;
+    });
+
 
         NgMap.getMap().then(function (map) {
             vm.map = map;
@@ -172,6 +178,26 @@ class ViewMapController {
         return false;
     }
 
+    isOwnActivityOrAlreadyJoined(userID, activityID) {
+        let currentUser = this.UserService.getCurrentUser();
+        var currentUserId = currentUser['_id'];
+
+        if(userID == currentUserId) {
+            return true;
+        }
+
+        for(var i = 0; i<this.joinsList.length; i++) {
+            var entry = this.joinsList[i];
+            var id = entry['activityID'];
+            if(id==activityID) {
+                if(currentUserId == entry['userID']) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 
     follow() {
@@ -207,6 +233,7 @@ class ViewMapController {
 
         if (this.UserService.isAuthenticated()) {
             this.JoinsService.create( user['_id'], user['username'], id, activityTile);
+            this.$state.go('myActivities', {reload: true });
         } else {
             this.$state.go('login',{});
         }

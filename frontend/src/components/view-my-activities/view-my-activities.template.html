@@ -1,4 +1,4 @@
-<h1>My Activities</h1>
+<h3>My Activities</h3>
 <!-- <img src="./../../Image-TactivityList.jpg.jpg" alt="Aktivity List" /> -->
 <md-list>
 
@@ -20,11 +20,10 @@
     <md-divider></md-divider>
 
 </md-list>
-<md-button class="md-fab md-fab-bottom-right md-ink-ripple" aria-label="New Activity" ng-click="$ctrl.newActivity()">
-    <md-icon><ng-md-icon icon="add"></ng-md-icon></md-icon>
-</md-button>
+
 
 <md-divider></md-divider>
+<h3>My Joined Activities</h3>
 
 <md-list>
     <!-- ng-click="$ctrl.details(activity)" -->
@@ -32,6 +31,7 @@
         <md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>
 
         <p> {{join.activityTitle}} </p>
+        <p> {{join.username}}</p>
 
         <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.unJoin(join._id)" >
             <md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>

@@ -16,7 +16,8 @@ var Join = new mongoose.Schema({
     activityTitle: {
         type:String,
         required:true
-    }
+    },
+    date: String
 });
 
 module.exports = mongoose.model('Join', Join);
