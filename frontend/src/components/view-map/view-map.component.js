@@ -176,11 +176,27 @@ class ViewMapController {
 
     follow() {
         if (this.UserService.isAuthenticated()) {
-        //let follower = this.UserService.getCurrentUser();
 
-           this.FollowsService.create(this.marker.user, this.UserService.getCurrentUser()['_id']).then(data =>{
-                this.$state.go('userProfile', { userId:this.marker.user });
+
+
+        this.UserService.getUserSettings(this.marker.user).then(data => {
+            let followerID = this.UserService.getCurrentUser()['_id'];
+            console.log(followerID);
+            let followerUsername = this.UserService.getCurrentUser()['username'];
+            console.log(followerUsername);
+            let followedID = this.marker.user;
+            console.log(followedID);
+            let followedUsername = data['username'];
+            console.log(followedUsername);
+
+            this.FollowsService.create(followerID, followerUsername, followedID, followedUsername).then(data =>{
+                 this.$state.go('userProfile', { userId:this.marker.user });
             });
+        });
+
+
+
+
         } else {
             this.$state.go('login',{});
         }
