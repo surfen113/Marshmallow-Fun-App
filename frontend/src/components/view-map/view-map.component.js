@@ -50,6 +50,70 @@ class ViewMapController {
     });
 
 
+        var filters = {social:false, sports:false, party:false, music:false, culture:false}
+        var map_filter = function(id) {
+            if (filters[id])
+                filters[id] = false
+            else
+                filters[id] = true
+        }
+
+
+        $( document ).ready(function() {
+            $(function () {
+                $('input[name=filter]').change(function (e) {
+                    map_filter(e.id);
+                    filter_markers()
+                });
+            })
+        });
+
+
+        var create_markers = function(activities) {
+            var markers = []
+            for(i=0; i<activities.length; i++) {
+                var marker = {activity: activities[i], visibile: true}
+                markers.push(marker);
+            }
+            return markers;
+        }
+
+        var get_set_options = function() {
+            var ret_array = []
+            for (var option in filters) {
+                if (filters[option]) {
+                    ret_array.push(option)
+                }
+            }
+            return ret_array;
+        }
+
+        var filter_markers = function() {
+            set_filters = get_set_options()
+            var markers = create_markers(this.activities);
+            // for each marker, check to see if all required options are set
+            for (i = 0; i < markers.length; i++) {
+                marker = markers[i];
+
+                // start the filter check assuming the marker will be displayed
+                // if any of the required features are missing, set 'keep' to false
+                // to discard this marker
+                keep=true
+                for (var opt=0; opt<set_filters.length; opt++) {
+                    if (!marker.properties[set_filters[opt]]) {
+                        keep = false;
+                    }
+                }
+                marker.visibile= keep;
+            }
+            for (var x=0; x < markers.length; x++) {
+                if (markers[x].visible) {markers[x].activity.setMap(vm);}
+                else {markers[x].activity.setMap(null);}
+            }
+            console.log("wasalnaaaaaaa")
+            NgMap.getMap(vm);
+
+        }
 
         NgMap.getMap().then(function (map) {
             vm.map = map;
