@@ -10,11 +10,11 @@
         <md-card-title-text>
 
             <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-icon-button" aria-label="Edit Item" ng-click="$ctrl.edit()" >
+                <md-button class="md-icon-button" aria-label="Edit Item" ng-click="$ctrl.edit()" ng-if="$ctrl.creatorIsCurrentUser($ctrl.activity.user)" >
                     <md-icon><ng-md-icon icon="mode_edit"></ng-md-icon></md-icon>
                 </md-button>
 
-                <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.delete()" >
+                <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.delete()" ng-if="$ctrl.creatorIsCurrentUser($ctrl.activity.user)" >
                     <md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
                 </md-button>
             </md-card-actions>
@@ -46,6 +46,25 @@
             </div>
         </dd>
     </dl>
+
+    <md-divider></md-divider>
+
+    <md-list>
+        <!--   -->
+        <md-list-item aria-label="JoinedActivity" ng-click="$ctrl.gotoUser(join.userID)" ng-if="$ctrl.isJoinedActivity(join.userID)" class="noright" ng-repeat="join in $ctrl.joins">
+            <md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>
+
+            <p> {{join.username}} </p>
+            <!--
+            <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.unJoin(join._id)" >
+                <md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
+            </md-button>
+            -->
+            <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+        <md-divider></md-divider>
+
+    </md-list>
 
 
 </md-card>

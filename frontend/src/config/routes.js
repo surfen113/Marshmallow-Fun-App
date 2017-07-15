@@ -215,7 +215,8 @@ export default function config ($stateProvider, $urlRouterProvider) {
         },
         url: '/activity/:activityId',
         resolve: {
-            activity: resolveActivity
+            activity: resolveActivity,
+            joins: resolveJoins
         }
         })
         .state('activityEdit', {
