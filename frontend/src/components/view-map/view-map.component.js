@@ -106,9 +106,15 @@ class ViewMapController {
         this.activity['latitude'] = latitude;
         this.activity['longitude'] = longitude;
         var date = this.activity['datetime'];
-        date = date.toLocaleString();
-        date = date.substring(0,10);
-        this.activity['date'] = date;
+
+        if(date == null){
+            this.activity['date'] = "";
+        }else{
+            date = date.toLocaleString();
+            date = date.substring(0,10);
+            this.activity['date'] = date;
+        }
+
         //this.activity['date'] = new Date(date);
         console.log(this.activity['date']);
 
