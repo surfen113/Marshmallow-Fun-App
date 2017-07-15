@@ -6,7 +6,6 @@
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
 import ActivitiesService from './../../services/activities/activities.service';
-import FollowsService from './../../services/follows/follows.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
@@ -38,6 +37,7 @@ class ViewMapController {
         this.activities =        this.ActivitiesService.list();
         //this.FollowsService = FollowsService;
 
+
         console.log(this.activities.data);
 
         this.activity.longitude  = 7;
@@ -52,24 +52,24 @@ class ViewMapController {
     });
 
 
-        
-/*
-        this.markerPoints = [
-            {id: "4", "name": "Another Activity", "latitude": 47.263, "longitude": 10.669},
-            {id: "5", "name": "Rowing", "latitude": 48.2761, "longitude": 11.669},
-            {id: "6", "name": "Swimming", "latitude": 48.263, "longitude": 11.639},
-            {id: "7", "name": "Biking", "latitude": 48.263, "longitude": 11.645},
-            {id: "8", "name": "Visiting Munich", "latitude": 48.161, "longitude": 11.669},
-            {id: "9", "name": "Chilling", "latitude": 48.2761, "longitude": 11.699},
-            {id: "10", "name": "Studying Maths", "latitude": 48.261, "longitude": 11.799},
-            {id: "11", "name": "Baseball", "latitude": 45.263, "longitude": 15.669},
-            {id: "12", "name": "Soccer", "latitude": 51.263, "longitude": 12.669},
-            {id: "13", "name": "Start Wars", "latitude": 53.263, "longitude": -57.669}
-        ];
-        */
+
+        /*
+         this.markerPoints = [
+         {id: "4", "name": "Another Activity", "latitude": 47.263, "longitude": 10.669},
+         {id: "5", "name": "Rowing", "latitude": 48.2761, "longitude": 11.669},
+         {id: "6", "name": "Swimming", "latitude": 48.263, "longitude": 11.639},
+         {id: "7", "name": "Biking", "latitude": 48.263, "longitude": 11.645},
+         {id: "8", "name": "Visiting Munich", "latitude": 48.161, "longitude": 11.669},
+         {id: "9", "name": "Chilling", "latitude": 48.2761, "longitude": 11.699},
+         {id: "10", "name": "Studying Maths", "latitude": 48.261, "longitude": 11.799},
+         {id: "11", "name": "Baseball", "latitude": 45.263, "longitude": 15.669},
+         {id: "12", "name": "Soccer", "latitude": 51.263, "longitude": 12.669},
+         {id: "13", "name": "Start Wars", "latitude": 53.263, "longitude": -57.669}
+         ];
+         */
         //vm.marker = this.markerPoints[0];
         //vm.marker = this.activities[0];
-       // console.log(vm.marker);
+        // console.log(vm.marker);
 
 
 
@@ -96,21 +96,21 @@ class ViewMapController {
 
         });
 
-       function testMethode(latitude) {
-           console.log($scope.blub);
-           console.log("hiiiiier: " + latitude);
-           console.log("2." + newLatitude);
-           //console.log(this.this.test);
-          // test = "geilo";
-       }
+        function testMethode(latitude) {
+            console.log($scope.blub);
+            console.log("hiiiiier: " + latitude);
+            console.log("2." + newLatitude);
+            //console.log(this.this.test);
+            // test = "geilo";
+        }
 
-       this.getLatitude = function() {
-           console.log("getLatitude");
-           return newLatitude;
+        this.getLatitude = function() {
+            console.log("getLatitude");
+            return newLatitude;
         }
 
         this.getLongitude = function() {
-           return newLongitude;
+            return newLongitude;
         }
 
 
@@ -128,10 +128,10 @@ class ViewMapController {
     }
 
     testMethode2(latitude) {
-    console.log("hiiiiier: " + latitude);
-    console.log("2." + newLatitude);
+        console.log("hiiiiier: " + latitude);
+        console.log("2." + newLatitude);
         //console.log(this.this.test);
-    // test = "geilo";
+        // test = "geilo";
     }
 
     $onInit() {
@@ -149,7 +149,7 @@ class ViewMapController {
     save() {
         //console.log("test: " + this.newLatitude);
         //console.log(newLatitude);
-       var latitude = this.getLatitude();
+        var latitude = this.getLatitude();
         var longitude = this.getLongitude();
 
         console.log(latitude);
@@ -160,7 +160,7 @@ class ViewMapController {
         this.activity['longitude'] = longitude;
         this.ActivitiesService.create(this.activity).then(data => {
             console.log("this.Acticity: " + data );
-            console.log(data);
+        console.log(data);
         let _id = data[_id];
         this.$state.go('myActivities',{activityId:_id});
     });
@@ -175,10 +175,20 @@ class ViewMapController {
         return this.UserService.isAuthenticated();
     }
 
-    isOwnActicity() {
-        console.log("UserID: " + user['_id']);
+    isOwnActivity(userID) {
+        console.log("test: " + userID);
+        let user = this.UserService.getCurrentUser();
+        console.log(this.UserService.getCurrentUser());
+        if(userID == user['_id']) {
+            console.log("gleich");
+            return true;
+        }
+        else {
+            console.log("nicht gleich");
+            return false;
+        }
+        //<!-- ng-if="!ctrl.isOwnActivity()"
     }
-
 
     follow() {
         console.log("hier passiert was");
@@ -190,7 +200,6 @@ class ViewMapController {
 
         //this.FollowsService.create(followed, follower);
     }
-
 
 }
 
