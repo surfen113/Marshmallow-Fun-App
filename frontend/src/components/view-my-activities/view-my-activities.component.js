@@ -62,7 +62,17 @@ class ViewMyActivitiesComponentController{
         } else {
             this.$state.go('login',{});
         }
+    }
 
+
+    isOwnActivity(userID) {
+        let user = this.UserService.getCurrentUser();
+        if(userID == user['_id']) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 

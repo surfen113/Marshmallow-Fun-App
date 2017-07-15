@@ -118,6 +118,7 @@ class ViewMapController {
     }
 
     isOwnActivity(userID) {
+        console.log("userID: " + userID);
         let user = this.UserService.getCurrentUser();
         if(userID == user['_id']) {
             return true;
