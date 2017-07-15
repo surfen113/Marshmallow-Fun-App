@@ -88,4 +88,17 @@ export default class ActivitiesService {
     }
 
 
+    join() {
+        let id = activity['_id'];
+        let url =  this.API_URL + '/activity/' + id ;
+        return this.$http.put(url,activity).then(responce => {
+
+                return new Promise((resolve, reject) => {
+                    resolve(responce.data);
+    });
+
+    });
+    }
+
+
 }

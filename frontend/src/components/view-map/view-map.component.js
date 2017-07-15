@@ -135,6 +135,12 @@ class ViewMapController {
         //this.FollowsService.create(followed, follower);
     }
 
+    join() {
+        let user = this.UserService.getCurrentUser();
+
+
+    }
+
     details(activity) {
         let _id = activity['_id'];
         this.$state.go('activity', {activityId:_id});

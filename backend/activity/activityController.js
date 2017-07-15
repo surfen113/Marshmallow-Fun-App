@@ -29,7 +29,6 @@ module.exports.postActivity = function(req, res){
 };
 
 
-// Create endpoint /api/movies for GET
 exports.getActivities = function(req, res) {
     Activity.find(function(err, activties) {
         if (err) {
