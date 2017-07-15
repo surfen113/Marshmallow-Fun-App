@@ -56,7 +56,6 @@ class ViewMyActivitiesComponentController{
     };
 
     newActivity(){
-        console.log("yippie");
         if (this.UserService.isAuthenticated()) {
             this.$state.go('activityCreate',{});
         } else {

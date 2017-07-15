@@ -42,8 +42,8 @@ class ViewMapController {
         var newLongitude = null;
 
         this.ActivitiesService.list().then(data => {
-            console.log(data);
-        console.log(JSON.stringify(data));
+        //    console.log(data);
+        //console.log(JSON.stringify(data));
         this.settings = data;
     });
 
@@ -118,7 +118,6 @@ class ViewMapController {
     }
 
     isOwnActivity(userID) {
-        console.log("userID: " + userID);
         let user = this.UserService.getCurrentUser();
         if(userID == user['_id']) {
             return true;
