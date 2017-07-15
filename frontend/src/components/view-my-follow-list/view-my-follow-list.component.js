@@ -59,6 +59,45 @@ class ViewMyFollowListComponentController{
         }
     }
 
+
+    isOwnFollow(userID) {
+        console.log("log");
+        let user = this.UserService.getCurrentUser();
+        if(userID == user['_id']) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    getUsername(followed) {
+        let user = this.UserService.getCurrentUser();
+        console.log("user: " + user.username);
+        console.log("followed: " + followed)
+
+        this.UserService.getUserSettings(user._id).then(data => {
+
+
+            //return data['username'];
+
+        });
+
+//       var zurueck =  username(followed);
+
+       // console.log(user2);
+        //console.log(user2.username);
+
+      //  return zurueck;
+
+    }
+
+    username() {
+       return "geil;"
+
+    }
+
+
 }
 
 
