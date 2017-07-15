@@ -4,7 +4,7 @@
     <md-list-item ng-if="$ctrl.isOwnFollow(follow.follower)" aria-label="Follow" followedUser="$ctrl.username()" ng-click="$ctrl.details(follow.followed)" class="noright" ng-repeat="follow in $ctrl.follows">
         <p> {{follow.followed}} </p>
         <p> {{followedUser}}</p>
-         <div ng-value="$ctrl.getUsername(follow.follower)"> </div>
+         <div ng-value=""> </div>
         <p></p>
 
         <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.delete(follow)" >
