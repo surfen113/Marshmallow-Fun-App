@@ -28,7 +28,6 @@ class ViewActivityEditComponentController{
     }
 
     $onInit() {
-        //Clone the Movie Data
         this.model = JSON.parse(JSON.stringify(this.activity))
     }
 

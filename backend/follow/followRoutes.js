@@ -13,11 +13,14 @@ function followRoutes(passport) {
     //middleware
     // router.use(mw.unless({method: ['GET', 'OPTIONS']}));
 
-    router.route('/')
-        .post(movieController.postFollow)
-        .get(movieController.getFollows);
+    router.post('/followAdd', followController.postFollow);
+    router.get('/followGetAll', followController.getFollows);
+    router.delete('/delete/:follow_id', followController.deleteFollow);
+    //router.route('/')
+    //    .post(followController.postFollow)
+    //    .get(followController.getFollows);
 
-    router.route('/:follow_id').delete(folowController.deleteFollow);
+    //router.route('/:follow_id').delete(followController.deleteFollow);
 
     return router;
 }

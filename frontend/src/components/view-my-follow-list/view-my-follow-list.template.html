@@ -1,11 +1,11 @@
+<h1>Follows</h1>
 <md-list>
 
-    <md-list-item aria-label="Movie" ng-click="$ctrl.details(user)" class="noright" ng-repeat="users in $ctrl.followList">
-        <md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>
+    <md-list-item aria-label="Follow" ng-click="$ctrl.details(follow.followed)" class="noright" ng-repeat="follow in $ctrl.follows">
+        <p> {{follow.followed}} </p>
+        <p> {{follow.follower}}</p>
 
-        <p> {{user}} </p>
-
-        <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.delete(movie)" >
+        <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.delete(follow)" >
             <md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
         </md-button>
         <md-divider ng-if="!$last"></md-divider>
@@ -13,6 +13,8 @@
     <md-divider></md-divider>
 
 </md-list>
+<!--
 <md-button class="md-fab md-fab-bottom-right md-ink-ripple" aria-label="New Movie" ng-click="$ctrl.newMovie()">
     <md-icon><ng-md-icon icon="add"></ng-md-icon></md-icon>
 </md-button>
+-->

@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
-var Follow = new mongoose.Schea({
+var Follow = new mongoose.Schema({
     follower: {
-        type:User,
+        type:String,
         required: true
     },
     followed: {
-        type:User,
+        type:String,
         required: true
     }
 });
