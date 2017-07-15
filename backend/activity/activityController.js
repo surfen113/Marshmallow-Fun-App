@@ -5,7 +5,6 @@ var jwt = require('jwt-simple');
 
 
 module.exports.postActivity = function(req, res){
-    console.log(req.body);
 
     var activity = new Activity(req.body);
 
@@ -89,9 +88,6 @@ exports.getActivity = function(req, res) {
 
 
 exports.putActivity = function(req, res) {
-    console.log("your are in the backend");
-    console.log(req.params.activity_id);
-    console.log(req.body);
     Activity.findByIdAndUpdate(req.params.activity_id, req.body,
         {
             //pass the new object to cb function

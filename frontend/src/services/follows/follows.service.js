@@ -35,7 +35,7 @@ export default class FollowsService {
     create(follower, followerUsername, followed, followedUsername) {
         let url = this.API_URL + '/follow/followAdd';
 
-        console.log(url);
+
         return this.$http.post(url, {follower:follower, followerUsername:followerUsername,
                 followed:followed, followedUsername:followedUsername}).then(response => {
             return new Promise((resolve, reject) => {

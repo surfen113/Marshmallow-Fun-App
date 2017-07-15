@@ -62,11 +62,11 @@ class ViewActivityComponentController{
     };
 
 
-    isJoinedActivity(userID){
-        if(this.UserService.getCurrentUser()['_id'] == userID){
-            return false;
-        }else{
+    isJoinedActivity(activityID, joinActivityID){
+        if(activityID == joinActivityID){
             return true;
+        }else{
+            return false;
         }
     };
 

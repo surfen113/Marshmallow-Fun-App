@@ -48,10 +48,10 @@
     </dl>
 
     <md-divider></md-divider>
-
+    <h3>Participants</h3>
     <md-list>
-        <!--   -->
-        <md-list-item aria-label="JoinedActivity" ng-click="$ctrl.gotoUser(join.userID)" ng-if="$ctrl.isJoinedActivity(join.userID)" class="noright" ng-repeat="join in $ctrl.joins">
+        <!--    -->
+        <md-list-item aria-label="JoinedActivity" ng-click="$ctrl.gotoUser(join.userID)" ng-if="$ctrl.isJoinedActivity($ctrl.activity._id, join.activityID)" class="noright" ng-repeat="join in $ctrl.joins">
             <md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>
 
             <p> {{join.username}} </p>
