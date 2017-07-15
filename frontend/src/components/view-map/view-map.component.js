@@ -157,14 +157,11 @@ class ViewMapController {
         }
     }
 
-    join(id) {
+    join(id, activityTile) {
         let user = this.UserService.getCurrentUser();
 
-
-
         if (this.UserService.isAuthenticated()) {
-            //let follower = this.UserService.getCurrentUser();
-            this.JoinsService.create( this.UserService.getCurrentUser()['_id'], id);
+            this.JoinsService.create( user['_id'], user['username'], id, activityTile);
         } else {
             this.$state.go('login',{});
         }
