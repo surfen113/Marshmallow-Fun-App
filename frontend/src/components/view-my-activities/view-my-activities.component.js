@@ -47,6 +47,14 @@ class ViewMyActivitiesComponentController{
         }
     };
 
+    detailsID (activityID) {
+        if (this.UserService.isAuthenticated()) {
+            this.$state.go('activity',{ activityId:activityID});
+        } else {
+            this.$state.go('login',{});
+        }
+    };
+
 
     edit (activity) {
 

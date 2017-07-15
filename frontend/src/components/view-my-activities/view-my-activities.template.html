@@ -27,7 +27,7 @@
 
 <md-list>
     <!-- ng-click="$ctrl.details(activity)" -->
-    <md-list-item aria-label="ActivityJoined" ng-if="$ctrl.isJoinedActivity(join.userID)"  class="noright" ng-repeat="join in $ctrl.joins">
+    <md-list-item aria-label="ActivityJoined" ng-if="$ctrl.isJoinedActivity(join.userID)" ng-click="$ctrl.detailsID(join.activityID)" class="noright" ng-repeat="join in $ctrl.joins">
         <md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>
 
         <p> {{join.activityTitle}} </p>
