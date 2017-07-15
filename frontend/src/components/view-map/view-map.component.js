@@ -38,17 +38,24 @@ class ViewMapController {
         this.ActivitiesService = ActivitiesService;
         this.activities =        this.ActivitiesService.list();
         this.FollowsService = FollowsService;
+        this.follows = this.FollowsService.list();
         this.JoinsService = JoinsService;
 
         let newLatitude = 35;
         var newLongitude = null;
 
-        this.ActivitiesService.list().then(data => {
+        this.FollowsService.list().then(data => {
         //    console.log(data);
         //console.log(JSON.stringify(data));
-        this.settings = data;
+        this.followList = data;
     });
 
+
+        this.ActivitiesService.list().then(data => {
+            //    console.log(data);
+            //console.log(JSON.stringify(data));
+            this.settings = data;
+    });
 
 
         NgMap.getMap().then(function (map) {
@@ -144,6 +151,28 @@ class ViewMapController {
             return false;
         }
     }
+
+    isOwnActivityOrAlreadyFollows(userID) {
+        let currentUser = this.UserService.getCurrentUser();
+        var currentUserId = currentUser['_id'];
+
+        if(userID == currentUserId) {
+            return true;
+        }
+
+        for(var i = 0; i<this.followList.length; i++) {
+            var followEntry = this.followList[i];
+            var id = followEntry['followed'];
+            if(id==userID) {
+                if(currentUserId == followEntry['follower']) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
 
     follow() {
         if (this.UserService.isAuthenticated()) {
