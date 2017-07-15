@@ -5,6 +5,13 @@ import ChatService from './../../services/chat/chat.service';
 import UserService from './../../services/user/user.service';
 import template from './view-chat.template.html';
 
+import io from 'socket.io-client';
+export const socket = io.connect('http://localhost:3000');
+
+socket.on('refresh messages', (message) => {
+    console.log("refresh message " + JSON.stringify(message));
+});
+
 
 class ViewChatComponent {
     constructor(){
@@ -27,16 +34,17 @@ class ViewChatComponentController {
         this.UserService = UserService;
     }
 
+    $onInit() {
+        // console.log("Sending socket msg");
+        // socket.emit("testmsg");
+    }
+
     loadConversations(){
         console.log("loadConversations");
         let user = this.UserService.getCurrentUser();
         console.log("user: " + user + " , " + user._id);
         this.ChatService.getConversations(user).then( response => {
             console.log("getConversationsResponse: " + JSON.stringify(response));
-            // response = {"conversation":[]}
-            this.conversations = response;
-            console.log(this.conversations.conversation);
-            console.log(this.conversations);
         });
     }
 
@@ -53,9 +61,27 @@ class ViewChatComponentController {
 
     loadConversation() {
         // conversationID : 596936503a124226d03f49df
-        console.log(this.conversationId);
-        this.ChatService.getConversation(this.conversationId).then( response => {
+        this.ChatService.getConversation(this.conversation._id).then( response => {
             console.log("getConversationResponse: " + JSON.stringify(response));
+            this.conversation = response;
+        });
+
+        console.log("conversationId: " + this.conversation._id);
+
+        socket.emit('enter conversation', this.conversation._id);
+    }
+
+    sendMsg() {
+        console.log("sendMsg");
+        console.log("ConversationID: " + this.conversation._id + " , msg: " + this.msg);
+
+        var conversation = {};
+        conversation._id = this.conversation._id;
+        conversation.message = this.msg;
+
+        this.ChatService.sendReply(this.conversation._id, this.msg).then( response => {
+            console.log("getConversationResponse: " + JSON.stringify(response));
+            socket.emit('new message', response );
         });
     }
 

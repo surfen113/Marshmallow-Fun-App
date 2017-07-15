@@ -5,8 +5,8 @@
 <md-button ng-click="$ctrl.loadConversations()" class="md-raised md-primary" >load Conversations</md-button>
 <md-button ng-click="$ctrl.newConversation()" class="md-raised md-primary" >new Conversations</md-button>
 
-<input type="text" name="conversationID" ng-model="$ctrl.conversationId" placeholder="ConversationID" />
+<input type="text" name="conversationID" ng-model="$ctrl.conversation._id" placeholder="ConversationID" />
 <md-button ng-click="$ctrl.loadConversation()" class="md-raised md-primary" >load Conversation</md-button>
 
-<input type="text" name="send" ng-model="$ctrl.send" placeholder="Send" />
-<md-button ng-click="$ctrl.send()" class="md-raised md-primary" >Send</md-button>
+<input type="text" name="send" ng-model="$ctrl.msg" placeholder="Send" />
+<md-button ng-click="$ctrl.sendMsg()" class="md-raised md-primary" >Send</md-button>
