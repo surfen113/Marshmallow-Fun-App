@@ -36,9 +36,11 @@ var userRoutes = require("./user/userRoutes");
 var movieRoutes = require("./movie/movieRoutes");
 var activityRoutes = require("./activity/activityRoutes");
 var followRoutes = require("./follow/followRoutes");
+var joinRoutes = require("./join/joinRoutes");
 app.use('/api/movies', movieRoutes(passport));
 app.use('/api/user', userRoutes(passport));
 app.use('/api/activity', activityRoutes(passport));
 app.use('/api/follow', followRoutes(passport));
+app.use('/api/join', joinRoutes(passport));
 module.exports = app;
 

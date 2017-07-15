@@ -13,6 +13,7 @@ import MoviesService from './services/movies/movies';
 import UserService from './services/user/user';
 import ActivitiesService from './services/activities/activities';
 import FollowsService from './services/follows/follows';
+import JoinsService from './services/joins/join';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -60,6 +61,7 @@ let app = angular.module('app', [
     ViewActivityEdit.name,
     FollowsService.name,
     ViewProfile.name,
+    JoinsService.name,
 
     ViewMovies.name,
     ViewMovie.name,

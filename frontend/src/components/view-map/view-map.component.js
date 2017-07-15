@@ -7,6 +7,7 @@ import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
 import ActivitiesService from './../../services/activities/activities.service';
 import FollowsService from './../../services/follows/follows.service';
+import JoinsService from './../../services/joins/joins.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
@@ -27,7 +28,7 @@ class ViewMapComponent {
 }
 
 class ViewMapController {
-    constructor($state, $scope, NgMap, ActivitiesService, UserService, FollowsService) {
+    constructor($state, $scope, NgMap, ActivitiesService, UserService, FollowsService, JoinsService) {
         var vm = this;
         this.activity = {};
         this.$state = $state;
@@ -37,6 +38,7 @@ class ViewMapController {
         this.ActivitiesService = ActivitiesService;
         this.activities =        this.ActivitiesService.list();
         this.FollowsService = FollowsService;
+        this.JoinsService = JoinsService;
 
         let newLatitude = 35;
         var newLongitude = null;
@@ -91,7 +93,7 @@ class ViewMapController {
 
 
     static get $inject() {
-        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name, FollowsService.name];
+        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name, FollowsService.name, JoinsService.name];
     }
 
 
@@ -149,9 +151,21 @@ class ViewMapController {
         }
     }
 
-    join() {
+    join(id) {
         let user = this.UserService.getCurrentUser();
 
+
+
+        if (this.UserService.isAuthenticated()) {
+            //let follower = this.UserService.getCurrentUser();
+            this.JoinsService.create( this.UserService.getCurrentUser()['_id'], id);
+        } else {
+            this.$state.go('login',{});
+        }
+
+    }
+
+    unjoin(id){
 
     }
 
