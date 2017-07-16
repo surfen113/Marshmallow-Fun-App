@@ -47,6 +47,14 @@ class ViewChatComponentController {
     }
 
     $onInit() {
+        console.log("Params: " + JSON.stringify(this.$state.params));
+        // check for null or undefined
+        if(this.$state.params.recipientId == null) {
+            console.log("no recipient");
+        } else {
+            console.log("Recipient : " + this.$state.params.recipientId);
+            this.newConversation(this.$state.params.recipientId);
+        }
         this.loadConversations();
         this.conversation = {};
         // this.conversation.messages = [];
@@ -66,32 +74,39 @@ class ViewChatComponentController {
         console.log("user: " + user + " , " + user._id);
         this.ChatService.getConversations(user).then( response => {
             // console.log("getConversationsResponse: " + JSON.stringify(response));
-            console.log(JSON.stringify(response.conversations[0]));
-            console.log(JSON.stringify(response.conversations[0][0]));
+            console.log("loadConversations " + JSON.stringify(response.conversations[0]));
+            console.log("loadConversations " + JSON.stringify(response.conversations[0][0]));
             this.conversations = response.conversations;
-            console.log(JSON.stringify(this.conversations[0][0].conversationId));
+            console.log("loadConversations " + JSON.stringify(this.conversations[0][0].conversationId));
 
         });
     }
 
-    newConversation(){
+    newConversation(recipient){
         console.log("newConversation");
         let user = this.UserService.getCurrentUser();
-        let recipient = { _id : "594852057977cd99c090321c"};
+        // let recipient = { _id : "594852057977cd99c090321c"};
         console.log(JSON.stringify(user));
         console.log(JSON.stringify(recipient));
         this.ChatService.newConversation(user,recipient).then( response => {
-            console.log("getConversationsResponse: " + JSON.stringify(response));
+            console.log("newConversationResponse: " + JSON.stringify(response));
         });
     }
 
     loadConversation(conversationId) {
+        if (this.conversation._id != null) {
+
+        // leave socket conversation
+        socket.emit('leave conversation', this.conversation._id);
+        }
+
         var self = this;
         // conversationID : 596936503a124226d03f49df
         this.ChatService.getConversation(conversationId).then( response => {
             console.log("response = " + JSON.stringify(response));
+            // reverse array of chat messages so you have right timeline in ui
             this.conversation.messages = response;
-            this.messages = response.conversation;
+            self.messages = response.conversation.reverse();
         });
 
         this.conversation._id = conversationId;
@@ -122,6 +137,7 @@ class ViewChatComponentController {
 
     appendToChat(message) {
         console.log("Message pre: " + this.messages);
+        // if(this.messages)
         var messages = this.messages;
         messages.push(message);
         this.message = messages;

@@ -1,27 +1,6 @@
-<style>
-    #conversations {
-        /*width: 200px;*/
-        float:left;
-        height: 100%;
-        overflow-y:scroll;
-        display: inline-block
+<div layout="column" layout-padding="">
 
-    }
-
-    #chatbox {
-        align:right;
-        overflow-y:scroll;
-        /*display: inline-block*/
-    }
-
-    #parent {
-        width: 100%;
-        height: 100%;
-    }
-
-</style>
-
-<div id="parent" scroll="no">
+<div id="parent">
 
 <div id = "conversations">
 <md-list>
@@ -64,13 +43,18 @@
         <ul>
             <li ng-repeat="item in $ctrl.messages">{{item.body}}</li>
         </ul>
-    <div>
+    </div>
 
-    <div>
+    <div id="inputparent">
         <input id=messageinput" type="text" name="send" ng-model="$ctrl.msg" placeholder="Send" />
 
         <md-button id="sendbutton" ng-click="$ctrl.sendMsg()" class="md-raised md-primary" >Send</md-button>
+
+        <md-button class="md-fab md-fab-bottom-right md-ink-ripple" aria-label="New Conversation" ng-click="$ctrl.newMessage($ctrl.user)">
+            <md-icon><ng-md-icon icon="add"></ng-md-icon></md-icon>
+        </md-button>
     </div>
+
 </div>
 
 <!--<div>-->
@@ -86,5 +70,7 @@
 
 <!--</md-list>-->
     <!--</div>-->
+
+</div>
 
 </div>

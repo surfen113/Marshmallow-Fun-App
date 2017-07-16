@@ -151,6 +151,9 @@ export default function config ($stateProvider, $urlRouterProvider) {
                 },
             },
             url: '/chat',
+            params: {
+                recipientId : null
+            },
         })
 
         .state('myActivities', {
