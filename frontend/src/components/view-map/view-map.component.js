@@ -52,67 +52,91 @@ class ViewMapController {
 
         var filters = {social:false, sports:false, party:false, music:false, culture:false}
         var map_filter = function(id) {
-            if (filters[id])
-                filters[id] = false
-            else
-                filters[id] = true
+            if (filters[id]) {
+                filters[id] = false;
+            }
+            else {
+                filters[id] = true;
+            }
         }
 
 
         $( document ).ready(function() {
-            $(function () {
                 $('input[name=filter]').change(function (e) {
-                    map_filter(e.id);
-                    filter_markers()
+                    map_filter(this.id);
+                    filter_markers(vm.activities);
                 });
-            })
         });
 
 
         var create_markers = function(activities) {
             var markers = []
-            for(i=0; i<activities.length; i++) {
-                var marker = {activity: activities[i], visibile: true}
+            for(var i=0; i<activities.length; i++) {
+                var marker = new google.maps.Marker({position: {lat: activities[i].latitude, lng: activities[i].longitude},
+                    setMap: null,
+                    title: activities[i].title})
                 markers.push(marker);
             }
             return markers;
         }
 
-        var get_set_options = function() {
-            var ret_array = []
-            for (var option in filters) {
-                if (filters[option]) {
-                    ret_array.push(option)
-                }
-            }
-            return ret_array;
-        }
+        var filter_markers = function(activities) {
+            var markers=[];
+            var markers2=[];
+            for (var i = 0; i < activities.length; i++) {
+                var acceptable = false;
+                for (var opt in filters) {
+                    switch(opt) {
+                        case "sports":
+                            if (filters[opt]){
+                                acceptable = activities[i].sports;
+                               markers.push(activities[i])
+                            }
+                            break;
+                        case "culture":
+                            if (filters[opt]){
+                                acceptable = activities[i].culture;
+                                markers.push(activities[i]);
+                            }
+                            break;
+                        case "party":
+                            if (filters[opt]){
+                                acceptable = activities[i].party;
+                                markers.push(activities[i]);
+                            }
+                            break;
+                        case "music":
+                            if (filters[opt]){
+                                acceptable = activities[i].music;
+                                markers.push(activities[i]);
+                            }
+                            break;
+                        case "social":
+                            if (filters[opt]){
+                                acceptable = activities[i].social;
+                                markers.push(activities[i]);
+                            }
+                            break;
+                        default:
 
-        var filter_markers = function() {
-            set_filters = get_set_options()
-            var markers = create_markers(this.activities);
-            // for each marker, check to see if all required options are set
-            for (i = 0; i < markers.length; i++) {
-                marker = markers[i];
+                    }
+                    if(acceptable){
+                        break;
+                    }
 
-                // start the filter check assuming the marker will be displayed
-                // if any of the required features are missing, set 'keep' to false
-                // to discard this marker
-                keep=true
-                for (var opt=0; opt<set_filters.length; opt++) {
-                    if (!marker.properties[set_filters[opt]]) {
-                        keep = false;
+                    if(!acceptable && opt == "culture"){
+                      markers2.push(activities[i]);
                     }
                 }
-                marker.visibile= keep;
             }
-            for (var x=0; x < markers.length; x++) {
-                if (markers[x].visible) {markers[x].activity.setMap(vm);}
-                else {markers[x].activity.setMap(null);}
+            var toadd = create_markers(markers);
+            var toremove = create_markers(markers2);
+            for (var i = 0; i< toadd.length; i++) {
+               toadd[i].setVisible(true);
             }
-            console.log("wasalnaaaaaaa")
-            NgMap.getMap(vm);
-
+            for (var i = 0; i< toremove.length; i++) {
+                toremove[i].setVisible(false);
+            }
         }
 
         NgMap.getMap().then(function (map) {
