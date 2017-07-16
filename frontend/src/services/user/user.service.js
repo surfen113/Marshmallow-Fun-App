@@ -53,17 +53,12 @@ export default class UserService {
     }
 
     getUserSettings(_id) {
-
-        let url = `${ this.API_URL+"/user/" }${ _id }`;
-        console.log("url: " + url);
-        return this.$http.get(url, {
-            username : "abc"
-        }).then(responce => {
+        let url = this.API_URL +'/user/' + _id;
+        return this.$http.get(url).then(responce => {
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
             });
-
-        })
+        });
     }
 
 
@@ -106,7 +101,6 @@ export default class UserService {
     }
 
     getProfile(id) {
-        console.log("getProfile " + id);
         let url = `${ this.API_URL+"/user/" }${ id }`;
         return this.$http.get(url).then(responce => {
             console.log("response getProfile " + JSON.stringify(responce.data));

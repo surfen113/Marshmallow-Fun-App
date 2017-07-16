@@ -6,6 +6,8 @@
 import template from './view-map.template.html';
 import UserService from './../../services/user/user.service';
 import ActivitiesService from './../../services/activities/activities.service';
+import FollowsService from './../../services/follows/follows.service';
+import JoinsService from './../../services/joins/joins.service';
 import './view-map.style.css';
 import NgMap from 'ngmap';
 
@@ -16,7 +18,7 @@ class ViewMapComponent {
         this.bindings = {
             activities: '<',
         }
-        console.log(this.bindings.activities);
+
 
     }
 
@@ -26,7 +28,7 @@ class ViewMapComponent {
 }
 
 class ViewMapController {
-    constructor($state, $scope, NgMap, ActivitiesService, UserService) {
+    constructor($state, $scope, NgMap, ActivitiesService, UserService, FollowsService, JoinsService) {
         var vm = this;
         this.activity = {};
         this.$state = $state;
@@ -35,54 +37,34 @@ class ViewMapController {
         this.UserService = UserService;
         this.ActivitiesService = ActivitiesService;
         this.activities =        this.ActivitiesService.list();
+        this.FollowsService = FollowsService;
+        this.follows = this.FollowsService.list();
+        this.JoinsService = JoinsService;
 
-        console.log(this.activities.data);
-
-        this.activity.longitude  = 7;
         let newLatitude = 35;
         var newLongitude = null;
-        this.test = "cool";
 
-        this.ActivitiesService.list().then(data => {
-            console.log(data);
-        console.log(JSON.stringify(data));
-        this.settings = data;
+        this.FollowsService.list().then(data => {
+            this.followList = data;
     });
 
 
-        
-/*
-        this.markerPoints = [
-            {id: "4", "name": "Another Activity", "latitude": 47.263, "longitude": 10.669},
-            {id: "5", "name": "Rowing", "latitude": 48.2761, "longitude": 11.669},
-            {id: "6", "name": "Swimming", "latitude": 48.263, "longitude": 11.639},
-            {id: "7", "name": "Biking", "latitude": 48.263, "longitude": 11.645},
-            {id: "8", "name": "Visiting Munich", "latitude": 48.161, "longitude": 11.669},
-            {id: "9", "name": "Chilling", "latitude": 48.2761, "longitude": 11.699},
-            {id: "10", "name": "Studying Maths", "latitude": 48.261, "longitude": 11.799},
-            {id: "11", "name": "Baseball", "latitude": 45.263, "longitude": 15.669},
-            {id: "12", "name": "Soccer", "latitude": 51.263, "longitude": 12.669},
-            {id: "13", "name": "Start Wars", "latitude": 53.263, "longitude": -57.669}
-        ];
-        */
-        //vm.marker = this.markerPoints[0];
-        //vm.marker = this.activities[0];
-       // console.log(vm.marker);
+        this.ActivitiesService.list().then(data => {
+            this.settings = data;
+    });
 
+        this.JoinsService.list().then(data => {
+            this.joinsList = data;
+    });
 
 
         NgMap.getMap().then(function (map) {
             vm.map = map;
 
             map.addListener('click', function(e) {
-                //@TODO: Window öffnen mit Details und im Backend speichern
                 newLatitude = e.latLng.lat();
-                testMethode(newLatitude);
-                console.log(newLatitude);
-                this.test = "geil";
                 newLongitude = e.latLng.lng();
                 if(UserService.isAuthenticated()) {
-                    console.log("new Latitude onClick: " + newLatitude);
                     var marker = new google.maps.Marker({
                         position: e.latLng,
                         map: map,
@@ -94,24 +76,14 @@ class ViewMapController {
 
         });
 
-       function testMethode(latitude) {
-           console.log($scope.blub);
-           console.log("hiiiiier: " + latitude);
-           console.log("2." + newLatitude);
-           //console.log(this.this.test);
-          // test = "geilo";
-       }
 
-       this.getLatitude = function() {
-           console.log("getLatitude");
-           return newLatitude;
+        this.getLatitude = function() {
+            return newLatitude;
         }
 
         this.getLongitude = function() {
-           return newLongitude;
+            return newLongitude;
         }
-
-
 
         this.showStore = function (e, marker2) {
             vm.marker = marker2;
@@ -119,51 +91,45 @@ class ViewMapController {
                 vm.map.showInfoWindow('normalActivity', vm.marker._id);
             }
         }
-
-
-
-
     }
 
-    testMethode2(latitude) {
-    console.log("hiiiiier: " + latitude);
-    console.log("2." + newLatitude);
-        //console.log(this.this.test);
-    // test = "geilo";
-}
 
     $onInit() {
-        //Clone the Movie Data
         this.model = JSON.parse(JSON.stringify(this.activities));
-        console.log("onInit: " + this.model);
     }
 
 
     static get $inject() {
-        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name];
+        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name, FollowsService.name, JoinsService.name];
     }
 
 
     save() {
-        //console.log("test: " + this.newLatitude);
-        //console.log(newLatitude);
-       var latitude = this.getLatitude();
-        var longitude = this.getLongitude();
 
-        console.log(latitude);
+        var latitude = this.getLatitude();
+        var longitude = this.getLongitude();
         let user = this.UserService.getCurrentUser();
-        console.log(this.activity);
         this.activity['user'] = user['_id'];
         this.activity['latitude'] = latitude;
         this.activity['longitude'] = longitude;
+        var date = this.activity['datetime'];
+
+        if(date == null){
+            this.activity['date'] = "";
+        }else{
+            date = date.toLocaleString();
+            date = date.substring(0,10);
+            this.activity['date'] = date;
+        }
+
+
         this.ActivitiesService.create(this.activity).then(data => {
-            console.log("this.Acticity: " + data );
-            console.log(data);
-        let _id = data[_id];
+            let _id = data[_id];
         this.$state.go('myActivities',{activityId:_id});
     });
-        //this.$state.go('myActivities',{});
+
     }
+
 
     cancel(){
         this.$state.reload();
@@ -173,8 +139,101 @@ class ViewMapController {
         return this.UserService.isAuthenticated();
     }
 
-    isOwnActicity() {
-        console.log("UserID: " + user['_id']);
+    isOwnActivity(userID) {
+        let user = this.UserService.getCurrentUser();
+        if(userID == user['_id']) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    isOwnActivityOrAlreadyFollows(userID) {
+        let currentUser = this.UserService.getCurrentUser();
+        var currentUserId = currentUser['_id'];
+
+        if(userID == currentUserId) {
+            return true;
+        }
+
+        for(var i = 0; i<this.followList.length; i++) {
+            var followEntry = this.followList[i];
+            var id = followEntry['followed'];
+            if(id==userID) {
+                if(currentUserId == followEntry['follower']) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    isOwnActivityOrAlreadyJoined(userID, activityID) {
+        let currentUser = this.UserService.getCurrentUser();
+        var currentUserId = currentUser['_id'];
+
+        if(userID == currentUserId) {
+            return true;
+        }
+
+        for(var i = 0; i<this.joinsList.length; i++) {
+            var entry = this.joinsList[i];
+            var id = entry['activityID'];
+            if(id==activityID) {
+                if(currentUserId == entry['userID']) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+    follow() {
+        if (this.UserService.isAuthenticated()) {
+
+
+
+        this.UserService.getUserSettings(this.marker.user).then(data => {
+            let followerID = this.UserService.getCurrentUser()['_id'];
+            let followerUsername = this.UserService.getCurrentUser()['username'];
+            let followedID = this.marker.user;
+            let followedUsername = data['username'];
+
+            this.FollowsService.create(followerID, followerUsername, followedID, followedUsername).then(data =>{
+                 this.$state.go('userProfile', { userId:this.marker.user });
+            });
+        });
+
+
+
+
+        } else {
+            this.$state.go('login',{});
+        }
+    }
+
+    join(id, activityTile) {
+        let user = this.UserService.getCurrentUser();
+
+        if (this.UserService.isAuthenticated()) {
+            this.JoinsService.create( user['_id'], user['username'], id, activityTile);
+            this.$state.go('myActivities', {reload: true });
+        } else {
+            this.$state.go('login',{});
+        }
+
+    }
+
+    unjoin(id){
+
+    }
+
+    details(activity) {
+        let _id = activity['_id'];
+        this.$state.go('activity', {activityId:_id});
     }
 
 }

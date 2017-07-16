@@ -16,6 +16,8 @@ import ViewActivityCreateComponent from './../components/view-activity-create/vi
 import ActivitiesService from './../services/activities/activities.service';
 import ViewActivityComponent from './../components/view-activity/view-activity.component';
 import ViewActivityEditComponent from './../components/view-activity-edit/view-activity-edit.component';
+import FollowsService from './../services/follows/follows.service';
+import JoinsService from './../services/joins/joins.service';
 
 import MoviesComponent from './../components/view-movies/view-movies.component';
 import MovieComponent from './../components/view-movie/view-movie.component';
@@ -38,6 +40,16 @@ function resolveActivities(activitiesService){
     return activitiesService.list();
 }
 
+resolveJoins.$inject = [JoinsService.name];
+function resolveJoins(joinsService){
+    return joinsService.list();
+}
+
+resolveFollows.$inject = [FollowsService.name];
+function resolveFollows(followsService){
+    return followsService.list();
+}
+
 resolveActivity.$inject = ['$stateParams', ActivitiesService.name];
 function  resolveActivity($stateParams,activitiesService) {
     return activitiesService.get($stateParams.activityId);
@@ -47,9 +59,7 @@ function  resolveActivity($stateParams,activitiesService) {
 
 resolveProfile.$inject = ['$stateParams', UserService.name];
 function resolveProfile($stateParams,userService){
-    console.log("resolveProfile")
-    console.log($stateParams);
-    return userService.getProfile($stateParams.profileId);
+    return userService.getUserSettings($stateParams.userId);
 }
 
 config.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -143,18 +153,6 @@ export default function config ($stateProvider, $urlRouterProvider) {
             url: '/chat',
         })
 
-        .state('myFollowList', {
-            views: {
-                'headerArea': {
-                    template: '<app-header></app-header>',
-                },
-                'container': {
-                    component: ViewMyFollowListComponent.name,
-                },
-            },
-            url: '/myFollowList',
-        })
-
         .state('myActivities', {
             views: {
                 'headerArea': {
@@ -166,7 +164,8 @@ export default function config ($stateProvider, $urlRouterProvider) {
             },
             url: '/myActivities',
             resolve: {
-                activities: resolveActivities
+                activities: resolveActivities,
+                joins: resolveJoins
             }
         })
 
@@ -216,7 +215,8 @@ export default function config ($stateProvider, $urlRouterProvider) {
         },
         url: '/activity/:activityId',
         resolve: {
-            activity: resolveActivity
+            activity: resolveActivity,
+            joins: resolveJoins
         }
         })
         .state('activityEdit', {
@@ -231,6 +231,34 @@ export default function config ($stateProvider, $urlRouterProvider) {
             url: '/activity/:activityId',
             resolve: {
                 activity: resolveActivity
+            }
+        })
+        .state('myFollowList', {
+            views: {
+                'headerArea': {
+                    template: '<app-header></app-header>',
+                },
+                'container': {
+                    component: ViewMyFollowListComponent.name,
+                },
+            },
+            url: '/myFollowList',
+            resolve: {
+                follows: resolveFollows
+            }
+        })
+        .state('userProfile', {
+            views: {
+                'headerArea': {
+                    template: '<app-header></app-header>',
+                },
+                'container': {
+                    component: ProfileComponent.name,
+                },
+            },
+            url: '/userProfile/:userId',
+            resolve: {
+                user: resolveProfile
             }
         })
 }

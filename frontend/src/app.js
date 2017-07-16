@@ -12,6 +12,8 @@ import ngMdIcons from 'angular-material-icons';
 import MoviesService from './services/movies/movies';
 import UserService from './services/user/user';
 import ActivitiesService from './services/activities/activities';
+import FollowsService from './services/follows/follows';
+import JoinsService from './services/joins/join';
 
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
@@ -30,11 +32,12 @@ import ViewMyActivities from './components/view-my-activities/view-my-activities
 import ViewActivityCreate from './components/view-activity-create/view-activity-create';
 import ViewActivity from './components/view-activity/view-activity';
 import ViewActivityEdit from './components/view-activity-edit/view-activity-edit';
+import ViewProfile from './components/view-profile/view-profile';
 
 import ViewMovies from './components/view-movies/view-movies';
 import ViewMovie from './components/view-movie/view-movie';
 
-import ViewProfile from './components/view-profile/view-profile';
+
 
 import ViewChat from './components/view-chat/view-chat';
 import ChatService from './services/chat/chat';
@@ -59,6 +62,9 @@ let app = angular.module('app', [
     ViewActivityCreate.name,
     ViewActivity.name,
     ViewActivityEdit.name,
+    FollowsService.name,
+    ViewProfile.name,
+    JoinsService.name,
 
     ViewMovies.name,
     ViewMovie.name,

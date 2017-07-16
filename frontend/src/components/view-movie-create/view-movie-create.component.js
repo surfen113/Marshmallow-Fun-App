@@ -10,7 +10,6 @@ class ViewMovieCreateComponent {
     constructor(){
         this.controller = ViewMovieCreateComponentController;
         this.template = template;
-        console.log("Profile:")
     }
 
     static get name() {

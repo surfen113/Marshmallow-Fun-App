@@ -30,65 +30,47 @@
             <input type="checkbox" name="culture" ng-model="$ctrl.filter.culture"/>Culture
             <input type="checkbox" name="party" ng-model="$ctrl.filter.party"/>Party
         </div>
+        <div>Neue Activities durch Klicken auf die Karte hinzufügen, Blau sind Deine eigenen Activities, rot die von anderen</div>
         <md-card flex="115">
             <md-card-content style="height:100%">
-                <form name="UserSettingsForm" style="height:550px">
+                <form name="UserSettingsForm" style="height:450px">
                     <ng-map center="[48.26, 11.67]" zoom="11" style="height:100%">
 
-                        <marker position="current" title="You are here"
-                                icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></marker>
+                        <marker position="current" title="You are here" icon="http://www.robotwoods.com/dev/misc/bluecircle.png"></marker>
 
 
 
-                        <marker title="{{p.title}}" position="{{p.latitude}}, {{p.longitude}}"  id="{{p._id}}"  ´
-                                ng-repeat="p in $ctrl.activities" on-click="$ctrl.showStore(p)"></marker>
+                        <div ng-repeat="p in $ctrl.activities">
+                            <marker ng-if="!$ctrl.isOwnActivity(p.user)" title="{{p.title}}" position="{{p.latitude}}, {{p.longitude}}" id="{{p._id}}" on-click="$ctrl.showStore(p)"></marker>
+                            <marker ng-if="$ctrl.isOwnActivity(p.user)" title="{{p.title}}" position="{{p.latitude}}, {{p.longitude}}" id="{{p._id}}" on-click="$ctrl.showStore(p)" icon="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"></marker>
+                        </div>
 
 
+<!-- Popup Window für das Formular für gespeicherte Activities -->
                         <info-window id="normalActivity">
                             <div ng-non-bindable="">
-                                <p>{{$ctrl.marker.title}}</p>
-                                <div>Tags:</div>
-                                <div>Description: {{$ctrl.marker.details}}</div>
-                                <div>Lat: {{anchor.getPosition().lat()}}</div>
-                                <div>Long: {{anchor.getPosition().lng()}}</div>
-                                <div>Date: {{$ctrl.marker.date}}</div>
-                                <div>Time:</div>
-                                <md-button ng-if="!ctrl.isOwnActivity()" ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
-                                <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
+                                <p><b>{{$ctrl.marker.title}}</b></p>
+                               <!-- <div>Tags: </div> -->
+                                <div>Description: &nbsp;{{$ctrl.marker.details}}</div>
+                                <div>Date: &nbsp;{{$ctrl.marker.date}}</div>
+                                <md-button  ng-if="!$ctrl.isOwnActivityOrAlreadyFollows($ctrl.marker.user)" ng-click="$ctrl.follow()" class="md-raised md-primary">Follow </md-button>
+                                <md-button ng-if="!$ctrl.isOwnActivityOrAlreadyJoined($ctrl.marker.user, $ctrl.marker._id)" ng-click="$ctrl.join($ctrl.marker._id, $ctrl.marker.title)" class="md-raised md-primary">Join</md-button>
+                                <md-button  ng-click="$ctrl.details($ctrl.marker)" class="md-raised md-primary">Details</md-button>
                             </div>
                         </info-window>
 
 
-                        <info-window id="ownActivity">
-                            <div ng-non-bindable="">
-                                <p>{{$ctrl.marker.title}}</p>
-                                <div>Tags:</div>
-                                <div>Description: {{$ctrl.marker.details}}</div>
-                                <div>Lat: {{anchor.getPosition().lat()}}</div>
-                                <div>Long: {{anchor.getPosition().lng()}}</div>
-                                <div>Date: {{$ctrl.marker.date}}</div>
-                                <div>Time:</div>
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Follow</md-button>
-                                <md-button ui-sref="myFollowList" class="md-raised md-primary">Join</md-button>
-                                <md-button ui-sref="myActivities" class="md-raised md-primary">Details</md-button>
-                            </div>
-                        </info-window>
-
-
+<!-- Popup-Window für das Formular für neue Activities -->
                         <info-window id="newActivity">
                             <div ng-non-bindable="">
-
                                 <md-input-container class="md-block">
                                     <label>Activity name</label>
-                                    <input type="text" name="firstname" ng-model="$ctrl.activity.title" placeholder=""
+                                    <input type="text" name="firstname" ng-model="$ctrl.activity.title"
                                            required=""/>
-
                                 </md-input-container>
 
                                 <md-input-container class="md-block">
-                                    <p style="font-size:92
-                        %;color:#8c8c8c">Interests</p>
+                                    <p style="font-size:92%;color:#8c8c8c">Interests</p>
                                 </md-input-container>
                                 <dl class="dropdown">
                                     <dd>
@@ -102,22 +84,18 @@
                                     </dd>
                                 </dl>
 
-
                                 <md-input-container class="md-block">
-                                    <label>Date and time</label>
-                                    <input type="string" name="birthday" ng-model="$ctrl.activity.date"
-                                           placeholder=""/>
+                                    <label>Date:</label>
+                                    <input type="date" name="date" min="2017-07-18" ng-model="$ctrl.activity.datetime"/>
                                 </md-input-container>
 
                                 <md-input-container class="md-block">
                                     <label>Details:</label>
-                                    <textarea cols="60" rows="2" name="aboutme" ng-model="$ctrl.activity.details"
-                                              placeholder=""></textarea>
+                                    <textarea cols="60" rows="1" name="aboutme" ng-model="$ctrl.activity.details"></textarea>
                                 </md-input-container>
 
 
-                                <md-button ui-sref="http://google.de" class="md-raised md-primary" ng-click="$ctrl.save()">Save
-                                    Activity
+                                <md-button ui-sref="http://google.de" class="md-raised md-primary" ng-click="$ctrl.save()">Save Activity
                                 </md-button>
                                 <md-button ng-click="$ctrl.cancel()" class="md-raised md-primary">Cancel</md-button>
                             </div>

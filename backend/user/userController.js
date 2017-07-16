@@ -88,7 +88,6 @@ exports.getProfile = function(req, res) {
             return;
         };
         user.password = undefined;
-        console.log(JSON.stringify(user));
         res.json(user);
     });
 };

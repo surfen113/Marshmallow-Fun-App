@@ -20,7 +20,6 @@ export default class ActivitiesService {
 
 
     list() {
-        console.log("list");
         let url = this.API_URL + '/activity/activityGetAll';
         return this.$http.get(url).then(responce => {
 
@@ -38,7 +37,6 @@ export default class ActivitiesService {
 
     get(id) {
         let url = this.API_URL + '/activity/' + id ;
-        console.log("The ID is: " + id);
         return this.$http.get(url).then(responce => {
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
@@ -49,7 +47,7 @@ export default class ActivitiesService {
 
 
     create(activity) {
-        console.log("post Activity activity service");
+
 
         let url = this.API_URL + '/activity/activityAdd';
         return this.$http.post(url, activity).then(response => {
@@ -77,6 +75,19 @@ export default class ActivitiesService {
 
 
     update(activity) {
+        let id = activity['_id'];
+        let url =  this.API_URL + '/activity/' + id ;
+        return this.$http.put(url,activity).then(responce => {
+
+                return new Promise((resolve, reject) => {
+                    resolve(responce.data);
+    });
+
+    });
+    }
+
+
+    join() {
         let id = activity['_id'];
         let url =  this.API_URL + '/activity/' + id ;
         return this.$http.put(url,activity).then(responce => {

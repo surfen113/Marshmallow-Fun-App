@@ -30,8 +30,6 @@ class ViewUserSettingsComponentController{
         let user = this.UserService.getCurrentUser();
         // populate form with user's data
         this.UserService.getUserSettings(user._id).then(data => {
-            console.log(data);
-            console.log(JSON.stringify(data));
             data.birthday = new Date(data.birthday);
             this.settings = data;
         });

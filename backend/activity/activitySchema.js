@@ -20,6 +20,7 @@ var activity = mongoose.Schema({
     culture: Boolean,
     party:Boolean,
     date:String,
+    time: String,
     details: String,
 
     user :{
