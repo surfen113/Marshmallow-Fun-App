@@ -57,6 +57,9 @@ class ViewMapController {
             this.settings = data;
         });
 
+        this.JoinsService.list().then(data => {
+            this.joinsList = data;
+    });
 
         var filters = {social: false, sports: false, party: false, music: false, culture: false}
         var map_filter = function (id) {
@@ -303,51 +306,48 @@ class ViewMapController {
 
 
 
-
-        this.UserService.getUserSettings(this.marker.user).then(data => {
-            let followerID = this.UserService.getCurrentUser()['_id'];
+            this.UserService.getUserSettings(this.marker.user).then(data => {
+                let followerID = this.UserService.getCurrentUser()['_id'];
             let followerUsername = this.UserService.getCurrentUser()['username'];
             let followedID = this.marker.user;
             let followedUsername = data['username'];
 
             this.FollowsService.create(followerID, followerUsername, followedID, followedUsername).then(data =>{
-                 this.$state.go('userProfile', { userId:this.marker.user });
-
-            });
+                this.$state.go('userProfile', { userId:this.marker.user });
+        });
         });
 
 
 
 
         } else {
-            this.$state.go('login', {});
+            this.$state.go('login',{});
         }
     }
 
     join(id, activityTile) {
         let user = this.UserService.getCurrentUser();
 
-
-
         if (this.UserService.isAuthenticated()) {
-            this.JoinsService.create(this.UserService.getCurrentUser()['_id'], id);
-
+            this.JoinsService.create( user['_id'], user['username'], id, activityTile);
+            this.$state.go('myActivities', {reload: true });
         } else {
-            this.$state.go('login', {});
+            this.$state.go('login',{});
         }
 
     }
 
-    unjoin(id) {
+    unjoin(id){
 
     }
 
     details(activity) {
         let _id = activity['_id'];
-        this.$state.go('activity', {activityId: _id});
+        this.$state.go('activity', {activityId:_id});
     }
 
 }
+
 
 export default ViewMapComponent;
 

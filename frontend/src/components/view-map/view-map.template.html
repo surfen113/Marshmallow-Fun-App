@@ -31,7 +31,7 @@
             <input type="checkbox" name="filter" id="culture" ng-model="$ctrl.filter.culture"/>Culture
             <input type="checkbox" name="filter" id="party" ng-model="$ctrl.filter.party"/>Party
         </div>
-        <div>Neue Activities durch Klicken auf die Karte hinzufügen, Blau sind Deine eigenen Activities, rot die von anderen</div>
+        <div>Neue Activities durch Klicken auf die Karte hinzufügen, Deine eigenen Activities sind blau, die von anderen sind rot</div>
         <md-card flex="115">
             <md-card-content style="height:100%">
                 <form name="UserSettingsForm" style="height:450px">
@@ -54,9 +54,8 @@
                                <!-- <div>Tags: </div> -->
                                 <div>Description: &nbsp;{{$ctrl.marker.details}}</div>
                                 <div>Date: &nbsp;{{$ctrl.marker.date}}</div>
-                                <div>Time: &nbsp;{{$ctrl.marker.time}}</div>
-                                <md-button  ng-if="!$ctrl.isOwnActivity($ctrl.marker.user)" ng-click="$ctrl.follow()" class="md-raised md-primary">Follow </md-button>
-                                <md-button ng-if="!$ctrl.isOwnActivity($ctrl.marker.user)" ng-click="$ctrl.join($ctrl.marker._id)" class="md-raised md-primary">Join</md-button>
+                                <md-button  ng-if="!$ctrl.isOwnActivityOrAlreadyFollows($ctrl.marker.user)" ng-click="$ctrl.follow()" class="md-raised md-primary">Follow </md-button>
+                                <md-button ng-if="!$ctrl.isOwnActivityOrAlreadyJoined($ctrl.marker.user, $ctrl.marker._id)" ng-click="$ctrl.join($ctrl.marker._id, $ctrl.marker.title)" class="md-raised md-primary">Join</md-button>
                                 <md-button  ng-click="$ctrl.details($ctrl.marker)" class="md-raised md-primary">Details</md-button>
                             </div>
                         </info-window>
@@ -72,7 +71,7 @@
                                 </md-input-container>
 
                                 <md-input-container class="md-block">
-                                    <p style="font-size:92%;color:#8c8c8c">Interests</p>
+                                    <p style="font-size:92%;color:#8c8c8c">Categories</p>
                                 </md-input-container>
                                 <dl class="dropdown">
                                     <dd>
