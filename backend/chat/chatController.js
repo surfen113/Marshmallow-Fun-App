@@ -7,7 +7,6 @@ const Conversation = require('./conversationSchema'),
     Message = require('./messageSchema'),
     User = require('../user/userSchema');
 
-
 exports.getConversations = function(req, res, next) {
     console.log("getConversations");
     console.log("user_id " + req.params.user_id);
@@ -67,6 +66,7 @@ exports.getConversation = function(req, res, next) {
 
 exports.newConversation = function(req, res, next) {
     console.log("newConversation");
+    console.log("User: " +req.user._id)
     console.log(req.params);
     console.log(req.params.user_id);
     console.log(req.body);
@@ -112,6 +112,8 @@ exports.newConversation = function(req, res, next) {
 };
 
 exports.sendReply = function(req, res, next) {
+    console.log("sendReply");
+    console.log("User: " + req.user._id)
     const reply = new Message({
         conversationId: req.params.conversationId,
         body: req.body.composedMessage,
@@ -124,7 +126,8 @@ exports.sendReply = function(req, res, next) {
             return next(err);
         }
 
-        res.status(200).json({ message: 'Reply successfully sent!' });
+        // return status 200 and message
+        res.status(200).json(sentReply);
         return(next);
     });
 };

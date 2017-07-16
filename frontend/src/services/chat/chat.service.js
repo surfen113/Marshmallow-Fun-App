@@ -43,10 +43,11 @@ export default class ChatService {
         });
     }
 
-    sendReply() {
-        let url = `${ this.resourceUrl }${ conversation['_id'] }`;
+    sendReply(conversation_id, msg) {
+        console.log("sendReply");
+        let url = `${ this.resourceUrl+"conversation/" }${ conversation_id }`;
 
-        return this.$http.post(url).then(response => {
+        return this.$http.post(url, {composedMessage : msg}).then(response => {
 
             return new Promise((resolve, reject) => {
                 resolve(response.data);

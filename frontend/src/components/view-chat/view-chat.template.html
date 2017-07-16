@@ -1,12 +1,90 @@
-<h1>Chat</h1>
-<!-- <img src="./../../Image-Test/chat.jpg" alt="Aktivity List" /> -->
+<style>
+    #conversations {
+        /*width: 200px;*/
+        float:left;
+        height: 100%;
+        overflow-y:scroll;
+        display: inline-block
+
+    }
+
+    #chatbox {
+        align:right;
+        overflow-y:scroll;
+        /*display: inline-block*/
+    }
+
+    #parent {
+        width: 100%;
+        height: 100%;
+    }
+
+</style>
+
+<div id="parent" scroll="no">
+
+<div id = "conversations">
+<md-list>
+
+<md-list-item aria-label="Conversation" ng-click="$ctrl.loadConversation(conversation[0].conversationId)" class="noright" ng-repeat="conversation in $ctrl.conversations">
+    <!--<md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>-->
+    <md-item-content>
+        <p> {{conversation[0].conversationId}} </p>
+    </md-item-content>
+
+    <!--<md-button class="md-icon-button" aria-label="Edit Item" ng-click="" >-->
+        <!--<md-icon><ng-md-icon icon="mode_edit"></ng-md-icon></md-icon>-->
+    <!--</md-button>-->
+
+    <!--<md-button class="md-icon-button"aria-label="Delete Item" ng-click="" >-->
+        <!--<md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>-->
+    <!--</md-button>-->
+    <md-divider ng-if="!$last"></md-divider>
+</md-list-item>
+<md-divider></md-divider>
+
+</md-list>
+
+</div>
 
 
-<md-button ng-click="$ctrl.loadConversations()" class="md-raised md-primary" >load Conversations</md-button>
-<md-button ng-click="$ctrl.newConversation()" class="md-raised md-primary" >new Conversations</md-button>
+<!--<md-button ng-click="$ctrl.loadConversations()" class="md-raised md-primary" >load Conversations</md-button>-->
+<!--<md-button ng-click="$ctrl.newConversation()" class="md-raised md-primary" >new Conversations</md-button>-->
 
-<input type="text" name="conversationID" ng-model="$ctrl.conversationId" placeholder="ConversationID" />
-<md-button ng-click="$ctrl.loadConversation()" class="md-raised md-primary" >load Conversation</md-button>
+<!--<input type="text" name="conversationID" ng-model="$ctrl.conversation._id" placeholder="ConversationID" />-->
+<!--<md-button ng-click="$ctrl.loadConversation()" class="md-raised md-primary" >load Conversation</md-button>-->
 
-<input type="text" name="send" ng-model="$ctrl.send" placeholder="Send" />
-<md-button ng-click="$ctrl.send()" class="md-raised md-primary" >Send</md-button>
+<!--<input type="text" name="send" ng-model="$ctrl.msg" placeholder="Send" />-->
+
+<!--<md-button ng-click="$ctrl.sendMsg()" class="md-raised md-primary" >Send</md-button>-->
+
+
+<div id = "chat">
+    <div id="chattext">
+        <ul>
+            <li ng-repeat="item in $ctrl.messages">{{item.body}}</li>
+        </ul>
+    <div>
+
+    <div>
+        <input id=messageinput" type="text" name="send" ng-model="$ctrl.msg" placeholder="Send" />
+
+        <md-button id="sendbutton" ng-click="$ctrl.sendMsg()" class="md-raised md-primary" >Send</md-button>
+    </div>
+</div>
+
+<!--<div>-->
+<!--<md-list>-->
+
+    <!--<md-list-item aria-label="Conversation" class="noright" ng-repeat="item in $ctrl.messages">-->
+        <!--&lt;!&ndash;<md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>&ndash;&gt;-->
+
+        <!--<p> {{item.body}} </p>-->
+
+        <!--&lt;!&ndash;<md-divider ng-if="!$last"></md-divider>&ndash;&gt;-->
+    <!--</md-list-item>-->
+
+<!--</md-list>-->
+    <!--</div>-->
+
+</div>
