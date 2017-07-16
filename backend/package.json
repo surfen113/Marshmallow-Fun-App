@@ -1,26 +1,26 @@
 {
-  "name": "moviebass",
+  "name": "marshmallow",
   "version": "1.0.0",
-  "description": "Movie backend as a service",
+  "description": "Marshmallow Fun backend as a service",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/sebischair/sebamaster-movie-backend"
+    "url": "https://github.com/surfen113/Marshmallow-Fun-App"
   },
   "keywords": [
-    "movie-backend",
-    "seba",
-    "master"
+    "marshmallowfun-backend",
+    "activities",
+    "seba"
   ],
-  "author": "sebis",
+  "author": "ritter",
   "license": "ISC",
   "bugs": {
-    "url": "https://bitbucket.org/sebischair/sebamaster-movie-backend"
+    "url": "https://github.com/surfen113/Marshmallow-Fun-App"
   },
-  "homepage": "https://bitbucket.org/sebischair/sebamaster-movie-backend#readme",
+  "homepage": "https://github.com/surfen113/Marshmallow-Fun-App#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
@@ -31,6 +31,7 @@
     "mongoose": "^4.4.6",
     "passport": "^0.3.2",
     "passport-jwt": "^2.0.0",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "socket.io" : "^2.0.3"
   }
 }
