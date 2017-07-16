@@ -58,7 +58,7 @@ export default class ChatService {
     newConversation(user, recipient) {
         let url = `${ this.resourceUrl+"/new/" }${ user['_id']}${ "/" + recipient['_id']}`;
 
-        return this.$http.post(url, {composedMessage : "msg" }).then(response => {
+        return this.$http.post(url, {composedMessage : "Start of Conversation" }).then(response => {
 
             return new Promise((resolve, reject) => {
                 resolve(response.data);

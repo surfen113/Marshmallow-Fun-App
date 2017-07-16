@@ -66,6 +66,17 @@ class ViewProfileComponentController{
         this.$state.go('chat', { recipientId : user});
     }
 
+    follow(user) {
+        let followerID = this.UserService.getCurrentUser()['_id'];
+        let followerUsername = this.UserService.getCurrentUser()['username'];
+        let followedID = user._id;
+        let followedUsername = user.username;
+
+        this.FollowsService.create(followerID, followerUsername, followedID, followedUsername).then(data =>{
+            // this.$state.go('myFollowList', { userId: user._id });
+        });
+    }
+
 
 
     static get $inject(){

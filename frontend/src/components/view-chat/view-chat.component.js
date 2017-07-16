@@ -30,13 +30,7 @@ class ViewChatComponent {
 
 }
 
-/*
 
-this.conversation._id = conversationId of currently displayed chat messages
-
-
-
- */
 class ViewChatComponentController {
 
     constructor($state, $scope,ChatService, UserService){
@@ -57,7 +51,6 @@ class ViewChatComponentController {
         }
         this.loadConversations();
         this.conversation = {};
-        // this.conversation.messages = [];
 
         socket.on('refresh messages', (message) => {
         console.log("refresh message " + JSON.stringify(message));
@@ -85,12 +78,12 @@ class ViewChatComponentController {
     newConversation(recipient){
         console.log("newConversation");
         let user = this.UserService.getCurrentUser();
-        // let recipient = { _id : "594852057977cd99c090321c"};
-        console.log(JSON.stringify(user));
-        console.log(JSON.stringify(recipient));
+
         this.ChatService.newConversation(user,recipient).then( response => {
             console.log("newConversationResponse: " + JSON.stringify(response));
         });
+
+        // TODO refresh conversations
     }
 
     loadConversation(conversationId) {
@@ -119,6 +112,8 @@ class ViewChatComponentController {
 
 
         console.log("messages: " + this.messages);
+
+        this.msg = "";
     }
 
     sendMsg() {
@@ -133,6 +128,8 @@ class ViewChatComponentController {
             console.log("getConversationResponse: " + JSON.stringify(response));
             socket.emit('new message', response );
         });
+
+        this.msg = "";
     }
 
     appendToChat(message) {

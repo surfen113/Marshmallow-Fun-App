@@ -36,3 +36,7 @@
 #inputparent {
     align: bottom;
 }
+
+li {
+    list-style-type: none;
+}
