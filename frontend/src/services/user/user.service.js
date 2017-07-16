@@ -53,7 +53,6 @@ export default class UserService {
     }
 
     getUserSettings(_id) {
-        console.log("you are in the user.service");
         let url = this.API_URL +'/user/' + _id;
         return this.$http.get(url).then(responce => {
             return new Promise((resolve, reject) => {
@@ -102,7 +101,6 @@ export default class UserService {
     }
 
     getProfile(id) {
-        console.log("getProfile " + id);
         let url = `${ this.API_URL+"/user/" }${ id }`;
         return this.$http.get(url).then(responce => {
             console.log("response getProfile " + JSON.stringify(responce.data));

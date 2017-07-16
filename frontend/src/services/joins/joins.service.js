@@ -32,10 +32,10 @@ export default class JoinsService {
 
 
 
-    create(userID, activityID) {
+    create(userID, userName, activityID, activityTitle) {
         let url = this.API_URL + '/join/joinAdd';
 
-        return this.$http.post(url, {userID:userID, activityID:activityID}).then(response => {
+        return this.$http.post(url, {userID:userID, username: userName, activityID:activityID, activityTitle:activityTitle}).then(response => {
                 return new Promise((resolve, reject) => {
                     resolve(response.data);
     });

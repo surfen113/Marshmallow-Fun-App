@@ -4,6 +4,7 @@
 import template from './view-activity.template.html';
 import ActivitiesService from './../../services/activities/activities.service';
 import UserService from './../../services/user/user.service';
+import JoinsService from './../../services/joins/joins.service';
 
 class ViewActivityComponent {
     constructor(){
@@ -11,6 +12,7 @@ class ViewActivityComponent {
         this.template = template;
         this.bindings = {
             activity: '<',
+            joins: '<',
         }
 
     }
@@ -23,10 +25,11 @@ class ViewActivityComponent {
 }
 
 class ViewActivityComponentController{
-    constructor($state,ActivitiesService,UserService){
+    constructor($state,ActivitiesService,UserService, JoinsService){
         this.$state = $state;
         this.ActivitiesService = ActivitiesService;
         this.UserService = UserService;
+        this.JoinsService = JoinsService;
     }
 
 
@@ -41,7 +44,39 @@ class ViewActivityComponentController{
 
     };
 
+    gotoUser(userID){
+        if (this.UserService.isAuthenticated()) {
 
+            this.$state.go('userProfile', {userId: userID });
+        } else {
+            this.$state.go('login',{});
+        }
+    }
+
+    detailsID (activityID) {
+        if (this.UserService.isAuthenticated()) {
+            this.$state.go('activity',{ activityId:activityID});
+        } else {
+            this.$state.go('login',{});
+        }
+    };
+
+
+    isJoinedActivity(activityID, joinActivityID){
+        if(activityID == joinActivityID){
+            return true;
+        }else{
+            return false;
+        }
+    };
+
+    creatorIsCurrentUser(userID){
+        if(this.UserService.getCurrentUser()['_id'] == userID){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     delete() {
         if (this.UserService.isAuthenticated()) {
@@ -55,26 +90,8 @@ class ViewActivityComponentController{
         }
     };
 
-
-    /*
-    getPosterURL(){
-        let posterURL = 'http://placehold.it/32x32';
-        if (this.movie.hasOwnProperty('posters')) {
-            if (this.movie.posters.hasOwnProperty('thumbnail')) {
-                posterURL = this.movie.posters.thumbnail;
-            } else if (this.movie.posters.hasOwnProperty('profile')) {
-                posterURL = this.movie.posters.profile;
-            } else if (this.movie.posters.hasOwnProperty('detailed')) {
-                posterURL = this.movie.posters.detailed;
-            } else {
-                posterURL = this.movie.posters.original;
-            }
-        }
-        return posterURL;
-    }
-*/
     static get $inject(){
-        return ['$state', ActivitiesService.name, UserService.name];
+        return ['$state', ActivitiesService.name, UserService.name, JoinsService.name];
     }
 
 }

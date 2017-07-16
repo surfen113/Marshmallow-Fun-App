@@ -38,13 +38,20 @@ class ViewMapController {
         this.ActivitiesService = ActivitiesService;
         this.activities = this.ActivitiesService.list();
         this.FollowsService = FollowsService;
+        this.follows = this.FollowsService.list();
         this.JoinsService = JoinsService;
 
 
         let newLatitude = 35;
         var newLongitude = null;
 
+        this.FollowsService.list().then(data => {
+            this.followList = data;
+    });
+
+
         this.ActivitiesService.list().then(data => {
+
             //    console.log(data);
             //console.log(JSON.stringify(data));
             this.settings = data;
@@ -83,6 +90,7 @@ class ViewMapController {
                 }
                 else {
                     vm.activities = filter_markers(vm.activities);
+
 
                 }
                 vm.map.setZoom(10);
@@ -221,10 +229,7 @@ class ViewMapController {
             this.activity['date'] = date;
         }
 
-        //this.activity['date'] = new Date(date);
-        console.log(this.activity['date']);
 
-//        data.birthday = new Date(data.birthday);
         this.ActivitiesService.create(this.activity).then(data => {
             let _id = data[_id];
             this.$state.go('myActivities', {activityId: _id});
@@ -251,24 +256,82 @@ class ViewMapController {
         }
     }
 
+    isOwnActivityOrAlreadyFollows(userID) {
+        let currentUser = this.UserService.getCurrentUser();
+        var currentUserId = currentUser['_id'];
+
+        if(userID == currentUserId) {
+            return true;
+        }
+
+        for(var i = 0; i<this.followList.length; i++) {
+            var followEntry = this.followList[i];
+            var id = followEntry['followed'];
+            if(id==userID) {
+                if(currentUserId == followEntry['follower']) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    isOwnActivityOrAlreadyJoined(userID, activityID) {
+        let currentUser = this.UserService.getCurrentUser();
+        var currentUserId = currentUser['_id'];
+
+        if(userID == currentUserId) {
+            return true;
+        }
+
+        for(var i = 0; i<this.joinsList.length; i++) {
+            var entry = this.joinsList[i];
+            var id = entry['activityID'];
+            if(id==activityID) {
+                if(currentUserId == entry['userID']) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
     follow() {
         if (this.UserService.isAuthenticated()) {
-            //let follower = this.UserService.getCurrentUser();
 
-            this.FollowsService.create(this.marker.user, this.UserService.getCurrentUser()['_id']).then(data => {
-                this.$state.go('userProfile', {userId: this.marker.user});
+
+
+
+        this.UserService.getUserSettings(this.marker.user).then(data => {
+            let followerID = this.UserService.getCurrentUser()['_id'];
+            let followerUsername = this.UserService.getCurrentUser()['username'];
+            let followedID = this.marker.user;
+            let followedUsername = data['username'];
+
+            this.FollowsService.create(followerID, followerUsername, followedID, followedUsername).then(data =>{
+                 this.$state.go('userProfile', { userId:this.marker.user });
+
             });
+        });
+
+
+
+
         } else {
             this.$state.go('login', {});
         }
     }
 
-    join(id) {
+    join(id, activityTile) {
         let user = this.UserService.getCurrentUser();
+
 
 
         if (this.UserService.isAuthenticated()) {
             this.JoinsService.create(this.UserService.getCurrentUser()['_id'], id);
+
         } else {
             this.$state.go('login', {});
         }

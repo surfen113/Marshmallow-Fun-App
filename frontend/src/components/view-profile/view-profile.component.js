@@ -4,6 +4,7 @@
 import template from './view-profile.template.html';
 import UserService from './../../services/user/user.service';
 import FollowsService from './../../services/follows/follows.service';
+import ChatService from './../../services/chat/chat.service';
 
 class ViewProfileComponent {
     constructor(){
@@ -23,11 +24,12 @@ class ViewProfileComponent {
 }
 
 class ViewProfileComponentController{
-    constructor($state,UserService, FollowsService){
+    constructor($state,UserService, FollowsService, ChatService){
         this.model = {};
         this.$state = $state;
         this.UserService = UserService;
         this.FollowsService = FollowsService;
+        this.ChatService = ChatService;
     }
 
     $onInit() {
@@ -59,10 +61,15 @@ class ViewProfileComponentController{
         }
     }
 
+    newChat(user) {
+        console.log("go new chat, recipient: " + user._id);
+        this.$state.go('chat', { recipientId : user});
+    }
+
 
 
     static get $inject(){
-        return ['$state', UserService.name, FollowsService.name];
+        return ['$state', UserService.name, FollowsService.name, ChatService.name];
     }
 
 }

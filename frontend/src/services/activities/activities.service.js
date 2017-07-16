@@ -37,7 +37,6 @@ export default class ActivitiesService {
 
     get(id) {
         let url = this.API_URL + '/activity/' + id ;
-        console.log("The ID is: " + id);
         return this.$http.get(url).then(responce => {
             return new Promise((resolve, reject) => {
                 resolve(responce.data);

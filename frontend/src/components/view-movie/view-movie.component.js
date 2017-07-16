@@ -32,9 +32,6 @@ class ViewMovieComponentController{
     }
 
     edit () {
-
-        console.log(JSON.stringify(this.movie));
-
         if (this.UserService.isAuthenticated()) {
             let _id = this.movie['_id'];
             this.$state.go('movieEdit',{ movieId:_id});

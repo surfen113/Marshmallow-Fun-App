@@ -59,6 +59,16 @@ class ViewMyFollowListComponentController{
         }
     }
 
+
+    isOwnFollow(userID) {
+        let user = this.UserService.getCurrentUser();
+        if(userID == user['_id']) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
 
 
