@@ -1,3 +1,4 @@
+
 <div layout="column" layout-padding="">
     <span flex="120"></span>
 
@@ -24,11 +25,11 @@
         </div>
         <div id="search">
             <input id="searchbar" ng-model="$ctrl.query" type="text" placeholder="Search"/>
-            <input type="checkbox" name="sports" ng-model="$ctrl.filter.sports"/>Sports
-            <input type="checkbox" name="social" ng-model="$ctrl.filter.social"/>Social
-            <input type="checkbox" name="music" ng-model="$ctrl.filter.music"/>Music
-            <input type="checkbox" name="culture" ng-model="$ctrl.filter.culture"/>Culture
-            <input type="checkbox" name="party" ng-model="$ctrl.filter.party"/>Party
+            <input type="checkbox" name="filter" id="sports" ng-model="$ctrl.filter.sports"/>Sports
+            <input type="checkbox" name="filter" id="social" ng-model="$ctrl.filter.social"/>Social
+            <input type="checkbox" name="filter" id="music" ng-model="$ctrl.filter.music"/>Music
+            <input type="checkbox" name="filter" id="culture" ng-model="$ctrl.filter.culture"/>Culture
+            <input type="checkbox" name="filter" id="party" ng-model="$ctrl.filter.party"/>Party
         </div>
         <div>Neue Activities durch Klicken auf die Karte hinzufügen, Blau sind Deine eigenen Activities, rot die von anderen</div>
         <md-card flex="115">
@@ -53,8 +54,9 @@
                                <!-- <div>Tags: </div> -->
                                 <div>Description: &nbsp;{{$ctrl.marker.details}}</div>
                                 <div>Date: &nbsp;{{$ctrl.marker.date}}</div>
-                                <md-button  ng-if="!$ctrl.isOwnActivityOrAlreadyFollows($ctrl.marker.user)" ng-click="$ctrl.follow()" class="md-raised md-primary">Follow </md-button>
-                                <md-button ng-if="!$ctrl.isOwnActivityOrAlreadyJoined($ctrl.marker.user, $ctrl.marker._id)" ng-click="$ctrl.join($ctrl.marker._id, $ctrl.marker.title)" class="md-raised md-primary">Join</md-button>
+                                <div>Time: &nbsp;{{$ctrl.marker.time}}</div>
+                                <md-button  ng-if="!$ctrl.isOwnActivity($ctrl.marker.user)" ng-click="$ctrl.follow()" class="md-raised md-primary">Follow </md-button>
+                                <md-button ng-if="!$ctrl.isOwnActivity($ctrl.marker.user)" ng-click="$ctrl.join($ctrl.marker._id)" class="md-raised md-primary">Join</md-button>
                                 <md-button  ng-click="$ctrl.details($ctrl.marker)" class="md-raised md-primary">Details</md-button>
                             </div>
                         </info-window>

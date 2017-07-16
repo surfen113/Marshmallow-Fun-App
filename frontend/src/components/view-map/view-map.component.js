@@ -36,10 +36,11 @@ class ViewMapController {
         this.NgMap = NgMap;
         this.UserService = UserService;
         this.ActivitiesService = ActivitiesService;
-        this.activities =        this.ActivitiesService.list();
+        this.activities = this.ActivitiesService.list();
         this.FollowsService = FollowsService;
         this.follows = this.FollowsService.list();
         this.JoinsService = JoinsService;
+
 
         let newLatitude = 35;
         var newLongitude = null;
@@ -50,21 +51,127 @@ class ViewMapController {
 
 
         this.ActivitiesService.list().then(data => {
+
+            //    console.log(data);
+            //console.log(JSON.stringify(data));
             this.settings = data;
-    });
+        });
 
-        this.JoinsService.list().then(data => {
-            this.joinsList = data;
-    });
 
+        var filters = {social: false, sports: false, party: false, music: false, culture: false}
+        var map_filter = function (id) {
+            if (filters[id]) {
+                filters[id] = false;
+            }
+            else {
+                filters[id] = true;
+            }
+           return filters["social"] || filters["music"] || filters["culture"] || filters["party"] || filters["sports"];
+        }
+
+
+        $(document).ready(function () {
+            $('input[name=filter]').change(function (e) {
+                var a = map_filter(this.id);
+                if (a && !(filters["social"] && filters["music"] && filters["culture"] && filters["party"] && filters["sports"])) {
+                    vm.activities = filter_markers(vm.activities);
+                }else {
+                    console.log("ana da5alt hena!!");
+                    for (var i = 0; i < vm.activities.length; i++){
+                        console.log("activity nr." + i + " : " + vm.activities[i].length);
+                    }
+                } vm.map.setZoom(10);
+            });
+            $('input[id=searchbar]').change(function (e) {
+                var query = document.getElementById('searchbar').value;
+                if(query) {
+                    vm.activities = search_filter(query, vm.activities);
+
+                }
+                else {
+                    vm.activities = filter_markers(vm.activities);
+
+
+                }
+                vm.map.setZoom(10);
+            });
+        });
+
+        var search_filter = function (query, activities) {
+            var tmp_markers = filter_markers(activities);
+            for (var i=0; i < tmp_markers.length; i++) {
+                //console.log(tmp_markers[i].title  + " beyban null ezaher; e7na fel i rakam " + i);
+                if (tmp_markers[i] !== null && tmp_markers[i] !== null && tmp_markers[i].title.test(query) ){
+                    tmp_markers.push(i);
+                }
+                if (tmp_markers[i].title !== null && !tmp_markers[i].title.test(query) ){
+                   tmp_markers.splice(i,1);
+                }
+            }
+
+            return tmp_markers;
+        }
+
+
+        var filter_markers = function (activities) {
+            var markers = [];
+            for (var i = 0; i < vm.activities.length; i++) {
+                var acceptable = false;
+                for (var opt in filters) {
+                    console.log(opt + " -> " + filters[opt]);
+                    switch (opt) {
+                        case "sports":
+                            if (filters[opt] && vm.activities[i].sports) {
+                                acceptable = vm.activities[i].sports;
+                                markers.push(vm.activities[i])
+                            }
+                            break;
+                        case "culture":
+                            if (filters[opt] && vm.activities[i].culture) {
+                                acceptable = vm.activities[i].culture;
+                                markers.push(vm.activities[i]);
+                            }
+                            break;
+                        case "party":
+                            if (filters[opt] && vm.activities[i].party) {
+                                acceptable = vm.activities[i].party;
+                                markers.push(vm.activities[i]);
+                            }
+                            break;
+                        case "music":
+                            if (filters[opt] && vm.activities[i].music) {
+                                acceptable = vm.activities[i].music;
+                                console.log("da5alna music");
+                                markers.push(vm.activities[i]);
+                            }
+                            break;
+                        case "social":
+                            if (filters[opt] && vm.activities[i].social) {
+                                acceptable = vm.activities[i].social;
+                                markers.push(vm.activities[i]);
+                            }
+                            break;
+                        default:
+
+                    }
+                    if (acceptable) {
+                        break;
+                    }
+                }
+            }
+            for (var i = 0; i < markers.length; i++) {
+                console.log(markers[i].title + " mawjuuud");
+            }
+            return markers;
+        }
 
         NgMap.getMap().then(function (map) {
             vm.map = map;
 
-            map.addListener('click', function(e) {
+            map.addListener('click', function (e) {
                 newLatitude = e.latLng.lat();
                 newLongitude = e.latLng.lng();
-                if(UserService.isAuthenticated()) {
+                if (UserService.isAuthenticated()) {
                     var marker = new google.maps.Marker({
                         position: e.latLng,
                         map: map,
@@ -77,17 +184,17 @@ class ViewMapController {
         });
 
 
-        this.getLatitude = function() {
+        this.getLatitude = function () {
             return newLatitude;
         }
 
-        this.getLongitude = function() {
+        this.getLongitude = function () {
             return newLongitude;
         }
 
         this.showStore = function (e, marker2) {
             vm.marker = marker2;
-            if(UserService.isAuthenticated()) {
+            if (UserService.isAuthenticated()) {
                 vm.map.showInfoWindow('normalActivity', vm.marker._id);
             }
         }
@@ -100,7 +207,7 @@ class ViewMapController {
 
 
     static get $inject() {
-        return ['$state','$scope', 'NgMap', ActivitiesService.name, UserService.name, FollowsService.name, JoinsService.name];
+        return ['$state', '$scope', 'NgMap', ActivitiesService.name, UserService.name, FollowsService.name, JoinsService.name];
     }
 
 
@@ -114,34 +221,34 @@ class ViewMapController {
         this.activity['longitude'] = longitude;
         var date = this.activity['datetime'];
 
-        if(date == null){
+        if (date == null) {
             this.activity['date'] = "";
-        }else{
+        } else {
             date = date.toLocaleString();
-            date = date.substring(0,10);
+            date = date.substring(0, 10);
             this.activity['date'] = date;
         }
 
 
         this.ActivitiesService.create(this.activity).then(data => {
             let _id = data[_id];
-        this.$state.go('myActivities',{activityId:_id});
-    });
+            this.$state.go('myActivities', {activityId: _id});
+        });
 
     }
 
 
-    cancel(){
+    cancel() {
         this.$state.reload();
     }
 
-    isAuthenticated(){
+    isAuthenticated() {
         return this.UserService.isAuthenticated();
     }
 
     isOwnActivity(userID) {
         let user = this.UserService.getCurrentUser();
-        if(userID == user['_id']) {
+        if (userID == user['_id']) {
             return true;
         }
         else {
@@ -196,6 +303,7 @@ class ViewMapController {
 
 
 
+
         this.UserService.getUserSettings(this.marker.user).then(data => {
             let followerID = this.UserService.getCurrentUser()['_id'];
             let followerUsername = this.UserService.getCurrentUser()['username'];
@@ -204,6 +312,7 @@ class ViewMapController {
 
             this.FollowsService.create(followerID, followerUsername, followedID, followedUsername).then(data =>{
                  this.$state.go('userProfile', { userId:this.marker.user });
+
             });
         });
 
@@ -211,29 +320,31 @@ class ViewMapController {
 
 
         } else {
-            this.$state.go('login',{});
+            this.$state.go('login', {});
         }
     }
 
     join(id, activityTile) {
         let user = this.UserService.getCurrentUser();
 
+
+
         if (this.UserService.isAuthenticated()) {
-            this.JoinsService.create( user['_id'], user['username'], id, activityTile);
-            this.$state.go('myActivities', {reload: true });
+            this.JoinsService.create(this.UserService.getCurrentUser()['_id'], id);
+
         } else {
-            this.$state.go('login',{});
+            this.$state.go('login', {});
         }
 
     }
 
-    unjoin(id){
+    unjoin(id) {
 
     }
 
     details(activity) {
         let _id = activity['_id'];
-        this.$state.go('activity', {activityId:_id});
+        this.$state.go('activity', {activityId: _id});
     }
 
 }
