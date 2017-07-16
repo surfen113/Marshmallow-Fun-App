@@ -40,6 +40,7 @@ class ViewMapController {
         this.FollowsService = FollowsService;
         this.JoinsService = JoinsService;
 
+
         let newLatitude = 35;
         var newLongitude = null;
 
@@ -58,36 +59,45 @@ class ViewMapController {
             else {
                 filters[id] = true;
             }
+           return filters["social"] || filters["music"] || filters["culture"] || filters["party"] || filters["sports"];
         }
 
 
         $(document).ready(function () {
             $('input[name=filter]').change(function (e) {
-                map_filter(this.id);
-                filter_markers(vm.activities);
+                var a = map_filter(this.id);
+                if (a && !(filters["social"] && filters["music"] && filters["culture"] && filters["party"] && filters["sports"])) {
+                    vm.activities = filter_markers(vm.activities);
+                }
+                vm.map.setZoom(10);
             });
             $('input[id=searchbar]').change(function (e) {
-                console.log("da5alna el searchbar ya bro");
                 var query = document.getElementById('searchbar').value;
-                console.log(query);
-                search_filter(query, vm.activities);
+                if(query) {
+                    vm.activities = search_filter(query, vm.activities);
+                }
+                else {
+                    vm.activities = filter_markers(vm.activities);
+                }
+                vm.map.setZoom(10);
             });
         });
 
         var search_filter = function (query, activities) {
-            var markers = filter_markers(activities);
-            for (var i in markers) {
-                console.log(i);
-                if (i.title !== null && i.title.test(query) ){
-                    i.setMap(vm.map)
+            var tmp_markers = filter_markers(activities);
+            for (var i=0; i < tmp_markers.length; i++) {
+                console.log(tmp_markers[i].title  + " beyban null ezaher; e7na fel i rakam " + i);
+                if (tmp_markers[i] !== null && tmp_markers[i] !== null && tmp_markers[i].title.test(query) ){
+                    tmp_markers.push(i);
                 }
-                if (i.title !== null && !i.title.test(query) ){
-                    i.setMap(null);
+                if (tmp_markers[i].title !== null && !tmp_markers[i].title.test(query) ){
+                   tmp_markers.splice(i,1);
                 }
             }
-            google.maps.event.trigger(vm.map, 'resize');
-        }
 
+            return tmp_markers;
+        }
+/*
         var create_markers = function (activities) {
             var markers = []
             for (var i = 0; i < activities.length; i++) {
@@ -99,43 +109,42 @@ class ViewMapController {
                 markers.push(marker);
             }
             return markers;
-        }
+        }*/
 
         var filter_markers = function (activities) {
             var markers = [];
-            var markers2 = [];
-            for (var i = 0; i < activities.length; i++) {
+            for (var i = 0; i < vm.activities.length; i++) {
                 var acceptable = false;
                 for (var opt in filters) {
                     switch (opt) {
                         case "sports":
-                            if (filters[opt]) {
-                                acceptable = activities[i].sports;
-                                markers.push(activities[i])
+                            if (filters[opt] && vm.activities[i].sports) {
+                                acceptable = vm.activities[i].sports;
+                                markers.push(vm.activities[i])
                             }
                             break;
                         case "culture":
-                            if (filters[opt]) {
-                                acceptable = activities[i].culture;
-                                markers.push(activities[i]);
+                            if (filters[opt] && vm.activities[i].culture) {
+                                acceptable = vm.activities[i].culture;
+                                markers.push(vm.activities[i]);
                             }
                             break;
                         case "party":
-                            if (filters[opt]) {
-                                acceptable = activities[i].party;
-                                markers.push(activities[i]);
+                            if (filters[opt] && vm.activities[i].party) {
+                                acceptable = vm.activities[i].party;
+                                markers.push(vm.activities[i]);
                             }
                             break;
                         case "music":
-                            if (filters[opt]) {
-                                acceptable = activities[i].music;
-                                markers.push(activities[i]);
+                            if (filters[opt] && vm.activities[i].music) {
+                                acceptable = vm.activities[i].music;
+                                markers.push(vm.activities[i]);
                             }
                             break;
                         case "social":
-                            if (filters[opt]) {
-                                acceptable = activities[i].social;
-                                markers.push(activities[i]);
+                            if (filters[opt] && vm.activities[i].social) {
+                                acceptable = vm.activities[i].social;
+                                markers.push(vm.activities[i]);
                             }
                             break;
                         default:
@@ -144,22 +153,12 @@ class ViewMapController {
                     if (acceptable) {
                         break;
                     }
-
-                    if (!acceptable && opt == "culture") {
-                        markers2.push(activities[i]);
-                    }
                 }
-                return markers
             }
-            var toadd = create_markers(markers);
-            var toremove = create_markers(markers2);
-            for (var i = 0; i < toadd.length; i++) {
-                toadd[i].setMap(vm.map);
+            for (var i = 0; i < markers.length; i++) {
+                console.log(markers[i].title + " mawjuuud");
             }
-            for (var i = 0; i < toremove.length; i++) {
-                toremove[i].setMap(null);
-            }
-            google.maps.event.trigger(vm.map, 'resize');
+            return markers;
         }
 
         NgMap.getMap().then(function (map) {
