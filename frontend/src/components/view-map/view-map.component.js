@@ -68,16 +68,22 @@ class ViewMapController {
                 var a = map_filter(this.id);
                 if (a && !(filters["social"] && filters["music"] && filters["culture"] && filters["party"] && filters["sports"])) {
                     vm.activities = filter_markers(vm.activities);
-                }
-                vm.map.setZoom(10);
+                }else {
+                    console.log("ana da5alt hena!!");
+                    for (var i = 0; i < vm.activities.length; i++){
+                        console.log("activity nr." + i + " : " + vm.activities[i].length);
+                    }
+                } vm.map.setZoom(10);
             });
             $('input[id=searchbar]').change(function (e) {
                 var query = document.getElementById('searchbar').value;
                 if(query) {
                     vm.activities = search_filter(query, vm.activities);
+
                 }
                 else {
                     vm.activities = filter_markers(vm.activities);
+
                 }
                 vm.map.setZoom(10);
             });
@@ -86,7 +92,7 @@ class ViewMapController {
         var search_filter = function (query, activities) {
             var tmp_markers = filter_markers(activities);
             for (var i=0; i < tmp_markers.length; i++) {
-                console.log(tmp_markers[i].title  + " beyban null ezaher; e7na fel i rakam " + i);
+                //console.log(tmp_markers[i].title  + " beyban null ezaher; e7na fel i rakam " + i);
                 if (tmp_markers[i] !== null && tmp_markers[i] !== null && tmp_markers[i].title.test(query) ){
                     tmp_markers.push(i);
                 }
@@ -97,25 +103,14 @@ class ViewMapController {
 
             return tmp_markers;
         }
-/*
-        var create_markers = function (activities) {
-            var markers = []
-            for (var i = 0; i < activities.length; i++) {
-                var marker = new google.maps.Marker({
-                    position: {lat: activities[i].latitude, lng: activities[i].longitude},
-                    setMap: null,
-                    title: activities[i].title
-                })
-                markers.push(marker);
-            }
-            return markers;
-        }*/
+
 
         var filter_markers = function (activities) {
             var markers = [];
             for (var i = 0; i < vm.activities.length; i++) {
                 var acceptable = false;
                 for (var opt in filters) {
+                    console.log(opt + " -> " + filters[opt]);
                     switch (opt) {
                         case "sports":
                             if (filters[opt] && vm.activities[i].sports) {
@@ -138,6 +133,7 @@ class ViewMapController {
                         case "music":
                             if (filters[opt] && vm.activities[i].music) {
                                 acceptable = vm.activities[i].music;
+                                console.log("da5alna music");
                                 markers.push(vm.activities[i]);
                             }
                             break;
@@ -272,7 +268,6 @@ class ViewMapController {
 
 
         if (this.UserService.isAuthenticated()) {
-            //let follower = this.UserService.getCurrentUser();
             this.JoinsService.create(this.UserService.getCurrentUser()['_id'], id);
         } else {
             this.$state.go('login', {});
